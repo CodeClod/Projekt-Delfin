@@ -13,7 +13,8 @@ public class GUI {
     try {
       return inputNumber.nextDouble();
     } catch (Exception e) {
-      System.err.println("Wrong input, please use numbers and seperate decimals with comma(for example 1,5). Try again");
+      System.err.println("Wrong input, please use numbers and separate decimals with " +
+          "comma(for example 1,5). Try again");
       inputNumber.nextLine();
       return getDouble();
     }
