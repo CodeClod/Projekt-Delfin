@@ -4,9 +4,12 @@ import java.util.Locale;
 public class Controller {
   GUI gui = new GUI();
   FileReader fileReader = new FileReader();
+  Music music = new Music();
   private boolean loop = true;
 
-  public void run() throws IOException {
+  public void run() throws IOException, InterruptedException {
+    music.playMusic();
+    Thread.sleep(2000);
     while (loop) {
       mainMenu();
     }
