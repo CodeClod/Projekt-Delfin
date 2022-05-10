@@ -13,8 +13,7 @@ public class GUI {
     try {
       return inputNumber.nextDouble();
     } catch (Exception e) {
-      System.err.println("Wrong input, please use numbers and separate decimals with " +
-          "comma(for example 1,5). Try again");
+      System.err.println("Forkert input, brug venligst tal og separer med komma. Prøv igen!");
       inputNumber.nextLine();
       return getDouble();
     }
@@ -25,7 +24,7 @@ public class GUI {
     try {
       return inputNumber.nextInt();
     } catch (Exception e) {
-      System.err.println("Wrong input, please use numbers(integers only). Try again");
+      System.err.println("Forkert input, kun heltal. Prøv igen!");
       inputNumber.nextLine();
       return getInt();
     }
