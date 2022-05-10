@@ -1,11 +1,8 @@
-import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 	  Controller controller = new Controller();
     controller.run();
-
-
     }
 }
