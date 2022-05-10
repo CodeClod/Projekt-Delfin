@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 
 public class GUI {
-  private Scanner inputString = new Scanner(System.in);
-  private Scanner inputNumber = new Scanner(System.in);
+  private final Scanner inputString = new Scanner(System.in);
+  private final Scanner inputNumber = new Scanner(System.in);
 
   public String getString() {
     return inputString.nextLine();
