@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Locale;
 
 public class Controller {
@@ -10,6 +9,8 @@ public class Controller {
   private final String boldOff = "\033[0;0m";
   private static final String TEXT_RESET = "\u001b[0m";
   private static final String TEXT_GREEN = "\u001b[32m";
+  private static final String TEXT_BLUE = "\u001b[34m";
+
 
   public void run() throws InterruptedException {
     music.playMusic();
@@ -21,15 +22,7 @@ public class Controller {
   }
 
   public void mainMenu() {
-    System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
-    System.out.printf("|     " + TEXT_RESET + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     |" + "\n"
-        + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" +
-        "|                                               |" + "\n" +
-        "|" + TEXT_RESET + "1)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "2)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "3)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "4) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
-    System.out.printf("\n" +TEXT_GREEN + "[%s]\n", "-".repeat(47));
+    menuText();
     switch (gui.getInt()) {
       case 1 -> System.out.println("something");
       case 2 -> System.out.println("something else");
@@ -41,6 +34,19 @@ public class Controller {
         }
       }
     }
+  }
+
+  public void menuText() {
+    System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+    System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     |" + "\n"
+        + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" +
+        "|                                               |" + "\n" +
+        "|" + TEXT_RESET + "1)" + TEXT_GREEN + "                                             |" + "\n" +
+        "|" + TEXT_RESET + "2)" + TEXT_GREEN + "                                             |" + "\n" +
+        "|" + TEXT_RESET + "3)" + TEXT_GREEN + "                                             |" + "\n" +
+        "|" + TEXT_RESET + "4) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
+    System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+    System.out.print(boldOff);
   }
 
 }
