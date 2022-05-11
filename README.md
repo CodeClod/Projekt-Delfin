@@ -4,7 +4,6 @@ Sidste projekt, første semester
 ## Interessent-Analyse
 
 ( WIP )
-![alt text]()
 Spørgsmål til lærer. 
 - Er klubmedlemmer "Gidsler" eller "Grå Eminencer"
 - Generelt check på mandag 16/05/2022
@@ -23,7 +22,7 @@ Spørgsmål til lærer.
     - Klubbens ledelse ("Resource person")
     - Projekt-Medarbejder ("Grå Eminence") 
 
-TODO Indsæt grafisk matrix af interessenter
+![alt text](https://github.com/CodeClod/Projekt-Delfin/blob/Delfin_Safe/Files/Interessent%20Analyse.png?raw=true)
 
 3. Prioritering af interessenter (Prioritering fra top til bund)
     1. Klubbens Ledelse
