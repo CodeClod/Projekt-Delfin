@@ -2,7 +2,7 @@ Velkommen til svømmeklubben Delfinen!
 
 Vælg venligst en funktion nedenfor:
 
-1)
+1) Tilføj medlem
 2)
 3)
 4) Exit
