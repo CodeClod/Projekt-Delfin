@@ -4,7 +4,7 @@ Sidste projekt, første semester
 ## Interessent-Analyse
 
 ( WIP )
-
+![alt text]()
 Spørgsmål til lærer. 
 - Er klubmedlemmer "Gidsler" eller "Grå Eminencer"
 - Generelt check på mandag 16/05/2022
