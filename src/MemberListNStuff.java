@@ -13,7 +13,7 @@ public class MemberListNStuff {
 
   void addMember() throws FileNotFoundException {
 
-    PrintStream out = new PrintStream(("members.csv"));
+    PrintStream out = new PrintStream(("MembersInfo\\members.csv"));
     int myNum=0;
     for (int i = 0; i< memberList.size(); i++) {
       out.print(memberList.get(i).getNumber());
@@ -91,7 +91,7 @@ public class MemberListNStuff {
 
   }
   public void loadMenu() throws FileNotFoundException {
-    Scanner fileScanner = new Scanner(new File("members.csv"));
+    Scanner fileScanner = new Scanner(new File("MembersInfo\\members.csv"));
     while(fileScanner.hasNextLine()){
       String line = fileScanner.nextLine();
       Scanner input = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);
@@ -109,7 +109,7 @@ public class MemberListNStuff {
 
 
 
-  public void showMenu() {
+  public void showMemberList() {
     boolean loop = true;
     while (loop) {
       for (Member menuItems : memberList) {

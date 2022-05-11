@@ -1,9 +1,14 @@
+import java.io.FileNotFoundException;
 import java.util.Locale;
 
 public class Controller {
   GUI gui = new GUI();
   FileReader fileReader = new FileReader();
   Music music = new Music();
+  MemberListNStuff memberListNStuff = new MemberListNStuff();
+
+
+
   private boolean loop = true;
   private final String boldON = "\033[0;1m";
   private final String boldOff = "\033[0;0m";
@@ -12,7 +17,8 @@ public class Controller {
   private static final String TEXT_BLUE = "\u001b[34m";
 
 
-  public void run() throws InterruptedException {
+  public void run() throws InterruptedException, FileNotFoundException {
+    memberListNStuff.loadMenu();
     music.playMusic();
     Thread.sleep(2000);
     while (loop) {
@@ -21,10 +27,11 @@ public class Controller {
 
   }
 
-  public void mainMenu() {
+  public void mainMenu() throws FileNotFoundException {
+
     menuText();
     switch (gui.getInt()) {
-      case 1 -> System.out.println("something");
+      case 1 -> memberListNStuff.addMember();
       case 2 -> System.out.println("something else");
       case 3 -> System.out.println("more something");
       case 4 -> {
