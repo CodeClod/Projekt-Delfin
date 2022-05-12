@@ -49,7 +49,7 @@ public class MemberListNStuff {
 
 
 
-    System.out.println("Enter member status(passive/active). Use M or K");
+    System.out.println("Enter activity(Motionist/Konkurrence). Use M or K");
 
     String casualCompetitive="";
     while (!casualCompetitive.equals("K")&&!casualCompetitive.equals("M")){
