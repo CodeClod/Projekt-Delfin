@@ -13,7 +13,7 @@ public class MemberListNStuff {
 
   void addMember() throws FileNotFoundException {
 
-    PrintStream out = new PrintStream(("MembersInfo\\members.csv"));
+    PrintStream out = new PrintStream(("MembersInfo\\Motionistsvømmere.csv"));
     int myNum=0;
     for (int i = 0; i< memberList.size(); i++) {
       out.print(memberList.get(i).getNumber());
@@ -57,12 +57,14 @@ public class MemberListNStuff {
       if (!casualCompetitive.equals("K")&&!casualCompetitive.equals("M")) System.out.println("Please write 'M' or 'K'");
 
     }
-
-
-
-
-
     memberList.add(new Member(myNum+1,name,age,passiveActive,casualCompetitive));
+    /*
+    switch(add)
+    case M: addMotionist();
+    case K: addKonkurrence();
+    case T: addTræner();
+    */
+
     out.print(memberList.get(memberList.size()-1).getNumber());
     out.print(";");
 
@@ -81,9 +83,6 @@ public class MemberListNStuff {
 
     out.print(";");
 
-    out.print(memberList.get(memberList.size()-1).getMotionistKonkurrence());
-    out.print(";");
-
     out.print(memberList.get(memberList.size()-1).getKontingent());
 
 
@@ -91,7 +90,7 @@ public class MemberListNStuff {
 
   }
   public void loadMenu() throws FileNotFoundException {
-    Scanner fileScanner = new Scanner(new File("MembersInfo\\members.csv"));
+    Scanner fileScanner = new Scanner(new File("MembersInfo\\Motionistsvømmere.csv"));
     while(fileScanner.hasNextLine()){
       String line = fileScanner.nextLine();
       Scanner input = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);
@@ -106,10 +105,17 @@ public class MemberListNStuff {
     }
 
   }
-
-
-
   public void showMemberList() {
+  /*
+  switch(show)
+  case A: showAll();
+  case K: showKon();
+  case M: showMot();
+  case T: showTræ();
+  case J: showJunior();
+  case S: showSenior();
+
+   */
     boolean loop = true;
     while (loop) {
       for (Member menuItems : memberList) {
