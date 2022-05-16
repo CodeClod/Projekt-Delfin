@@ -6,6 +6,7 @@ public class Controller {
   FileReader fileReader = new FileReader();
   Music music = new Music();
   MemberListNStuff memberListNStuff = new MemberListNStuff();
+  ID id = new ID();
 
 
 

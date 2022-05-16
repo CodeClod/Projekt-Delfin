@@ -14,7 +14,6 @@ public class MemberListNStuff {
   void addMember() throws FileNotFoundException {
 
     PrintStream out = new PrintStream(("MembersInfo\\Motionistsvømmere.csv"));
-    int myNum=0;
     for (int i = 0; i< memberList.size(); i++) {
       out.print(memberList.get(i).getNumber());
       out.print(";");
@@ -26,11 +25,8 @@ public class MemberListNStuff {
       out.print(";");
       out.print(memberList.get(i).getJuniorSenior());
       out.print(";");
-      out.print(memberList.get(i).getMotionistKonkurrence());
-      out.print(";");
       out.print(memberList.get(i).getKontingent());
       out.print("\n");
-      myNum = memberList.get(i).getNumber();
     }
     System.out.println("Enter name.");
     String name = gui.getString();
@@ -46,18 +42,7 @@ public class MemberListNStuff {
         if (!passiveActive.equals("P")&&!passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
 
     }
-
-
-
-    System.out.println("Enter activity(Motionist/Konkurrence). Use M or K");
-
-    String casualCompetitive="";
-    while (!casualCompetitive.equals("K")&&!casualCompetitive.equals("M")){
-      casualCompetitive = gui.getString().toUpperCase(Locale.ROOT);
-      if (!casualCompetitive.equals("K")&&!casualCompetitive.equals("M")) System.out.println("Please write 'M' or 'K'");
-
-    }
-    memberList.add(new Member(myNum+1,name,age,passiveActive,casualCompetitive));
+    memberList.add(new Member(ID.getID(),name,age,passiveActive));
     /*
     switch(add)
     case M: addMotionist();
@@ -101,7 +86,7 @@ public class MemberListNStuff {
       String juniorSenior=input.next();
       String casualCompetitive=input.next();
 
-     memberList.add(new Member(number,name,age,aktivPassiv,casualCompetitive));
+     memberList.add(new Member(number,name,age,aktivPassiv));
     }
 
   }
@@ -122,7 +107,6 @@ public class MemberListNStuff {
         System.out.println(menuItems.getName());
         System.out.println(menuItems.getAge());
         System.out.println(menuItems.getJuniorSenior());
-        System.out.println(menuItems.getMotionistKonkurrence());
         System.out.println(menuItems.getKontingent());
       }
       System.out.print("Press Enter to exit the menu.");

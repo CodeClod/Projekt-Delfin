@@ -5,7 +5,6 @@ public class Member {
   private final int age;
   private final String passivAktiv;
   private String juniorSenior;
-  private String motionistKonkurrence;
   private double kontingent;
 
   public double getKontingent() {
@@ -16,13 +15,8 @@ public class Member {
     this.kontingent = kontingent;
   }
 
-  public String getMotionistKonkurrence() {
-    return motionistKonkurrence;
-  }
 
-  public void setMotionistKonkurrence(String motionistKonkurrence) {
-    this.motionistKonkurrence = motionistKonkurrence;
-  }
+
 
 
   public String getJuniorSenior() {
@@ -50,13 +44,12 @@ public class Member {
   }
 
 
-  public Member(int number, String name, int age, String passivAktiv, String motionistKonkurrence) {
+  public Member(int number, String name, int age, String passivAktiv) {
     this.number = number;
     this.name = name;
     this.age = age;
     this.passivAktiv = passivAktiv;
     this.juniorSenior=juniorSenior;
-    this.motionistKonkurrence=motionistKonkurrence;
     if (age<18) kontingent=1000;
     if (age>=18&&age<60) kontingent = 1600;
     if (age>=60) kontingent = 1200;
