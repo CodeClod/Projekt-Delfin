@@ -3,7 +3,6 @@ import java.util.Locale;
 
 public class Controller {
   GUI gui = new GUI();
-  FileReader fileReader = new FileReader();
   Music music = new Music();
   MemberListNStuff memberListNStuff = new MemberListNStuff();
   ID id = new ID();
@@ -49,7 +48,7 @@ public class Controller {
     System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     |" + "\n"
         + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" +
         "|                                               |" + "\n" +
-        "|" + TEXT_RESET + "1)" + TEXT_GREEN + "                                             |" + "\n" +
+        "|" + TEXT_RESET + "1) Tilføj medlem" + TEXT_GREEN + "                               |" + "\n" +
         "|" + TEXT_RESET + "2)" + TEXT_GREEN + "                                             |" + "\n" +
         "|" + TEXT_RESET + "3)" + TEXT_GREEN + "                                             |" + "\n" +
         "|" + TEXT_RESET + "4) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);

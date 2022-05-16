@@ -28,18 +28,18 @@ public class MemberListNStuff {
       out.print(memberList.get(i).getKontingent());
       out.print("\n");
     }
-    System.out.println("Enter name.");
+    System.out.println("Indtast navn:");
     String name = gui.getString();
 
-    System.out.println("Enter age:");
+    System.out.println("Indtast alder:");
     int age=gui.getInt();
 
-    System.out.println("Enter member status(passive/active). Use P or A");
+    System.out.println("Indtast medlemsstatus (passiv/aktiv). Brug P eller A");
 
     String passiveActive="";
     while (!passiveActive.equals("P")&&!passiveActive.equals("A")){
        passiveActive = gui.getString().toUpperCase(Locale.ROOT);
-        if (!passiveActive.equals("P")&&!passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
+        if (!passiveActive.equals("P")&&!passiveActive.equals("A")) System.out.println("Brug 'P' eller 'A'");
 
     }
     memberList.add(new Member(ID.getID(),name,age,passiveActive));
@@ -109,7 +109,7 @@ public class MemberListNStuff {
         System.out.println(menuItems.getJuniorSenior());
         System.out.println(menuItems.getKontingent());
       }
-      System.out.print("Press Enter to exit the menu.");
+      System.out.print("Tryk Enter for at gå til menuen");
       gui.getString();
       loop = false;
     }
