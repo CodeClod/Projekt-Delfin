@@ -49,8 +49,8 @@ public class Controller {
         + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" +
         "|                                               |" + "\n" +
         "|" + TEXT_RESET + "1) Tilføj medlem" + TEXT_GREEN + "                               |" + "\n" +
-        "|" + TEXT_RESET + "2)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "3)" + TEXT_GREEN + "                                             |" + "\n" +
+        "|" + TEXT_RESET + "2) Vis medlem" + TEXT_GREEN + "                                  |" + "\n" +
+        "|" + TEXT_RESET + "3) Vis hold" + TEXT_GREEN + "                                    |" + "\n" +
         "|" + TEXT_RESET + "4) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
     System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
     System.out.print(boldOff);
