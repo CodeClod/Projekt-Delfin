@@ -26,6 +26,8 @@ public class MemberListNStuff {
       out.print(memberList.get(i).getJuniorSenior());
       out.print(";");
       out.print(memberList.get(i).getKontingent());
+      out.print(";");
+      out.print(memberList.get(i).getPaymentDueDate());
       out.print("\n");
     }
     System.out.println("Enter name.");
@@ -42,7 +44,8 @@ public class MemberListNStuff {
         if (!passiveActive.equals("P")&&!passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
 
     }
-    memberList.add(new Member(ID.getID(),name,age,passiveActive));
+    String paymentDueDate=ID.createPaymentDate();
+    memberList.add(new Member(ID.getID(),name,age,passiveActive,paymentDueDate));
     /*
     switch(add)
     case M: addMotionist();
@@ -69,8 +72,8 @@ public class MemberListNStuff {
     out.print(";");
 
     out.print(memberList.get(memberList.size()-1).getKontingent());
-
-
+    out.print(";");
+    out.print(memberList.get(memberList.size()-1).getPaymentDueDate());
     out.print("\n");
 
   }
@@ -83,10 +86,9 @@ public class MemberListNStuff {
       String name = input.next();
       int age = input.nextInt();
       String aktivPassiv = input.next();
-      String juniorSenior=input.next();
-      String casualCompetitive=input.next();
+      String paymentDueDate=input.next();
 
-     memberList.add(new Member(number,name,age,aktivPassiv));
+     memberList.add(new Member(number,name,age,aktivPassiv,paymentDueDate));
     }
 
   }
