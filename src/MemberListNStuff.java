@@ -92,6 +92,7 @@ public class MemberListNStuff {
       String casualCompetitive = input.next();
 
       memberList.add(new Member(number, name, age, aktivPassiv, paymentDueDate));
+
     }
 
   }
