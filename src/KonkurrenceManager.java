@@ -26,24 +26,26 @@ public class KonkurrenceManager {
 
     void addMember() throws FileNotFoundException, ParseException {
 
-            System.out.println("Enter name.");
-            String name = gui.getString();
-            System.out.println("Enter age:");
-            int age = gui.getInt();
-            System.out.println("Enter member status(passive/active). Use P or A");
-            String passiveActive = "";
-            while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
-                passiveActive = gui.getString().toUpperCase(Locale.ROOT);
-                if (!passiveActive.equals("P") && !passiveActive.equals("A"))
-                    System.out.println("Please write 'P' or 'A'");
-            }
 
-            String paymentDueDate = ID.createPaymentDate();
-        LocalTime emptyTime=LocalTime.of(0,0,0,0);
-        LocalDate emptyDate=LocalDate.of(0,0,0);
-            memberList.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate,"ikkeBetalt",emptyTime,emptyDate,emptyTime,emptyDate,emptyTime,emptyDate,emptyTime,emptyDate));
-            updateInfo(-1,"nothing");
+        System.out.println("Enter name.");
+        String name = gui.getString();
+        System.out.println("Enter age:");
+        int age = gui.getInt();
+        System.out.println("Enter member status(passive/active). Use P or A");
+        String passiveActive = "";
+        while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
+            passiveActive = gui.getString().toUpperCase(Locale.ROOT);
+            if (!passiveActive.equals("P") && !passiveActive.equals("A"))
+                System.out.println("Please write 'P' or 'A'");
         }
+        String paymentDueDate = ID.createPaymentDate();
+        LocalTime emptyTime = LocalTime.of(23,0,0,0);
+        LocalDate emptyDate = LocalDate.of(1,1,1);
+
+        memberList.add(new MemberKonkurrence(ID.getID(),name,age,passiveActive,paymentDueDate,"ikkeBetalt",emptyTime,emptyDate,emptyTime,emptyDate,emptyTime,emptyDate,emptyTime,emptyDate));
+
+        updateInfo(-1,"nothing");
+    }
 
 
     void updateInfo(int x,String handling) throws FileNotFoundException, ParseException {
@@ -68,65 +70,69 @@ public class KonkurrenceManager {
             if (memberList.get(i).getNumber()==x&&handling.equals("betal")) {out.print("betalt"); memberList.get(i).setBetalt("betalt");}
             else out.print(memberList.get(i).getBetalt());
             out.print(";");
-            if (memberList.get(i).getNumber()==x&&handling.equals("butterflyRecord")) {
-                System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
-                int sec= gui.getInt(); System.out.println("Enter ms:"); int ms= gui.getInt();
+            if (memberList.get(i).getNumber()==x&&handling.equals("butterFlyRecord")) {
+                System.out.println("Enter hours:");int hour=gui.getInt(); System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
+                int sec= gui.getInt(); System.out.println("Enter nanoseconds: :"); int nanoSecs= gui.getInt();
                 System.out.println("Enter year the record was set:"); int year = gui.getInt();
                 System.out.println("Enter month:"); int month = gui.getInt();
                 System.out.println("Enter day:"); int day = gui.getInt();
-                out.print(min+":"+sec+":"+ms);
+                out.print(hour+":"+min+":"+sec+":"+nanoSecs);
                 out.print(";");
-                out.print(year+"/"+month+"/"+day);
-                memberList.get(i).setButterFlyTime(LocalTime.of(min,sec,ms));
-                memberList.get(i).setButterFlyDate(LocalDate.of(year,month,day));
+                out.print(day+"/"+month+"/"+year);
+                // memberList.get(i).setButterFlyTime(LocalTime.of(hour,min,sec,nanoSecs));
+                //memberList.get(i).setButterFlyDate(LocalDate.of(year,month,day));
             }
-            else {out.print(memberList.get(i).getButterFlyTime()); out.print(";"); out.print(memberList.get(i).getButterFlyDate());}
+            else{out.print(memberList.get(i).getButterFlyTime().getHour()+":"+memberList.get(i).getButterFlyTime().getMinute()+":"+memberList.get(i).getButterFlyTime().getSecond()+":"+
+                    Integer.toString((memberList.get(i).getButterFlyTime().getNano())).replaceFirst("^0+(?!$)", "")); out.print(";"); out.print(memberList.get(i).getButterFlyDate().getDayOfMonth()+"/"+memberList.get(i).getButterFlyDate().getMonthValue()+"/"+memberList.get(i).getButterFlyDate().getYear());}
+
             out.print(";");
 
             if (memberList.get(i).getNumber()==x&&handling.equals("rygCrawlRecord")) {
-                System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
-                int sec= gui.getInt(); System.out.println("Enter ms:"); int ms= gui.getInt();
+                System.out.println("Enter hours:");int hour=gui.getInt(); System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
+                int sec= gui.getInt(); System.out.println("Enter nanoseconds: :"); int nanoSecs= gui.getInt();
                 System.out.println("Enter year the record was set:"); int year = gui.getInt();
                 System.out.println("Enter month:"); int month = gui.getInt();
                 System.out.println("Enter day:"); int day = gui.getInt();
-                out.print(min+":"+sec+":"+ms);
+                out.print(hour+":"+min+":"+sec+":"+nanoSecs);
                 out.print(";");
-                out.print(year+"/"+month+"/"+day);
-                memberList.get(i).setRygCrawlTime(LocalTime.of(min,sec,ms));
-                memberList.get(i).setRygCrawlDate(LocalDate.of(year,month,day));
+                out.print(day+"/"+month+"/"+year);
+                // memberList.get(i).setRygCrawlTime(LocalTime.of(hour,min,sec,nanoSecs));
+                //memberList.get(i).setRygCrawlDate(LocalDate.of(year,month,day));
             }
-            else {out.print(memberList.get(i).getRygCrawlTime()); out.print(";"); out.print(memberList.get(i).getRygCrawlDate());}
+            else{out.print(memberList.get(i).getRygCrawlTime().getHour()+":"+memberList.get(i).getRygCrawlTime().getMinute()+":"+memberList.get(i).getRygCrawlTime().getSecond()+":"+
+                    Integer.toString((memberList.get(i).getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", "")); out.print(";"); out.print(memberList.get(i).getRygCrawlDate().getDayOfMonth()+"/"+memberList.get(i).getRygCrawlDate().getMonthValue()+"/"+memberList.get(i).getRygCrawlDate().getYear());}
+
             out.print(";");
             if (memberList.get(i).getNumber()==x&&handling.equals("crawlRecord")) {
-                System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
-                int sec= gui.getInt(); System.out.println("Enter ms:"); int ms= gui.getInt();
+                System.out.println("Enter hours:");int hour=gui.getInt(); System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
+                int sec= gui.getInt(); System.out.println("Enter nanoseconds: :"); int nanoSecs= gui.getInt();
                 System.out.println("Enter year the record was set:"); int year = gui.getInt();
                 System.out.println("Enter month:"); int month = gui.getInt();
                 System.out.println("Enter day:"); int day = gui.getInt();
-                out.print(min+":"+sec+":"+ms);
+                out.print(hour+":"+min+":"+sec+":"+nanoSecs);
                 out.print(";");
-                out.print(year+"/"+month+"/"+day);
-                memberList.get(i).setCrawlTime(LocalTime.of(min,sec,ms));
-                memberList.get(i).setCrawlDate(LocalDate.of(year,month,day));
+                out.print(day+"/"+month+"/"+year);
+                // memberList.get(i).setCrawlTime(LocalTime.of(hour,min,sec,nanoSecs));
+                //memberList.get(i).setCrawlDate(LocalDate.of(year,month,day));
             }
-            else {out.print(memberList.get(i).getCrawlTime()); out.print(";"); out.print(memberList.get(i).getCrawlDate());}
+            else{out.print(memberList.get(i).getCrawlTime().getHour()+":"+memberList.get(i).getCrawlTime().getMinute()+":"+memberList.get(i).getCrawlTime().getSecond()+":"+
+                    Integer.toString((memberList.get(i).getCrawlTime().getNano())).replaceFirst("^0+(?!$)", "")); out.print(";"); out.print(memberList.get(i).getCrawlDate().getDayOfMonth()+"/"+memberList.get(i).getCrawlDate().getMonthValue()+"/"+memberList.get(i).getCrawlDate().getYear());}
+
             out.print(";");
             if (memberList.get(i).getNumber()==x&&handling.equals("brystRecord")) {
-                System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
-                int sec= gui.getInt(); System.out.println("Enter ms:"); int ms= gui.getInt();
+                System.out.println("Enter hours:");int hour=gui.getInt(); System.out.println("Enter minutes:"); int min= gui.getInt(); System.out.println("Enter seconds:");
+                int sec= gui.getInt(); System.out.println("Enter nanoseconds: :"); int nanoSecs= gui.getInt();
                 System.out.println("Enter year the record was set:"); int year = gui.getInt();
                 System.out.println("Enter month:"); int month = gui.getInt();
                 System.out.println("Enter day:"); int day = gui.getInt();
-                out.print(min+":"+sec+":"+ms);
+                out.print(hour+":"+min+":"+sec+":"+nanoSecs);
                 out.print(";");
-                out.print(year+"/"+month+"/"+day);
-                memberList.get(i).setBrystTime(LocalTime.of(0,min,sec,ms));
-
-                memberList.get(i).setBrystDate(LocalDate.of(year,month,day));
+                out.print(day+"/"+month+"/"+year);
+              // memberList.get(i).setBrystTime(LocalTime.of(hour,min,sec,nanoSecs));
+               //memberList.get(i).setBrystDate(LocalDate.of(year,month,day));
             }
-            else { out.print(memberList.get(i).getBrystTime()); out.print(";"); out.print(memberList.get(i).getBrystDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));}
-            out.print(";");
-
+            else{out.print(memberList.get(i).getBrystTime().getHour()+":"+memberList.get(i).getBrystTime().getMinute()+":"+memberList.get(i).getBrystTime().getSecond()+":"+
+                    Integer.toString((memberList.get(i).getBrystTime().getNano())).replaceFirst("^0+(?!$)", "")); out.print(";"); out.print(memberList.get(i).getBrystDate().getDayOfMonth()+"/"+memberList.get(i).getBrystDate().getMonthValue()+"/"+memberList.get(i).getBrystDate().getYear());}
 
             out.print("\n");
         }
@@ -147,31 +153,44 @@ public class KonkurrenceManager {
             String paymentDueDate = input.next();
             String betalt = input.next();
 
-            String butterflyTidStr = input.next();
-            String [] butterFlyTidArrayStr = butterflyTidStr.split(":");
-            int [] butterFlyTidArrayInt = new int[3];
+
+
+
+
+            String butterFlyTidStr = input.next();
+            String [] butterFlyTidArrayStr = butterFlyTidStr.split(":");
+            int [] butterFlyTidArrayInt = new int[4];
             for (int i = 0; i < butterFlyTidArrayStr.length; i++) {
                 butterFlyTidArrayInt[i] = Integer.parseInt(butterFlyTidArrayStr[i]);
             }
-            LocalTime butterFlyTid=LocalTime.of(butterFlyTidArrayInt[0],butterFlyTidArrayInt[1],butterFlyTidArrayInt[2]);
 
-            String butterflyDatoStr = input.next();
-            String [] butterFlyDatoArrayStr = butterflyDatoStr.split("/");
+            LocalTime butterFlyTid=LocalTime.of(butterFlyTidArrayInt[0],butterFlyTidArrayInt[1],butterFlyTidArrayInt[2],butterFlyTidArrayInt[3]);
+
+            String butterFlyDatoStr = input.next();
+            String [] butterFlyDatoArrayStr = butterFlyDatoStr.split("/");
             int [] butterFlyDatoArrayInt = new int[3];
 
 //            System.out.println(butterFlyDatoArrayStr[0]);
             for (int i = 0; i < butterFlyDatoArrayStr.length; i++) {
                 butterFlyDatoArrayInt[i] = Integer.parseInt(butterFlyDatoArrayStr[i]);
             }
+
+
             LocalDate butterFlyDato=LocalDate.of(butterFlyDatoArrayInt[2],butterFlyDatoArrayInt[1],butterFlyDatoArrayInt[0]);
+
+
+
+
+
 
             String rygCrawlTidStr = input.next();
             String [] rygCrawlTidArrayStr = rygCrawlTidStr.split(":");
-            int [] rygCrawlTidArrayInt = new int[3];
+            int [] rygCrawlTidArrayInt = new int[4];
             for (int i = 0; i < rygCrawlTidArrayStr.length; i++) {
                 rygCrawlTidArrayInt[i] = Integer.parseInt(rygCrawlTidArrayStr[i]);
             }
-            LocalTime rygCrawlTid=LocalTime.of(rygCrawlTidArrayInt[0],rygCrawlTidArrayInt[1],rygCrawlTidArrayInt[2]);
+
+            LocalTime rygCrawlTid=LocalTime.of(rygCrawlTidArrayInt[0],rygCrawlTidArrayInt[1],rygCrawlTidArrayInt[2],rygCrawlTidArrayInt[3]);
 
             String rygCrawlDatoStr = input.next();
             String [] rygCrawlDatoArrayStr = rygCrawlDatoStr.split("/");
@@ -181,33 +200,44 @@ public class KonkurrenceManager {
             for (int i = 0; i < rygCrawlDatoArrayStr.length; i++) {
                 rygCrawlDatoArrayInt[i] = Integer.parseInt(rygCrawlDatoArrayStr[i]);
             }
+
+
             LocalDate rygCrawlDato=LocalDate.of(rygCrawlDatoArrayInt[2],rygCrawlDatoArrayInt[1],rygCrawlDatoArrayInt[0]);
 
-            String CrawlTidStr = input.next();
-            String [] CrawlTidArrayStr = CrawlTidStr.split(":");
-            int [] CrawlTidArrayInt = new int[3];
-            for (int i = 0; i < CrawlTidArrayStr.length; i++) {
-                CrawlTidArrayInt[i] = Integer.parseInt(CrawlTidArrayStr[i]);
-            }
-            LocalTime crawlTid=LocalTime.of(CrawlTidArrayInt[0],CrawlTidArrayInt[1],CrawlTidArrayInt[2]);
 
-            String CrawlDatoStr = input.next();
-            String [] CrawlDatoArrayStr = CrawlDatoStr.split("/");
-            int [] CrawlDatoArrayInt = new int[3];
-
-//            System.out.println(CrawlDatoArrayStr[0]);
-            for (int i = 0; i < CrawlDatoArrayStr.length; i++) {
-                CrawlDatoArrayInt[i] = Integer.parseInt(CrawlDatoArrayStr[i]);
+            String crawlTidStr = input.next();
+            String [] crawlTidArrayStr = crawlTidStr.split(":");
+            int [] crawlTidArrayInt = new int[4];
+            for (int i = 0; i < crawlTidArrayStr.length; i++) {
+                crawlTidArrayInt[i] = Integer.parseInt(crawlTidArrayStr[i]);
             }
-            LocalDate crawlDato=LocalDate.of(CrawlDatoArrayInt[2],CrawlDatoArrayInt[1],CrawlDatoArrayInt[0]);
+
+            LocalTime crawlTid=LocalTime.of(crawlTidArrayInt[0],crawlTidArrayInt[1],crawlTidArrayInt[2],crawlTidArrayInt[3]);
+
+            String crawlDatoStr = input.next();
+            String [] crawlDatoArrayStr = crawlDatoStr.split("/");
+            int [] crawlDatoArrayInt = new int[3];
+
+//            System.out.println(crawlDatoArrayStr[0]);
+            for (int i = 0; i < crawlDatoArrayStr.length; i++) {
+                crawlDatoArrayInt[i] = Integer.parseInt(crawlDatoArrayStr[i]);
+            }
+
+
+            LocalDate crawlDato=LocalDate.of(crawlDatoArrayInt[2],crawlDatoArrayInt[1],crawlDatoArrayInt[0]);
+
+
+
+
 
             String brystTidStr = input.next();
             String [] brystTidArrayStr = brystTidStr.split(":");
-            int [] brystTidArrayInt = new int[3];
+            int [] brystTidArrayInt = new int[4];
             for (int i = 0; i < brystTidArrayStr.length; i++) {
                 brystTidArrayInt[i] = Integer.parseInt(brystTidArrayStr[i]);
             }
-            LocalTime brystTid=LocalTime.of(brystTidArrayInt[0],brystTidArrayInt[1],brystTidArrayInt[2]);
+
+            LocalTime brystTid=LocalTime.of(brystTidArrayInt[0],brystTidArrayInt[1],brystTidArrayInt[2],brystTidArrayInt[3]);
 
             String brystDatoStr = input.next();
             String [] brystDatoArrayStr = brystDatoStr.split("/");
@@ -217,6 +247,8 @@ public class KonkurrenceManager {
             for (int i = 0; i < brystDatoArrayStr.length; i++) {
                 brystDatoArrayInt[i] = Integer.parseInt(brystDatoArrayStr[i]);
             }
+
+
             LocalDate brystDato=LocalDate.of(brystDatoArrayInt[2],brystDatoArrayInt[1],brystDatoArrayInt[0]);
 
 

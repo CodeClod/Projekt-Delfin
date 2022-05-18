@@ -10,7 +10,21 @@ KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
 
 konkurrenceManager.loadMemberFile();
 
-System.out.println(konkurrenceManager.memberList.get(0).getName());
+
+        konkurrenceManager.updateInfo(29,"butterFlyRecord");
+
+        konkurrenceManager.updateInfo(29,"crawlRecord");
+
+
+
+
+        //konkurrenceManager.loadMemberFile();
+
+        //konkurrenceManager.updateInfo(34,"crawlRecord");
+
+
+
+/*System.out.println(konkurrenceManager.memberList.get(0).getName());
 
         System.out.println(konkurrenceManager.memberList.get(0).getButterFlyTime());
         System.out.println(konkurrenceManager.memberList.get(0).getButterFlyDate());
@@ -25,6 +39,9 @@ System.out.println(konkurrenceManager.memberList.get(0).getName());
         System.out.println(konkurrenceManager.memberList.get(0).getBrystTime());
         System.out.println(konkurrenceManager.memberList.get(0).getBrystDate());
 
+        konkurrenceManager.updateInfo(25,"");
+
+        */
 
         //update virker ikke men load virker..
         //update genudprinter datoer som å-m-d men skal udskrive det som å/m/s

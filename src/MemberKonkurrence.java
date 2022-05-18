@@ -69,6 +69,7 @@ public class MemberKonkurrence extends Member {
         this.brystDate = brystDate;
     }
 
+
     public MemberKonkurrence(int number, String name, int age, String passivAktiv,
                              String paymentDueDate, String betalt, LocalTime butterFlyTime,
                              LocalDate butterFlyDate, LocalTime rygCrawlTime, LocalDate rygCrawlDate,
