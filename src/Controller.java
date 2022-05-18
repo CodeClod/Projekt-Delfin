@@ -1,13 +1,12 @@
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.Locale;
 
 public class Controller {
   GUI gui = new GUI();
-  FileReader fileReader = new FileReader();
   Music music = new Music();
-  MemberListNStuff memberListNStuff = new MemberListNStuff();
+  MotionistManager motionistManager = new MotionistManager();
   ID id = new ID();
-
 
 
   private boolean loop = true;
@@ -17,9 +16,13 @@ public class Controller {
   private static final String TEXT_GREEN = "\u001b[32m";
   private static final String TEXT_BLUE = "\u001b[34m";
 
+  public Controller() throws FileNotFoundException {
+  }
 
-  public void run() throws InterruptedException, FileNotFoundException {
-    memberListNStuff.loadMenu();
+
+  public void run() throws InterruptedException, FileNotFoundException, ParseException {
+
+    motionistManager.loadMenu();
     music.playMusic();
     Thread.sleep(2000);
     while (loop) {
@@ -28,14 +31,18 @@ public class Controller {
 
   }
 
-  public void mainMenu() throws FileNotFoundException {
+  public void mainMenu() throws FileNotFoundException, ParseException {
 
     menuText();
     switch (gui.getInt()) {
-      case 1 -> memberListNStuff.addMember();
-      case 2 -> System.out.println("something else");
-      case 3 -> System.out.println("more something");
-      case 4 -> {
+
+      case 1 -> motionistManager.addMember();
+      case 2 -> motionistManager.visRestance();
+      case 3 -> {
+        System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
+        motionistManager.updateInfo(gui.getInt());}
+      case 4 -> motionistManager.visRestance();
+      case 5 -> {
         System.out.println("Er du sikker på at du vil lukke programmet?");
         if ("ja".equals(gui.getString().toLowerCase(Locale.ROOT))) {
           loop = false;
@@ -49,10 +56,11 @@ public class Controller {
     System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     |" + "\n"
         + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" +
         "|                                               |" + "\n" +
-        "|" + TEXT_RESET + "1)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "2)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "3)" + TEXT_GREEN + "                                             |" + "\n" +
-        "|" + TEXT_RESET + "4) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
+        "|" + TEXT_RESET + "1) Tilføj medlem" + TEXT_GREEN + "                               |" + "\n" +
+        "|" + TEXT_RESET + "2) Vis medlem" + TEXT_GREEN + "                                  |" + "\n" +
+        "|" + TEXT_RESET + "3) Betal regning" + TEXT_GREEN + "                               |" + "\n" +
+        "|" + TEXT_RESET + "4) Vis restance" + TEXT_GREEN + "                                |" + TEXT_RESET);
+
     System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
     System.out.print(boldOff);
   }
