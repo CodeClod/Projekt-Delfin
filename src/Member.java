@@ -74,7 +74,8 @@ public class Member {
         return paymentDueDate;
     }
 
-    public Member(int number, String name, int age, String passivAktiv, String paymentDueDate,String betalt) throws ParseException {
+    public Member(int number, String name, int age, String passivAktiv,
+                  String paymentDueDate,String betalt) throws ParseException {
 
         this.number = number;
         this.name = name;
