@@ -6,7 +6,6 @@ public class Controller {
   GUI gui = new GUI();
   Music music = new Music();
   MotionistManager motionistManager = new MotionistManager();
-  ID id = new ID();
   KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
 
 
@@ -16,6 +15,7 @@ public class Controller {
   private static final String TEXT_RESET = "\u001b[0m";
   private static final String TEXT_GREEN = "\u001b[32m";
   private static final String TEXT_BLUE = "\u001b[34m";
+  private int memberID = gui.getInt();
 
   public Controller() throws FileNotFoundException {
   }
@@ -40,9 +40,14 @@ public class Controller {
       case 1 -> decideMemberType();
       case 2 -> {
         System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
-        motionistManager.updateInfo(gui.getInt());
+        memberID = gui.getInt();
+        motionistManager.updateInfo(memberID);
+        konkurrenceManager.updateInfo(memberID, "betal");
       }
-      case 3 -> motionistManager.visRestance();
+      case 3 -> {
+        motionistManager.visRestance();
+        konkurrenceManager.visRestance();
+      }
       case 4 -> decideSwimUpdate();
       case 5 -> konkurrenceManager.visRekorder();
       case 6 -> {
@@ -83,18 +88,16 @@ public class Controller {
 
   public void decideSwimUpdate() throws FileNotFoundException, ParseException {
     System.out.println("""
-        Tast 1 for opdatering af Butterfly
-        Tast 2 for opdatering af Crawl
-        Tast 3 for opdatering af Rygcrawl
-        Tast 4 for opdatering af Brystsvømning
+        Tast 1 for opdatering af Brystsvømning
+        Tast 2 for opdatering af Butterfly
+        Tast 3 for opdatering af Crawl
+        Tast 4 for opdatering af Rygcrawl
         """);
     switch (gui.getInt()) {
-      case 1 -> konkurrenceManager.updateInfo(gui.getInt(), "butterFlyRecord");
-      case 2 -> konkurrenceManager.updateInfo(gui.getInt(), "crawlRecord");
-      case 3 -> konkurrenceManager.updateInfo(gui.getInt(), "rygCrawlRecord");
-      case 4 -> konkurrenceManager.updateInfo(gui.getInt(), "brystRecord");
-
-
+      case 1 -> konkurrenceManager.updateInfo(memberID, "brystRecord");
+      case 2 -> konkurrenceManager.updateInfo(memberID, "butterFlyRecord");
+      case 3 -> konkurrenceManager.updateInfo(memberID, "crawlRecord");
+      case 4 -> konkurrenceManager.updateInfo(memberID, "rygCrawlRecord");
     }
   }
 

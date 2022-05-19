@@ -66,6 +66,7 @@ public class MotionistManager {
 
   }
 
+
   public void loadMenu() throws FileNotFoundException, ParseException {
     Scanner fileScanner = new Scanner(new File("MembersInfo\\Motionistsvømmere.csv"));
     while (fileScanner.hasNextLine()) {
@@ -82,20 +83,6 @@ public class MotionistManager {
       memberList.add(new Member(number, name, age, aktivPassiv, paymentDueDate, betalt));
     }
 
-  }
-
-  public void payBill(int ID) throws FileNotFoundException {
-    Scanner fileScanner2 = new Scanner(new File("MembersInfo\\Motionistsvømmere.csv"));
-
-    while (fileScanner2.hasNextLine()) {
-      String line = fileScanner2.nextLine();
-      Scanner input = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);
-      int number = input.nextInt();
-      String betalt = "";
-      if (ID == number) betalt = "betalt";
-
-
-    }
   }
 
   public void showMemberList() {
