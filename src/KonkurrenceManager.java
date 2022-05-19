@@ -41,7 +41,8 @@ public class KonkurrenceManager {
     LocalTime emptyTime = LocalTime.of(23, 0, 0, 0);
     LocalDate emptyDate = LocalDate.of(1, 1, 1);
 
-    memberList.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate, "ikkeBetalt", emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate));
+    memberList.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate,
+        "ikkeBetalt", emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate));
 
     updateInfo(-1, "nothing");
   }
@@ -92,10 +93,14 @@ public class KonkurrenceManager {
         memberList.get(i).setButterFlyTime(LocalTime.of(hour, min, sec, nanoSecs));
         memberList.get(i).setButterFlyDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getButterFlyTime().getHour() + ":" + memberList.get(i).getButterFlyTime().getMinute() + ":" + memberList.get(i).getButterFlyTime().getSecond() + ":" +
+        out.print(memberList.get(i).getButterFlyTime().getHour() + ":"
+            + memberList.get(i).getButterFlyTime().getMinute()
+            + ":" + memberList.get(i).getButterFlyTime().getSecond() + ":" +
             Integer.toString((memberList.get(i).getButterFlyTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getButterFlyDate().getDayOfMonth() + "/" + memberList.get(i).getButterFlyDate().getMonthValue() + "/" + memberList.get(i).getButterFlyDate().getYear());
+        out.print(memberList.get(i).getButterFlyDate().getDayOfMonth() + "/" +
+            memberList.get(i).getButterFlyDate().getMonthValue() + "/" +
+            memberList.get(i).getButterFlyDate().getYear());
       }
 
       out.print(";");
@@ -121,10 +126,12 @@ public class KonkurrenceManager {
         memberList.get(i).setRygCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
         memberList.get(i).setRygCrawlDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getRygCrawlTime().getHour() + ":" + memberList.get(i).getRygCrawlTime().getMinute() + ":" + memberList.get(i).getRygCrawlTime().getSecond() + ":" +
-            Integer.toString((memberList.get(i).getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
+        out.print(memberList.get(i).getRygCrawlTime().getHour() + ":" +
+            memberList.get(i).getRygCrawlTime().getMinute() + ":" + memberList.get(i).getRygCrawlTime().getSecond()
+            + ":" + Integer.toString((memberList.get(i).getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getRygCrawlDate().getDayOfMonth() + "/" + memberList.get(i).getRygCrawlDate().getMonthValue() + "/" + memberList.get(i).getRygCrawlDate().getYear());
+        out.print(memberList.get(i).getRygCrawlDate().getDayOfMonth() + "/" +
+            memberList.get(i).getRygCrawlDate().getMonthValue() + "/" + memberList.get(i).getRygCrawlDate().getYear());
       }
 
       out.print(";");
@@ -149,10 +156,12 @@ public class KonkurrenceManager {
         memberList.get(i).setCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
         memberList.get(i).setCrawlDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getCrawlTime().getHour() + ":" + memberList.get(i).getCrawlTime().getMinute() + ":" + memberList.get(i).getCrawlTime().getSecond() + ":" +
+        out.print(memberList.get(i).getCrawlTime().getHour() + ":" + memberList.get(i).getCrawlTime().getMinute()
+            + ":" + memberList.get(i).getCrawlTime().getSecond() + ":" +
             Integer.toString((memberList.get(i).getCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getCrawlDate().getDayOfMonth() + "/" + memberList.get(i).getCrawlDate().getMonthValue() + "/" + memberList.get(i).getCrawlDate().getYear());
+        out.print(memberList.get(i).getCrawlDate().getDayOfMonth() + "/" +
+            memberList.get(i).getCrawlDate().getMonthValue() + "/" + memberList.get(i).getCrawlDate().getYear());
       }
 
       out.print(";");
@@ -219,7 +228,6 @@ public class KonkurrenceManager {
       String[] butterFlyDatoArrayStr = butterFlyDatoStr.split("/");
       int[] butterFlyDatoArrayInt = new int[3];
 
-//            System.out.println(butterFlyDatoArrayStr[0]);
       for (int i = 0; i < butterFlyDatoArrayStr.length; i++) {
         butterFlyDatoArrayInt[i] = Integer.parseInt(butterFlyDatoArrayStr[i]);
       }
@@ -265,8 +273,6 @@ public class KonkurrenceManager {
       String crawlDatoStr = input.next();
       String[] crawlDatoArrayStr = crawlDatoStr.split("/");
       int[] crawlDatoArrayInt = new int[3];
-
-//            System.out.println(crawlDatoArrayStr[0]);
       for (int i = 0; i < crawlDatoArrayStr.length; i++) {
         crawlDatoArrayInt[i] = Integer.parseInt(crawlDatoArrayStr[i]);
       }
@@ -366,7 +372,11 @@ public class KonkurrenceManager {
       }
 
     }
-    if (success == false) System.out.println("Member ID not found. Try again.");
+    if (success == false) System.out.println("""
+        Medlems ID kan ikke findes
+        ID er enten ikke gyldigt eller medlem er motionist
+        Prøv venligst igen
+        """);
 
 
   }
