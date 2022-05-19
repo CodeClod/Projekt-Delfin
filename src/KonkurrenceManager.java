@@ -20,7 +20,7 @@ public class KonkurrenceManager {
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 
-  public KonkurrenceManager() throws FileNotFoundException {
+  public KonkurrenceManager() {
   }
 
   void addMember() throws FileNotFoundException, ParseException {
