@@ -49,10 +49,10 @@ public class KonkurrenceManager {
 
 
   void updateInfo(int medlemID, String handling) throws FileNotFoundException, ParseException {
-
+boolean memberFound=false;
     PrintStream out = new PrintStream(("MembersInfo\\Konkurrencesvømmere.csv"));
     for (int i = 0; i < memberList.size(); i++) {
-
+      if (memberList.get(i).getNumber() == medlemID)memberFound=true;
       out.print(memberList.get(i).getNumber());
       out.print(";");
       out.print(memberList.get(i).getName());
@@ -196,7 +196,7 @@ public class KonkurrenceManager {
 
       out.print("\n");
     }
-
+if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem er motionistsvømmer");
   }
 
   public void loadMemberFile() throws FileNotFoundException, ParseException {

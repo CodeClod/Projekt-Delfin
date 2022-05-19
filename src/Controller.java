@@ -86,17 +86,20 @@ public class Controller {
   }
 
   public void decideSwimUpdate() throws FileNotFoundException, ParseException {
+    System.out.println("Indtast medlems ID:");
+    int memberID = gui.getInt();
     System.out.println("""
         Tast 1 for opdatering af Brystsvømning
         Tast 2 for opdatering af Butterfly
         Tast 3 for opdatering af Crawl
         Tast 4 for opdatering af Rygcrawl
         """);
-    switch (gui.getInt()) {
-      case 1 -> konkurrenceManager.updateInfo(gui.getInt(), "brystRecord");
-      case 2 -> konkurrenceManager.updateInfo(gui.getInt(), "butterFlyRecord");
-      case 3 -> konkurrenceManager.updateInfo(gui.getInt(), "crawlRecord");
-      case 4 -> konkurrenceManager.updateInfo(gui.getInt(), "rygCrawlRecord");
+    int updateRekord = gui.getInt();
+    switch (updateRekord) {
+      case 1 -> konkurrenceManager.updateInfo(memberID, "brystRecord");
+      case 2 -> konkurrenceManager.updateInfo(memberID, "butterFlyRecord");
+      case 3 -> konkurrenceManager.updateInfo(memberID, "crawlRecord");
+      case 4 -> konkurrenceManager.updateInfo(memberID, "rygCrawlRecord");
     }
   }
 
