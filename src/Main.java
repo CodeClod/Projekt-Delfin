@@ -6,22 +6,52 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, ParseException {
 
-KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
+        KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
+        GUI gui = new GUI();
+        int tal = 0;
+        konkurrenceManager.loadMemberFile();
+            while (1 == 1) {
+                System.out.println("Tast 1 for at tilføje et medlem. Tast 2 for medlemsbetaling. Tast 3 for at vise medlemmer i restance. Tast 4 for at opdatere rekorder. Tast 5 for at se rekorder.");
 
-konkurrenceManager.loadMemberFile();
+            int menu = gui.getInt();
+
+            switch (menu) {
+                case 1:
+                    konkurrenceManager.addMember();
+                    break;
+                case 2:
+                {
+                    System.out.println("Indtast medlems ID på det medlem er skal betale:"); konkurrenceManager.updateInfo(gui.getInt(), "betal");}
+                break;
+                case 3:
+                    konkurrenceManager.visRestance();
+                    break;
+                case 4: {
+                    System.out.println("Indtast medlems ID:");
+                    tal = gui.getInt();
+                    System.out.println("Du har følgende valgmuligheder: Tast 1: Opdater Butterfly rekord. Tast 2: Opdater Rygcrawl rekord. Tast 3: Opdater Crawl rekord. Tast 4: Opdater Bryst rekord");
+                    switch (gui.getInt()) {
+                        case 1:
+                            konkurrenceManager.updateInfo(tal, "butterFlyRecord");
+                            break;
+                        case 2:
+                            konkurrenceManager.updateInfo(tal, "rygCrawlRecord");
+                            break;
+                        case 3:
+                            konkurrenceManager.updateInfo(tal, "crawlRecord");
+                            break;
+                        case 4:
+                            konkurrenceManager.updateInfo(tal, "brystRecord");
+                            break;
+
+                }
+                    break;
+                }
+                case 5: konkurrenceManager.visRekorder();
+            }
 
 
-        konkurrenceManager.updateInfo(29,"butterFlyRecord");
-
-        konkurrenceManager.updateInfo(29,"crawlRecord");
-
-
-
-
-        //konkurrenceManager.loadMemberFile();
-
-        //konkurrenceManager.updateInfo(34,"crawlRecord");
-
+        }
 
 
 /*System.out.println(konkurrenceManager.memberList.get(0).getName());
@@ -45,8 +75,8 @@ konkurrenceManager.loadMemberFile();
 
         //update virker ikke men load virker..
         //update genudprinter datoer som å-m-d men skal udskrive det som å/m/s
-       // Controller controller = new Controller();
-       // controller.run();
+        // Controller controller = new Controller();
+        // controller.run();
 
     }
 }
