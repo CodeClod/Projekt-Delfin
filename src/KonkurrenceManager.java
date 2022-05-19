@@ -5,8 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -16,7 +14,7 @@ import java.util.Scanner;
 public class KonkurrenceManager {
 
   GUI gui = new GUI();
-  ArrayList<MemberKonkurrence> memberList = new ArrayList<>();
+  ArrayList<MemberKonkurrence> memberListKonkurrence = new ArrayList<>();
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 
@@ -41,7 +39,7 @@ public class KonkurrenceManager {
     LocalTime emptyTime = LocalTime.of(23, 0, 0, 0);
     LocalDate emptyDate = LocalDate.of(1, 1, 1);
 
-    memberList.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate,
+    memberListKonkurrence.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate,
         "ikkeBetalt", emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate));
 
     updateInfo(-1, "nothing");
@@ -51,28 +49,28 @@ public class KonkurrenceManager {
   void updateInfo(int medlemID, String handling) throws FileNotFoundException, ParseException {
 boolean memberFound=false;
     PrintStream out = new PrintStream(("MembersInfo\\Konkurrencesvømmere.csv"));
-    for (int i = 0; i < memberList.size(); i++) {
-      if (memberList.get(i).getNumber() == medlemID)memberFound=true;
-      out.print(memberList.get(i).getNumber());
+    for (int i = 0; i < memberListKonkurrence.size(); i++) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID)memberFound=true;
+      out.print(memberListKonkurrence.get(i).getNumber());
       out.print(";");
-      out.print(memberList.get(i).getName());
+      out.print(memberListKonkurrence.get(i).getName());
       out.print(";");
-      out.print(memberList.get(i).getAge());
+      out.print(memberListKonkurrence.get(i).getAge());
       out.print(";");
-      out.print(memberList.get(i).getPassivAktiv());
+      out.print(memberListKonkurrence.get(i).getPassivAktiv());
       out.print(";");
-      out.print(memberList.get(i).getJuniorSenior());
+      out.print(memberListKonkurrence.get(i).getJuniorSenior());
       out.print(";");
-      out.print(memberList.get(i).getKontingent());
+      out.print(memberListKonkurrence.get(i).getKontingent());
       out.print(";");
-      out.print(memberList.get(i).getPaymentDueDate());
+      out.print(memberListKonkurrence.get(i).getPaymentDueDate());
       out.print(";");
-      if (memberList.get(i).getNumber() == medlemID && handling.equals("betal")) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID && handling.equals("betal")) {
         out.print("betalt");
-        memberList.get(i).setBetalt("betalt");
-      } else out.print(memberList.get(i).getBetalt());
+        memberListKonkurrence.get(i).setBetalt("betalt");
+      } else out.print(memberListKonkurrence.get(i).getBetalt());
       out.print(";");
-      if (memberList.get(i).getNumber() == medlemID && handling.equals("butterFlyRecord")) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID && handling.equals("butterFlyRecord")) {
         System.out.println("Enter hours:");
         int hour = gui.getInt();
         System.out.println("Enter minutes:");
@@ -90,22 +88,22 @@ boolean memberFound=false;
         out.print(hour + ":" + min + ":" + sec + ":" + nanoSecs);
         out.print(";");
         out.print(day + "/" + month + "/" + year);
-        memberList.get(i).setButterFlyTime(LocalTime.of(hour, min, sec, nanoSecs));
-        memberList.get(i).setButterFlyDate(LocalDate.of(year, month, day));
+        memberListKonkurrence.get(i).setButterFlyTime(LocalTime.of(hour, min, sec, nanoSecs));
+        memberListKonkurrence.get(i).setButterFlyDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getButterFlyTime().getHour() + ":"
-            + memberList.get(i).getButterFlyTime().getMinute()
-            + ":" + memberList.get(i).getButterFlyTime().getSecond() + ":" +
-            Integer.toString((memberList.get(i).getButterFlyTime().getNano())).replaceFirst("^0+(?!$)", ""));
+        out.print(memberListKonkurrence.get(i).getButterFlyTime().getHour() + ":"
+            + memberListKonkurrence.get(i).getButterFlyTime().getMinute()
+            + ":" + memberListKonkurrence.get(i).getButterFlyTime().getSecond() + ":" +
+            Integer.toString((memberListKonkurrence.get(i).getButterFlyTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getButterFlyDate().getDayOfMonth() + "/" +
-            memberList.get(i).getButterFlyDate().getMonthValue() + "/" +
-            memberList.get(i).getButterFlyDate().getYear());
+        out.print(memberListKonkurrence.get(i).getButterFlyDate().getDayOfMonth() + "/" +
+            memberListKonkurrence.get(i).getButterFlyDate().getMonthValue() + "/" +
+            memberListKonkurrence.get(i).getButterFlyDate().getYear());
       }
 
       out.print(";");
 
-      if (memberList.get(i).getNumber() == medlemID && handling.equals("rygCrawlRecord")) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID && handling.equals("rygCrawlRecord")) {
         System.out.println("Enter hours:");
         int hour = gui.getInt();
         System.out.println("Enter minutes:");
@@ -123,19 +121,19 @@ boolean memberFound=false;
         out.print(hour + ":" + min + ":" + sec + ":" + nanoSecs);
         out.print(";");
         out.print(day + "/" + month + "/" + year);
-        memberList.get(i).setRygCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
-        memberList.get(i).setRygCrawlDate(LocalDate.of(year, month, day));
+        memberListKonkurrence.get(i).setRygCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
+        memberListKonkurrence.get(i).setRygCrawlDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getRygCrawlTime().getHour() + ":" +
-            memberList.get(i).getRygCrawlTime().getMinute() + ":" + memberList.get(i).getRygCrawlTime().getSecond()
-            + ":" + Integer.toString((memberList.get(i).getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
+        out.print(memberListKonkurrence.get(i).getRygCrawlTime().getHour() + ":" +
+            memberListKonkurrence.get(i).getRygCrawlTime().getMinute() + ":" + memberListKonkurrence.get(i).getRygCrawlTime().getSecond()
+            + ":" + Integer.toString((memberListKonkurrence.get(i).getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getRygCrawlDate().getDayOfMonth() + "/" +
-            memberList.get(i).getRygCrawlDate().getMonthValue() + "/" + memberList.get(i).getRygCrawlDate().getYear());
+        out.print(memberListKonkurrence.get(i).getRygCrawlDate().getDayOfMonth() + "/" +
+            memberListKonkurrence.get(i).getRygCrawlDate().getMonthValue() + "/" + memberListKonkurrence.get(i).getRygCrawlDate().getYear());
       }
 
       out.print(";");
-      if (memberList.get(i).getNumber() == medlemID && handling.equals("crawlRecord")) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID && handling.equals("crawlRecord")) {
         System.out.println("Enter hours:");
         int hour = gui.getInt();
         System.out.println("Enter minutes:");
@@ -153,19 +151,19 @@ boolean memberFound=false;
         out.print(hour + ":" + min + ":" + sec + ":" + nanoSecs);
         out.print(";");
         out.print(day + "/" + month + "/" + year);
-        memberList.get(i).setCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
-        memberList.get(i).setCrawlDate(LocalDate.of(year, month, day));
+        memberListKonkurrence.get(i).setCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
+        memberListKonkurrence.get(i).setCrawlDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getCrawlTime().getHour() + ":" + memberList.get(i).getCrawlTime().getMinute()
-            + ":" + memberList.get(i).getCrawlTime().getSecond() + ":" +
-            Integer.toString((memberList.get(i).getCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
+        out.print(memberListKonkurrence.get(i).getCrawlTime().getHour() + ":" + memberListKonkurrence.get(i).getCrawlTime().getMinute()
+            + ":" + memberListKonkurrence.get(i).getCrawlTime().getSecond() + ":" +
+            Integer.toString((memberListKonkurrence.get(i).getCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getCrawlDate().getDayOfMonth() + "/" +
-            memberList.get(i).getCrawlDate().getMonthValue() + "/" + memberList.get(i).getCrawlDate().getYear());
+        out.print(memberListKonkurrence.get(i).getCrawlDate().getDayOfMonth() + "/" +
+            memberListKonkurrence.get(i).getCrawlDate().getMonthValue() + "/" + memberListKonkurrence.get(i).getCrawlDate().getYear());
       }
 
       out.print(";");
-      if (memberList.get(i).getNumber() == medlemID && handling.equals("brystRecord")) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID && handling.equals("brystRecord")) {
         System.out.println("Enter hours:");
         int hour = gui.getInt();
         System.out.println("Enter minutes:");
@@ -183,15 +181,15 @@ boolean memberFound=false;
         out.print(hour + ":" + min + ":" + sec + ":" + nanoSecs);
         out.print(";");
         out.print(day + "/" + month + "/" + year);
-        memberList.get(i).setBrystTime(LocalTime.of(hour, min, sec, nanoSecs));
-        memberList.get(i).setBrystDate(LocalDate.of(year, month, day));
+        memberListKonkurrence.get(i).setBrystTime(LocalTime.of(hour, min, sec, nanoSecs));
+        memberListKonkurrence.get(i).setBrystDate(LocalDate.of(year, month, day));
       } else {
-        out.print(memberList.get(i).getBrystTime().getHour() + ":" +
-            memberList.get(i).getBrystTime().getMinute() + ":" + memberList.get(i).getBrystTime().getSecond()
-            + ":" + Integer.toString((memberList.get(i).getBrystTime().getNano())).replaceFirst("^0+(?!$)", ""));
+        out.print(memberListKonkurrence.get(i).getBrystTime().getHour() + ":" +
+            memberListKonkurrence.get(i).getBrystTime().getMinute() + ":" + memberListKonkurrence.get(i).getBrystTime().getSecond()
+            + ":" + Integer.toString((memberListKonkurrence.get(i).getBrystTime().getNano())).replaceFirst("^0+(?!$)", ""));
         out.print(";");
-        out.print(memberList.get(i).getBrystDate().getDayOfMonth() + "/" +
-            memberList.get(i).getBrystDate().getMonthValue() + "/" + memberList.get(i).getBrystDate().getYear());
+        out.print(memberListKonkurrence.get(i).getBrystDate().getDayOfMonth() + "/" +
+            memberListKonkurrence.get(i).getBrystDate().getMonthValue() + "/" + memberListKonkurrence.get(i).getBrystDate().getYear());
       }
 
       out.print("\n");
@@ -304,7 +302,7 @@ if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem 
       LocalDate brystDato = LocalDate.of(brystDatoArrayInt[2], brystDatoArrayInt[1], brystDatoArrayInt[0]);
 
 
-      memberList.add(new MemberKonkurrence(number, name, age, aktivPassiv, paymentDueDate, betalt,
+      memberListKonkurrence.add(new MemberKonkurrence(number, name, age, aktivPassiv, paymentDueDate, betalt,
           butterFlyTid, butterFlyDato, rygCrawlTid, rygCrawlDato, crawlTid, crawlDato, brystTid, brystDato));
     }
 
@@ -323,7 +321,7 @@ if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem 
    */
     boolean loop = true;
     while (loop) {
-      for (Member menuItems : memberList) {
+      for (Member menuItems : memberListKonkurrence) {
         System.out.println(menuItems.getName());
         System.out.println(menuItems.getAge());
         System.out.println(menuItems.getJuniorSenior());
@@ -338,10 +336,10 @@ if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem 
   void visRestance() throws ParseException, FileNotFoundException {
     Date currentDate = new Date();
 
-    for (int i = 0; i < memberList.size(); i++) {
-      if (memberList.get(i).getBetalt().equals("ikkeBetalt") &&
-          currentDate.compareTo(memberList.get(i).getDueDate()) > 0) {
-        System.out.println(memberList.get(i).getName() + " er i restance. ID nr:" + memberList.get(i).getNumber());
+    for (int i = 0; i < memberListKonkurrence.size(); i++) {
+      if (memberListKonkurrence.get(i).getBetalt().equals("ikkeBetalt") &&
+          currentDate.compareTo(memberListKonkurrence.get(i).getDueDate()) > 0) {
+        System.out.println(memberListKonkurrence.get(i).getName() + " er i restance. ID nr:" + memberListKonkurrence.get(i).getNumber());
       }
 
 
@@ -352,20 +350,20 @@ if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem 
     System.out.println("Enter member ID:");
     int medlemID = gui.getInt();
     boolean success = false;
-    for (int i = 0; i < memberList.size(); i++) {
-      if (memberList.get(i).getNumber() == medlemID) {
+    for (int i = 0; i < memberListKonkurrence.size(); i++) {
+      if (memberListKonkurrence.get(i).getNumber() == medlemID) {
 
         System.out.println("Medlem " + medlemID + " har følgende rekorder:\n" + "ButterFlysvømning: Dato: " +
-            memberList.get(i).getButterFlyDate() + " Rekordtid: (h/m/s/ns)" + memberList.get(i).getButterFlyTime());
+            memberListKonkurrence.get(i).getButterFlyDate() + " Rekordtid: (h/m/s/ns)" + memberListKonkurrence.get(i).getButterFlyTime());
 
-        System.out.println("RygCrawlsvømning: Dato: " + memberList.get(i).getRygCrawlDate() +
-            " Rekordtid: (h/m/s/ns)" + memberList.get(i).getRygCrawlTime());
+        System.out.println("RygCrawlsvømning: Dato: " + memberListKonkurrence.get(i).getRygCrawlDate() +
+            " Rekordtid: (h/m/s/ns)" + memberListKonkurrence.get(i).getRygCrawlTime());
 
-        System.out.println("Crawlsvømning: Dato: " + memberList.get(i).getCrawlDate() +
-            " Rekordtid: (h/m/s/ns)" + memberList.get(i).getCrawlTime());
+        System.out.println("Crawlsvømning: Dato: " + memberListKonkurrence.get(i).getCrawlDate() +
+            " Rekordtid: (h/m/s/ns)" + memberListKonkurrence.get(i).getCrawlTime());
 
-        System.out.println("Brystsvømning: Dato: " + memberList.get(i).getBrystDate() +
-            " Rekordtid: (h/m/s/ns)" + memberList.get(i).getBrystTime());
+        System.out.println("Brystsvømning: Dato: " + memberListKonkurrence.get(i).getBrystDate() +
+            " Rekordtid: (h/m/s/ns)" + memberListKonkurrence.get(i).getBrystTime());
 
 
         success = true;

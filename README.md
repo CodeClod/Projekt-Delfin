@@ -42,4 +42,3 @@ Spørgsmål til lærer.
     - Klubbens Kasser: Løbende spørge om programmet har tilpassende brugervenlighed.
     - Projektmedarbejdere: Ved at sørge for at P.O. er tilfreds og projektet møder accept-kriterier.
     - Klub-medlemmer: Ved at fuldføre projektet/programmet uden at besværliggøre overgang fra tidligere system.
-   

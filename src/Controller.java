@@ -7,6 +7,7 @@ public class Controller {
   Music music = new Music();
   MotionistManager motionistManager = new MotionistManager();
   KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
+  Economy economy = new Economy();
 
 
   private boolean loop = true;
@@ -35,7 +36,8 @@ public class Controller {
 
     menuText();
     switch (gui.getInt()) {
-
+      case 8 -> economy.showActualIncome(konkurrenceManager, motionistManager);
+      case 7 -> economy.showExpectedIncome(konkurrenceManager, motionistManager);
       case 1 -> decideMemberType();
       case 2 -> {
         System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
