@@ -2,8 +2,44 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class MemberKonkurrence extends Member {
+public class MemberKonkurrence extends Member implements Comparable<MemberKonkurrence> {
 
+  @Override
+  public int compareTo(MemberKonkurrence o) {
+
+    return this.getBrystTime().toSecondOfDay() - o.getBrystTime().toSecondOfDay();
+
+  }
+
+
+
+  public int compareToBryst(MemberKonkurrence o) {
+
+    return this.getBrystTime().toSecondOfDay() - o.getBrystTime().toSecondOfDay();
+
+  }
+
+  public int compareToCrawl(MemberKonkurrence o) {
+
+    return this.getCrawlTime().toSecondOfDay() - o.getCrawlTime().toSecondOfDay();
+
+  }
+
+  public int compareToRygCrawl(MemberKonkurrence o) {
+
+    return this.getRygCrawlTime().toSecondOfDay() - o.getRygCrawlTime().toSecondOfDay();
+
+  }
+
+
+
+  public int compareToButterFly(MemberKonkurrence o) {
+
+    return this.getButterFlyTime().toSecondOfDay() - o.getButterFlyTime().toSecondOfDay();
+
+  }
+  
+  
   private LocalTime butterFlyTime;
   private LocalDate butterFlyDate;
 

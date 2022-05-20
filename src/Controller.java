@@ -22,6 +22,7 @@ public class Controller {
 
 
   public void run() throws InterruptedException, FileNotFoundException, ParseException {
+
     konkurrenceManager.loadMemberFile();
     motionistManager.loadMenu();
     music.playMusic();
@@ -31,13 +32,18 @@ public class Controller {
     }
 
   }
-
+  void printMembers() {
+    System.out.printf("%-2s | %-5s | %-3s | %-1s | %8s", "ID:", "Navn:" , "Alder:", "MedlemsType:", "Kontingent:");
+    System.out.println();
+    motionistManager.showMemberList();
+    konkurrenceManager.showMemberList();
+  }
   public void mainMenu() throws FileNotFoundException, ParseException {
 
     menuText();
     switch (gui.getInt()) {
-      case 8 -> economy.showActualIncome(konkurrenceManager, motionistManager);
-      case 7 -> economy.showExpectedIncome(konkurrenceManager, motionistManager);
+      case 7 -> economy.showActualIncome(konkurrenceManager, motionistManager);
+      case 6 -> economy.showExpectedIncome(konkurrenceManager, motionistManager);
       case 1 -> decideMemberType();
       case 2 -> {
         System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
@@ -51,12 +57,14 @@ public class Controller {
       }
       case 4 -> decideSwimUpdate();
       case 5 -> konkurrenceManager.visRekorder();
-      case 6 -> {
+      case 8 -> {
         System.out.println("Er du sikker på at du vil lukke programmet?");
         if ("ja".equals(gui.getString().toLowerCase(Locale.ROOT))) {
           loop = false;
         }
       }
+      case 9 ->printMembers();
+      case 10 -> konkurrenceManager.printBedsteRekord();
     }
   }
 
@@ -70,7 +78,9 @@ public class Controller {
         "|" + TEXT_RESET + "3) Vis restance" + TEXT_GREEN + "                                |" + "\n" +
         "|" + TEXT_RESET + "4) Opdater tider" + TEXT_GREEN + "                               |" + "\n" +
         "|" + TEXT_RESET + "5) Vis tider" + TEXT_GREEN + "                                   |" + "\n" +
-        "|" + TEXT_RESET + "6) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
+        "|" + TEXT_RESET + "6) Vis forventet indtægt" + TEXT_GREEN + "                       |" + "\n" +
+        "|" + TEXT_RESET + "7) Vis faktisk indtægt  " + TEXT_GREEN + "                       |" + "\n" +
+        "|" + TEXT_RESET + "8) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
 
     System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
     System.out.print(boldOff);

@@ -67,6 +67,7 @@ public class MotionistManager {
   }
 
 
+
   public void loadMenu() throws FileNotFoundException, ParseException {
     Scanner fileScanner = new Scanner(new File("MembersInfo\\Motionistsvømmere.csv"));
     while (fileScanner.hasNextLine()) {
@@ -86,26 +87,12 @@ public class MotionistManager {
   }
 
   public void showMemberList() {
-  /*
-  switch(show)
-  case A: showAll();
-  case K: showKon();
-  case M: showMot();
-  case T: showTræ();
-  case J: showJunior();
-  case S: showSenior();
-
-   */
     boolean loop = true;
     while (loop) {
       for (Member menuItems : memberList) {
-        System.out.println(menuItems.getName());
-        System.out.println(menuItems.getAge());
-        System.out.println(menuItems.getJuniorSenior());
-        System.out.println(menuItems.getKontingent());
+        System.out.printf("%-3d | %-10s | %-3d | %-1s | %8.2f", menuItems.getNumber(),menuItems.getName(), menuItems.getAge(), menuItems.getJuniorSenior(), menuItems.getKontingent());
+        System.out.println();
       }
-      System.out.print("Press Enter to exit the menu.");
-      gui.getString();
       loop = false;
     }
   }

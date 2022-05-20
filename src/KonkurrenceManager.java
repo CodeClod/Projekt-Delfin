@@ -5,10 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 
 public class KonkurrenceManager {
@@ -18,10 +16,142 @@ public class KonkurrenceManager {
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 
+void printBedsteRekord(){
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToButterFly);
+    System.out.println("Bedste ButterFly-rekorder for junior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() < 18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToRygCrawl);
+    System.out.println("Bedste RygCrawl-rekorder for junior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() < 18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToCrawl);
+    System.out.println("Bedste Crawl-rekorder for junior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() < 18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToBryst);
+    System.out.println("Bedste Bryst-rekorder for junior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() < 18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+
+
+
+
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToButterFly);
+    System.out.println("Bedste ButterFly-rekorder for Senior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() >=18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToRygCrawl);
+    System.out.println("Bedste RygCrawl-rekorder for Senior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() >=18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToCrawl);
+    System.out.println("Bedste Crawl-rekorder for Senior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() >=18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+  try {
+    Collections.sort(memberListKonkurrence, MemberKonkurrence::compareToBryst);
+    System.out.println("Bedste Bryst-rekorder for Senior:");
+    int x = 0;
+    int i = 0;
+    while (x < 5) {
+      if (memberListKonkurrence.get(i).getAge() >=18) {
+        System.out.println(memberListKonkurrence.get(i).getName());
+        x++;
+      }
+      i++;
+    }
+  } catch (Exception E) {System.out.println("");}
+
+
+
+
+
+
+}
+
+
+
+
   public KonkurrenceManager() {
   }
 
+
+
+
   void addMember() throws FileNotFoundException, ParseException {
+
 
 
     System.out.println("Enter name.");
@@ -47,10 +177,8 @@ public class KonkurrenceManager {
 
 
   void updateInfo(int medlemID, String handling) throws FileNotFoundException, ParseException {
-boolean memberFound=false;
     PrintStream out = new PrintStream(("MembersInfo\\Konkurrencesvømmere.csv"));
     for (int i = 0; i < memberListKonkurrence.size(); i++) {
-      if (memberListKonkurrence.get(i).getNumber() == medlemID)memberFound=true;
       out.print(memberListKonkurrence.get(i).getNumber());
       out.print(";");
       out.print(memberListKonkurrence.get(i).getName());
@@ -194,7 +322,6 @@ boolean memberFound=false;
 
       out.print("\n");
     }
-if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem er motionistsvømmer");
   }
 
   public void loadMemberFile() throws FileNotFoundException, ParseException {
@@ -309,26 +436,12 @@ if (memberFound==false) System.out.println("Medlems ID ikke fundet eller medlem 
   }
 
   public void showMemberList() {
-  /*
-  switch(show)
-  case A: showAll();
-  case K: showKon();
-  case M: showMot();
-  case T: showTræ();
-  case J: showJunior();
-  case S: showSenior();
-
-   */
     boolean loop = true;
     while (loop) {
       for (Member menuItems : memberListKonkurrence) {
-        System.out.println(menuItems.getName());
-        System.out.println(menuItems.getAge());
-        System.out.println(menuItems.getJuniorSenior());
-        System.out.println(menuItems.getKontingent());
+        System.out.printf("%-3d | %-10s | %-3d | %-1s | %8.2f", menuItems.getNumber(),menuItems.getName(), menuItems.getAge(), menuItems.getJuniorSenior(), menuItems.getKontingent());
+        System.out.println();
       }
-      System.out.print("Press Enter to exit the menu.");
-      gui.getString();
       loop = false;
     }
   }
