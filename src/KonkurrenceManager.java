@@ -26,79 +26,84 @@ public class KonkurrenceManager {
     }
 
     void printBedsteRekord() {
-        System.out.println("Bedste rekorder for Junior-holdet:\n");
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToButterFly);
-            System.out.println("ButterFly:");
-            printHjaelpMetodeJ("butterFly");
-        } catch (Exception E) {
-            System.out.println();
-        }
+        String JS = gui.getString().toUpperCase();
+        while(!JS.equals("J")&&!JS.equals("S")){ System.out.println("Skriv 'J' eller 'S'!");JS = gui.getString().toUpperCase();}
+        if (JS.equals("J")) {
+            System.out.print("Bedste rekorder for Junior-holdet:\n");
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToButterFly);
+                System.out.println("ButterFly:");
+                printHjaelpMetodeJ("butterFly");
+            } catch (Exception E) {
+                System.out.println("");
+            }
 
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToRygCrawl);
-            System.out.println("RygCrawl:");
-            printHjaelpMetodeJ("rygCrawl");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
-        }
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToRygCrawl);
+                System.out.println("RygCrawl:");
+                printHjaelpMetodeJ("rygCrawl");
 
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToCrawl);
-            System.out.println("Crawl:");
-            printHjaelpMetodeJ("crawl");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
-        }
+            } catch (Exception E) {
+                System.out.println("");
+            }
 
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToBryst);
-            System.out.println("Bryst:");
-            printHjaelpMetodeJ("bryst");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
-        }
-        System.out.println("\nBedste Senior-hold rekorder:\n");
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToButterFly);
-            System.out.println("ButterFly:");
-            printHjaelpMetodeS("butterFly");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
-        }
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToCrawl);
+                System.out.println("Crawl:");
+                printHjaelpMetodeJ("crawl");
 
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToRygCrawl);
-            System.out.println("RygCrawl:");
-            printHjaelpMetodeS("rygCrawl");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
+            } catch (Exception E) {
+                System.out.println("");
+            }
+
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToBryst);
+                System.out.println("Bryst:");
+                printHjaelpMetodeJ("bryst");
+
+            } catch (Exception E) {
+                System.out.println("");
+            }
         }
+        if (JS.equals("S")) {
+            System.out.println("\nBedste Senior-hold rekorder:");
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToButterFly);
+                System.out.println("ButterFly:");
+                printHjaelpMetodeS("butterFly");
 
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToCrawl);
-            System.out.println("Crawl:");
-            printHjaelpMetodeS("crawl");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
+            } catch (Exception E) {
+                System.out.println();
+            }
+
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToRygCrawl);
+                System.out.println("RygCrawl:");
+                printHjaelpMetodeS("rygCrawl");
+
+            } catch (Exception E) {
+                System.out.println();
+            }
+
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToCrawl);
+                System.out.println("Crawl:");
+                printHjaelpMetodeS("crawl");
+
+            } catch (Exception E) {
+                System.out.println();
+            }
+
+            try {
+                memberListKonkurrence.sort(MemberKonkurrence::compareToBryst);
+                System.out.println("Bryst:");
+                printHjaelpMetodeS("bryst");
+
+            } catch (Exception E) {
+                System.out.println();
+            }
+
         }
-
-        try {
-            memberListKonkurrence.sort(MemberKonkurrence::compareToBryst);
-            System.out.println("Bryst:");
-            printHjaelpMetodeS("bryst");
-            System.out.println("");
-        } catch (Exception E) {
-            System.out.println();
-        }
-
-
     }
 
     private void printHjaelpMetodeS(String disciplin) {

@@ -65,11 +65,23 @@ public class Controller {
                 konkurrenceManager.visRestance();
             }
             case 4 -> decideSwimUpdate();
-            case 5 -> konkurrenceManager.visRekorder();
-            case 6 -> economy.showExpectedIncome(konkurrenceManager, motionistManager);
-            case 7 -> economy.showActualIncome(konkurrenceManager, motionistManager);
-            case 8 -> printMembers();
-            case 9 -> konkurrenceManager.printBedsteRekord();
+            case 5 -> {konkurrenceManager.visRekorder();
+                System.out.println("Tryk Enter for at gå tilbage til menuen.");
+            gui.getString();}
+            case 6 -> {economy.showExpectedIncome(konkurrenceManager, motionistManager);
+                System.out.println("Tryk Enter for at gå tilbage til menuen.");
+                gui.getString();}
+
+            case 7 -> {economy.showActualIncome(konkurrenceManager, motionistManager);System.out.println("Tryk Enter for at gå tilbage til menuen.");
+                gui.getString();}
+            case 8 -> {printMembers();System.out.println("Tryk Enter for at gå tilbage til menuen.");
+                gui.getString();}
+            case 9 -> {
+                System.out.println("Vis (J)unior rekorder eller vis (S)enior rekorder?(Tast 'J' eller 'S')");
+
+                konkurrenceManager.printBedsteRekord();
+                System.out.print("Tryk Enter for at gå tilbage til menuen.");
+                gui.getString();}
             case 10 -> {
                 System.out.println("Er du sikker på at du vil lukke programmet?");
                 if ("ja".equals(gui.getString().toLowerCase(Locale.ROOT))) {
