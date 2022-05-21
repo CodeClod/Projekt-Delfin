@@ -41,8 +41,8 @@ public class Controller {
         System.out.println();
         boolean loop = true;
         while (loop) {
-            for (Member menuItems : allMembers) {
-                System.out.printf("%-3d | %-10s | %-3d | %-1s | %8.2f", menuItems.getNumber(), menuItems.getName(), menuItems.getAge(), menuItems.getJuniorSenior(), menuItems.getKontingent());
+            for (Member member : allMembers) {
+                System.out.printf("%-3d | %-10s | %-3d | %-1s | %8.2f", member.getNumber(), member.getName(), member.getAge(), member.getJuniorSenior(), member.getKontingent());
                 System.out.println();
             }
             loop = false;

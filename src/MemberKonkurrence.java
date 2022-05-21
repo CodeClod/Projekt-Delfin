@@ -3,8 +3,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MemberKonkurrence extends Member {
-
-
     private LocalTime butterFlyTime;
     private LocalDate butterFlyDate;
     private LocalTime rygCrawlTime;

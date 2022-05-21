@@ -26,66 +26,74 @@ public class KonkurrenceManager {
     }
 
     void printBedsteRekord() {
+        System.out.println("Bedste rekorder for Junior-holdet:\n");
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToButterFly);
-            System.out.println("Bedste ButterFly-rekorder for junior:");
-            printHjaelpMetodeJ();
+            System.out.println("ButterFly:");
+            printHjaelpMetodeJ("butterFly");
         } catch (Exception E) {
             System.out.println();
         }
 
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToRygCrawl);
-            System.out.println("Bedste RygCrawl-rekorder for junior:");
-            printHjaelpMetodeJ();
+            System.out.println("RygCrawl:");
+            printHjaelpMetodeJ("rygCrawl");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
 
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToCrawl);
-            System.out.println("Bedste Crawl-rekorder for junior:");
-            printHjaelpMetodeJ();
+            System.out.println("Crawl:");
+            printHjaelpMetodeJ("crawl");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
 
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToBryst);
-            System.out.println("Bedste Bryst-rekorder for junior:");
-            printHjaelpMetodeJ();
+            System.out.println("Bryst:");
+            printHjaelpMetodeJ("bryst");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
-
+        System.out.println("\nBedste Senior-hold rekorder:\n");
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToButterFly);
-            System.out.println("Bedste ButterFly-rekorder for Senior:");
-            printHjaelpMetodeS();
+            System.out.println("ButterFly:");
+            printHjaelpMetodeS("butterFly");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
 
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToRygCrawl);
-            System.out.println("Bedste RygCrawl-rekorder for Senior:");
-            printHjaelpMetodeS();
+            System.out.println("RygCrawl:");
+            printHjaelpMetodeS("rygCrawl");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
 
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToCrawl);
-            System.out.println("Bedste Crawl-rekorder for Senior:");
-            printHjaelpMetodeS();
+            System.out.println("Crawl:");
+            printHjaelpMetodeS("crawl");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
 
         try {
             memberListKonkurrence.sort(MemberKonkurrence::compareToBryst);
-            System.out.println("Bedste Bryst-rekorder for Senior:");
-            printHjaelpMetodeS();
+            System.out.println("Bryst:");
+            printHjaelpMetodeS("bryst");
+            System.out.println("");
         } catch (Exception E) {
             System.out.println();
         }
@@ -93,24 +101,38 @@ public class KonkurrenceManager {
 
     }
 
-    private void printHjaelpMetodeS() {
+    private void printHjaelpMetodeS(String disciplin) {
         int x = 0;
         int i = 0;
+        LocalTime tid=LocalTime.of(0,0);
+
         while (x < 5) {
+            if (disciplin=="butterFly") tid=memberListKonkurrence.get(i).getButterFlyTime();
+            if (disciplin=="rygCrawl") tid=memberListKonkurrence.get(i).getRygCrawlTime();
+            if (disciplin=="crawl") tid=memberListKonkurrence.get(i).getCrawlTime();
+            if (disciplin=="bryst") tid=memberListKonkurrence.get(i).getBrystTime();
+
             if (memberListKonkurrence.get(i).getAge() >= 18) {
-                System.out.println(memberListKonkurrence.get(i).getName());
+                System.out.println("ID:"+memberListKonkurrence.get(i).getNumber()+" Navn:"+memberListKonkurrence.get(i).getName()+" Tid:"+tid);
                 x++;
             }
             i++;
         }
     }
 
-    private void printHjaelpMetodeJ() {
+    private void printHjaelpMetodeJ(String disciplin) {
         int x = 0;
         int i = 0;
+        LocalTime tid=LocalTime.of(0,0);
+
         while (x < 5) {
+            if (disciplin=="butterFly") tid=memberListKonkurrence.get(i).getButterFlyTime();
+            if (disciplin=="rygCrawl") tid=memberListKonkurrence.get(i).getRygCrawlTime();
+            if (disciplin=="crawl") tid=memberListKonkurrence.get(i).getCrawlTime();
+            if (disciplin=="bryst") tid=memberListKonkurrence.get(i).getBrystTime();
+
             if (memberListKonkurrence.get(i).getAge() < 18) {
-                System.out.println(memberListKonkurrence.get(i).getName());
+                System.out.println("ID:"+memberListKonkurrence.get(i).getNumber()+" Navn:"+memberListKonkurrence.get(i).getName()+" Tid:"+tid);
                 x++;
             }
             i++;
