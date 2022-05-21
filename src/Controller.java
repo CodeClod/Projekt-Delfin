@@ -68,22 +68,34 @@ public class Controller {
             case 5 -> konkurrenceManager.visRekorder();
             case 6 -> economy.showExpectedIncome(konkurrenceManager, motionistManager);
             case 7 -> economy.showActualIncome(konkurrenceManager, motionistManager);
-
-            case 8 -> {
+            case 8 -> printMembers();
+            case 9 -> konkurrenceManager.printBedsteRekord();
+            case 10 -> {
                 System.out.println("Er du sikker på at du vil lukke programmet?");
                 if ("ja".equals(gui.getString().toLowerCase(Locale.ROOT))) {
                     loop = false;
                 }
             }
-            case 9 -> printMembers();
-            case 10 -> konkurrenceManager.printBedsteRekord();
         }
     }
 
     public void menuText() {
         String boldON = "\033[0;1m";
         System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
-        System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     |" + "\n" + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" + "|                                               |" + "\n" + "|" + TEXT_RESET + "1) Tilføj medlem" + TEXT_GREEN + "                               |" + "\n" + "|" + TEXT_RESET + "2) Betal regning" + TEXT_GREEN + "                               |" + "\n" + "|" + TEXT_RESET + "3) Vis restance" + TEXT_GREEN + "                                |" + "\n" + "|" + TEXT_RESET + "4) Opdater tider" + TEXT_GREEN + "                               |" + "\n" + "|" + TEXT_RESET + "5) Vis tider" + TEXT_GREEN + "                                   |" + "\n" + "|" + TEXT_RESET + "6) Vis forventet indtægt" + TEXT_GREEN + "                       |" + "\n" + "|" + TEXT_RESET + "7) Vis faktisk indtægt  " + TEXT_GREEN + "                       |" + "\n" + "|" + TEXT_RESET + "8) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
+        System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     " +
+                "|" + "\n" + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      " +
+                "|" + "\n" + "|                                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "1) Tilføj medlem" + TEXT_GREEN + "                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "2) Betal regning" + TEXT_GREEN + "                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "3) Vis restance" + TEXT_GREEN + "                                " +
+                "|" + "\n" + "|" + TEXT_RESET + "4) Opdater tider" + TEXT_GREEN + "                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "5) Vis tider" + TEXT_GREEN + "                                   " +
+                "|" + "\n" + "|" + TEXT_RESET + "6) Vis forventet indtægt" + TEXT_GREEN + "                       " +
+                "|" + "\n" + "|" + TEXT_RESET + "7) Vis faktisk indtægt  " + TEXT_GREEN + "                       " +
+                "|" + "\n" + "|" + TEXT_RESET + "8) Vis liste over alle medlemmer  " + TEXT_GREEN + "             " +
+                "|" + "\n" + "|" + TEXT_RESET + "9) Vis klubbens bedste rekorder  " + TEXT_GREEN + "              " +
+                "|" + "\n" + "|" + TEXT_RESET + "10) Exit" + TEXT_GREEN + "                                       " +
+                "|" + TEXT_RESET);
 
         System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
         String boldOff = "\033[0;0m";
