@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Controller {
@@ -11,13 +12,11 @@ public class Controller {
 
 
   private boolean loop = true;
-  private final String boldON = "\033[0;1m";
-  private final String boldOff = "\033[0;0m";
   private static final String TEXT_RESET = "\u001b[0m";
   private static final String TEXT_GREEN = "\u001b[32m";
   private static final String TEXT_BLUE = "\u001b[34m";
 
-  public Controller() throws FileNotFoundException {
+  public Controller() {
   }
 
 
@@ -33,10 +32,24 @@ public class Controller {
 
   }
   void printMembers() {
+    ArrayList<Member> allMembers = new ArrayList<>();
+    allMembers.addAll(motionistManager.memberList);
+    allMembers.addAll(konkurrenceManager.memberListKonkurrence);
+    allMembers.sort(Member::compareTo);
+
+
+
+
     System.out.printf("%-2s | %-5s | %-3s | %-1s | %8s", "ID:", "Navn:" , "Alder:", "MedlemsType:", "Kontingent:");
     System.out.println();
-    motionistManager.showMemberList();
-    konkurrenceManager.showMemberList();
+    boolean loop = true;
+    while (loop) {
+      for (Member menuItems : allMembers) {
+        System.out.printf("%-3d | %-10s | %-3d | %-1s | %8.2f", menuItems.getNumber(), menuItems.getName(), menuItems.getAge(), menuItems.getJuniorSenior(), menuItems.getKontingent());
+        System.out.println();
+      }
+      loop = false;
+    }
   }
   public void mainMenu() throws FileNotFoundException, ParseException {
 
@@ -69,6 +82,7 @@ public class Controller {
   }
 
   public void menuText() {
+    String boldON = "\033[0;1m";
     System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
     System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     |" + "\n"
         + "|      " + TEXT_RESET + "Vælg venligst en funktion nedenfor:" + TEXT_GREEN + "      |" + "\n" +
@@ -83,6 +97,7 @@ public class Controller {
         "|" + TEXT_RESET + "8) Exit" + TEXT_GREEN + "                                        |" + TEXT_RESET);
 
     System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+    String boldOff = "\033[0;0m";
     System.out.print(boldOff);
   }
 
@@ -97,7 +112,7 @@ public class Controller {
     }
   }
 
-  public void decideSwimUpdate() throws FileNotFoundException, ParseException {
+  public void decideSwimUpdate() throws FileNotFoundException {
     System.out.println("Indtast medlems ID:");
     int memberID = gui.getInt();
     System.out.println("""

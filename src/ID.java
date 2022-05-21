@@ -22,7 +22,7 @@ public class ID {
     }
 
     static String createPaymentDate(){
-        String newDate="";
+        String newDate;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         //Getting current date
         Calendar cal = Calendar.getInstance();

@@ -2,21 +2,13 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class MemberKonkurrence extends Member implements Comparable<MemberKonkurrence> {
-
-  @Override
-  public int compareTo(MemberKonkurrence o) {
-
-    return this.getBrystTime().toSecondOfDay() - o.getBrystTime().toSecondOfDay();
-
-  }
+public class MemberKonkurrence extends Member {
 
 
 
   public int compareToBryst(MemberKonkurrence o) {
 
     return this.getBrystTime().toSecondOfDay() - o.getBrystTime().toSecondOfDay();
-
   }
 
   public int compareToCrawl(MemberKonkurrence o) {

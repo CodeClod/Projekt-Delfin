@@ -2,7 +2,9 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class Member {
+public class Member implements Comparable<Member> {
+
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     private final int number;
     private final String name;
@@ -11,9 +13,8 @@ public class Member {
     private String juniorSenior;
     private double kontingent;
 
-    private String betalt = "";
-    private boolean regningBetalt = false;
-    private String paymentDueDate = "";
+    private String betalt;
+    private String paymentDueDate;
 
     public Date getDueDate() {
         return dueDate;
@@ -29,29 +30,13 @@ public class Member {
 
     private Date dueDate;
 
-    public void setRegningBetalt(boolean regningBetalt) {
-        this.regningBetalt = regningBetalt;
-    }
-
-    public boolean isRegningBetalt() {
-        return regningBetalt;
-    }
-
     public double getKontingent() {
         return kontingent;
-    }
-
-    public void setKontingent(double kontingent) {
-        this.kontingent = kontingent;
     }
 
 
     public String getJuniorSenior() {
         return juniorSenior;
-    }
-
-    public void setJuniorSenior(String juniorSenior) {
-        this.juniorSenior = juniorSenior;
     }
 
     public String getName() {
@@ -74,6 +59,7 @@ public class Member {
         return paymentDueDate;
     }
 
+
     public Member(int number, String name, int age, String passivAktiv,
                   String paymentDueDate,String betalt) throws ParseException {
 
@@ -92,4 +78,8 @@ public class Member {
         if (age < 18) this.juniorSenior = "J";
     }
 
+    @Override
+    public int compareTo(Member o) {
+        return this.getNumber()-o.getNumber();
+    }
 }
