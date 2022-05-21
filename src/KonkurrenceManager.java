@@ -4,12 +4,16 @@ import java.io.PrintStream;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
 
 
 public class KonkurrenceManager {
 
     GUI gui = new GUI();
+    ArrayList<MemberKonkurrence> memberListKonkurrence = new ArrayList<>();
     private int hour = 0;
     private int min = 0;
     private int sec = 0;
@@ -17,7 +21,9 @@ public class KonkurrenceManager {
     private int month = 0;
     private int day = 0;
     private int year = 0;
-    ArrayList<MemberKonkurrence> memberListKonkurrence = new ArrayList<>();
+
+    public KonkurrenceManager() {
+    }
 
     void printBedsteRekord() {
         try {
@@ -111,9 +117,6 @@ public class KonkurrenceManager {
         }
     }
 
-    public KonkurrenceManager() {
-    }
-
     void addMember() throws FileNotFoundException, ParseException {
 
 
@@ -125,15 +128,13 @@ public class KonkurrenceManager {
         String passiveActive = "";
         while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
             passiveActive = gui.getString().toUpperCase(Locale.ROOT);
-            if (!passiveActive.equals("P") && !passiveActive.equals("A"))
-                System.out.println("Please write 'P' or 'A'");
+            if (!passiveActive.equals("P") && !passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
         }
         String paymentDueDate = ID.createPaymentDate();
         LocalTime emptyTime = LocalTime.of(23, 0, 0, 0);
         LocalDate emptyDate = LocalDate.of(1, 1, 1);
 
-        memberListKonkurrence.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate,
-                "ikkeBetalt", emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate));
+        memberListKonkurrence.add(new MemberKonkurrence(ID.getID(), name, age, passiveActive, paymentDueDate, "ikkeBetalt", emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate, emptyTime, emptyDate));
 
         updateInfo(-1, "nothing");
     }
@@ -173,16 +174,11 @@ public class KonkurrenceManager {
                 memberKonkurrence.setButterFlyTime(LocalTime.of(hour, min, sec, nanoSecs));
                 memberKonkurrence.setButterFlyDate(LocalDate.of(year, month, day));
             } else {
-                out.print(memberKonkurrence.getButterFlyTime().getHour() + ":"
-                        + memberKonkurrence.getButterFlyTime().getMinute()
-                        + ":" + memberKonkurrence.getButterFlyTime().getSecond() + ":" +
-                        Integer.toString((memberKonkurrence.getButterFlyTime().getNano())).replaceFirst("^0+(?!$)", ""));
+                out.print(memberKonkurrence.getButterFlyTime().getHour() + ":" + memberKonkurrence.getButterFlyTime().getMinute() + ":" + memberKonkurrence.getButterFlyTime().getSecond() + ":" + Integer.toString((memberKonkurrence.getButterFlyTime().getNano())).replaceFirst("^0+(?!$)", ""));
                 out.print(";");
 
 
-                out.print(memberKonkurrence.getButterFlyDate().getDayOfMonth() + "/" +
-                        memberKonkurrence.getButterFlyDate().getMonthValue() + "/" +
-                        memberKonkurrence.getButterFlyDate().getYear());
+                out.print(memberKonkurrence.getButterFlyDate().getDayOfMonth() + "/" + memberKonkurrence.getButterFlyDate().getMonthValue() + "/" + memberKonkurrence.getButterFlyDate().getYear());
             }
 
             out.print(";");
@@ -195,12 +191,9 @@ public class KonkurrenceManager {
                 memberKonkurrence.setRygCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
                 memberKonkurrence.setRygCrawlDate(LocalDate.of(year, month, day));
             } else {
-                out.print(memberKonkurrence.getRygCrawlTime().getHour() + ":" +
-                        memberKonkurrence.getRygCrawlTime().getMinute() + ":" + memberKonkurrence.getRygCrawlTime().getSecond()
-                        + ":" + Integer.toString((memberKonkurrence.getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
+                out.print(memberKonkurrence.getRygCrawlTime().getHour() + ":" + memberKonkurrence.getRygCrawlTime().getMinute() + ":" + memberKonkurrence.getRygCrawlTime().getSecond() + ":" + Integer.toString((memberKonkurrence.getRygCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
                 out.print(";");
-                out.print(memberKonkurrence.getRygCrawlDate().getDayOfMonth() + "/" +
-                        memberKonkurrence.getRygCrawlDate().getMonthValue() + "/" + memberKonkurrence.getRygCrawlDate().getYear());
+                out.print(memberKonkurrence.getRygCrawlDate().getDayOfMonth() + "/" + memberKonkurrence.getRygCrawlDate().getMonthValue() + "/" + memberKonkurrence.getRygCrawlDate().getYear());
             }
 
             out.print(";");
@@ -212,12 +205,9 @@ public class KonkurrenceManager {
                 memberKonkurrence.setCrawlTime(LocalTime.of(hour, min, sec, nanoSecs));
                 memberKonkurrence.setCrawlDate(LocalDate.of(year, month, day));
             } else {
-                out.print(memberKonkurrence.getCrawlTime().getHour() + ":" + memberKonkurrence.getCrawlTime().getMinute()
-                        + ":" + memberKonkurrence.getCrawlTime().getSecond() + ":" +
-                        Integer.toString((memberKonkurrence.getCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
+                out.print(memberKonkurrence.getCrawlTime().getHour() + ":" + memberKonkurrence.getCrawlTime().getMinute() + ":" + memberKonkurrence.getCrawlTime().getSecond() + ":" + Integer.toString((memberKonkurrence.getCrawlTime().getNano())).replaceFirst("^0+(?!$)", ""));
                 out.print(";");
-                out.print(memberKonkurrence.getCrawlDate().getDayOfMonth() + "/" +
-                        memberKonkurrence.getCrawlDate().getMonthValue() + "/" + memberKonkurrence.getCrawlDate().getYear());
+                out.print(memberKonkurrence.getCrawlDate().getDayOfMonth() + "/" + memberKonkurrence.getCrawlDate().getMonthValue() + "/" + memberKonkurrence.getCrawlDate().getYear());
             }
             out.print(";");
             if (memberKonkurrence.getNumber() == medlemID && handling.equals("brystRecord")) {
@@ -228,12 +218,9 @@ public class KonkurrenceManager {
                 memberKonkurrence.setBrystTime(LocalTime.of(hour, min, sec, nanoSecs));
                 memberKonkurrence.setBrystDate(LocalDate.of(year, month, day));
             } else {
-                out.print(memberKonkurrence.getBrystTime().getHour() + ":" +
-                        memberKonkurrence.getBrystTime().getMinute() + ":" + memberKonkurrence.getBrystTime().getSecond()
-                        + ":" + Integer.toString((memberKonkurrence.getBrystTime().getNano())).replaceFirst("^0+(?!$)", ""));
+                out.print(memberKonkurrence.getBrystTime().getHour() + ":" + memberKonkurrence.getBrystTime().getMinute() + ":" + memberKonkurrence.getBrystTime().getSecond() + ":" + Integer.toString((memberKonkurrence.getBrystTime().getNano())).replaceFirst("^0+(?!$)", ""));
                 out.print(";");
-                out.print(memberKonkurrence.getBrystDate().getDayOfMonth() + "/" +
-                        memberKonkurrence.getBrystDate().getMonthValue() + "/" + memberKonkurrence.getBrystDate().getYear());
+                out.print(memberKonkurrence.getBrystDate().getDayOfMonth() + "/" + memberKonkurrence.getBrystDate().getMonthValue() + "/" + memberKonkurrence.getBrystDate().getYear());
             }
 
             out.print("\n");
@@ -262,8 +249,7 @@ public class KonkurrenceManager {
                 butterFlyTidArrayInt[i] = Integer.parseInt(butterFlyTidArrayStr[i]);
             }
 
-            LocalTime butterFlyTid = LocalTime.of(butterFlyTidArrayInt[0], butterFlyTidArrayInt[1],
-                    butterFlyTidArrayInt[2], butterFlyTidArrayInt[3]);
+            LocalTime butterFlyTid = LocalTime.of(butterFlyTidArrayInt[0], butterFlyTidArrayInt[1], butterFlyTidArrayInt[2], butterFlyTidArrayInt[3]);
 
             String butterFlyDatoStr = input.next();
             String[] butterFlyDatoArrayStr = butterFlyDatoStr.split("/");
@@ -273,9 +259,7 @@ public class KonkurrenceManager {
                 butterFlyDatoArrayInt[i] = Integer.parseInt(butterFlyDatoArrayStr[i]);
             }
 
-
-            LocalDate butterFlyDato = LocalDate.of(butterFlyDatoArrayInt[2],
-                    butterFlyDatoArrayInt[1], butterFlyDatoArrayInt[0]);
+            LocalDate butterFlyDato = LocalDate.of(butterFlyDatoArrayInt[2], butterFlyDatoArrayInt[1], butterFlyDatoArrayInt[0]);
 
 
             String rygCrawlTidStr = input.next();
@@ -285,14 +269,12 @@ public class KonkurrenceManager {
                 rygCrawlTidArrayInt[i] = Integer.parseInt(rygCrawlTidArrayStr[i]);
             }
 
-            LocalTime rygCrawlTid = LocalTime.of(rygCrawlTidArrayInt[0], rygCrawlTidArrayInt[1],
-                    rygCrawlTidArrayInt[2], rygCrawlTidArrayInt[3]);
+            LocalTime rygCrawlTid = LocalTime.of(rygCrawlTidArrayInt[0], rygCrawlTidArrayInt[1], rygCrawlTidArrayInt[2], rygCrawlTidArrayInt[3]);
 
             String rygCrawlDatoStr = input.next();
             String[] rygCrawlDatoArrayStr = rygCrawlDatoStr.split("/");
             int[] rygCrawlDatoArrayInt = new int[3];
 
-//            System.out.println(rygCrawlDatoArrayStr[0]);
             for (int i = 0; i < rygCrawlDatoArrayStr.length; i++) {
                 rygCrawlDatoArrayInt[i] = Integer.parseInt(rygCrawlDatoArrayStr[i]);
             }
@@ -308,8 +290,7 @@ public class KonkurrenceManager {
                 crawlTidArrayInt[i] = Integer.parseInt(crawlTidArrayStr[i]);
             }
 
-            LocalTime crawlTid = LocalTime.of(crawlTidArrayInt[0], crawlTidArrayInt[1],
-                    crawlTidArrayInt[2], crawlTidArrayInt[3]);
+            LocalTime crawlTid = LocalTime.of(crawlTidArrayInt[0], crawlTidArrayInt[1], crawlTidArrayInt[2], crawlTidArrayInt[3]);
 
             String crawlDatoStr = input.next();
             String[] crawlDatoArrayStr = crawlDatoStr.split("/");
@@ -329,14 +310,12 @@ public class KonkurrenceManager {
                 brystTidArrayInt[i] = Integer.parseInt(brystTidArrayStr[i]);
             }
 
-            LocalTime brystTid = LocalTime.of(brystTidArrayInt[0], brystTidArrayInt[1],
-                    brystTidArrayInt[2], brystTidArrayInt[3]);
+            LocalTime brystTid = LocalTime.of(brystTidArrayInt[0], brystTidArrayInt[1], brystTidArrayInt[2], brystTidArrayInt[3]);
 
             String brystDatoStr = input.next();
             String[] brystDatoArrayStr = brystDatoStr.split("/");
             int[] brystDatoArrayInt = new int[3];
 
-//            System.out.println(brystDatoArrayStr[0]);
             for (int i = 0; i < brystDatoArrayStr.length; i++) {
                 brystDatoArrayInt[i] = Integer.parseInt(brystDatoArrayStr[i]);
             }
@@ -345,8 +324,7 @@ public class KonkurrenceManager {
             LocalDate brystDato = LocalDate.of(brystDatoArrayInt[2], brystDatoArrayInt[1], brystDatoArrayInt[0]);
 
 
-            memberListKonkurrence.add(new MemberKonkurrence(number, name, age, aktivPassiv, paymentDueDate, betalt,
-                    butterFlyTid, butterFlyDato, rygCrawlTid, rygCrawlDato, crawlTid, crawlDato, brystTid, brystDato));
+            memberListKonkurrence.add(new MemberKonkurrence(number, name, age, aktivPassiv, paymentDueDate, betalt, butterFlyTid, butterFlyDato, rygCrawlTid, rygCrawlDato, crawlTid, crawlDato, brystTid, brystDato));
         }
 
     }
@@ -356,8 +334,7 @@ public class KonkurrenceManager {
         Date currentDate = new Date();
 
         for (MemberKonkurrence memberKonkurrence : memberListKonkurrence) {
-            if (memberKonkurrence.getBetalt().equals("ikkeBetalt") &&
-                    currentDate.compareTo(memberKonkurrence.getDueDate()) > 0) {
+            if (memberKonkurrence.getBetalt().equals("ikkeBetalt") && currentDate.compareTo(memberKonkurrence.getDueDate()) > 0) {
                 System.out.println(memberKonkurrence.getName() + " er i restance. ID nr:" + memberKonkurrence.getNumber());
             }
 
@@ -372,17 +349,13 @@ public class KonkurrenceManager {
         for (MemberKonkurrence memberKonkurrence : memberListKonkurrence) {
             if (memberKonkurrence.getNumber() == medlemID) {
 
-                System.out.println("Medlem " + medlemID + " har følgende rekorder:\n" + "ButterFlysvømning: Dato: " +
-                        memberKonkurrence.getButterFlyDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getButterFlyTime());
+                System.out.println("Medlem " + medlemID + " har følgende rekorder:\n" + "ButterFlysvømning: Dato: " + memberKonkurrence.getButterFlyDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getButterFlyTime());
 
-                System.out.println("RygCrawlsvømning: Dato: " + memberKonkurrence.getRygCrawlDate() +
-                        " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getRygCrawlTime());
+                System.out.println("RygCrawlsvømning: Dato: " + memberKonkurrence.getRygCrawlDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getRygCrawlTime());
 
-                System.out.println("Crawlsvømning: Dato: " + memberKonkurrence.getCrawlDate() +
-                        " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getCrawlTime());
+                System.out.println("Crawlsvømning: Dato: " + memberKonkurrence.getCrawlDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getCrawlTime());
 
-                System.out.println("Brystsvømning: Dato: " + memberKonkurrence.getBrystDate() +
-                        " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getBrystTime());
+                System.out.println("Brystsvømning: Dato: " + memberKonkurrence.getBrystDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getBrystTime());
 
 
                 success = true;

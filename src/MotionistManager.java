@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -15,6 +14,23 @@ public class MotionistManager {
     public MotionistManager() {
     }
 
+    static void updateInfoHjaelp(PrintStream out, Member member) {
+        out.print(member.getNumber());
+        out.print(";");
+        out.print(member.getName());
+        out.print(";");
+        out.print(member.getAge());
+        out.print(";");
+        out.print(member.getPassivAktiv());
+        out.print(";");
+        out.print(member.getJuniorSenior());
+        out.print(";");
+        out.print(member.getKontingent());
+        out.print(";");
+        out.print(member.getPaymentDueDate());
+        out.print(";");
+    }
+
     void addMember() throws FileNotFoundException, ParseException {
         System.out.println("Enter name.");
         String name = gui.getString();
@@ -24,8 +40,7 @@ public class MotionistManager {
         String passiveActive = "";
         while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
             passiveActive = gui.getString().toUpperCase(Locale.ROOT);
-            if (!passiveActive.equals("P") && !passiveActive.equals("A"))
-                System.out.println("Please write 'P' or 'A'");
+            if (!passiveActive.equals("P") && !passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
         }
         String paymentDueDate = ID.createPaymentDate();
         memberList.add(new Member(ID.getID(), name, age, passiveActive, paymentDueDate, "ikkeBetalt"));
@@ -45,23 +60,6 @@ public class MotionistManager {
             if (member.getNumber() != x) out.print(member.getBetalt());
             out.print("\n");
         }
-    }
-
-    static void updateInfoHjaelp(PrintStream out, Member member) {
-        out.print(member.getNumber());
-        out.print(";");
-        out.print(member.getName());
-        out.print(";");
-        out.print(member.getAge());
-        out.print(";");
-        out.print(member.getPassivAktiv());
-        out.print(";");
-        out.print(member.getJuniorSenior());
-        out.print(";");
-        out.print(member.getKontingent());
-        out.print(";");
-        out.print(member.getPaymentDueDate());
-        out.print(";");
     }
 
     public void loadMenu() throws FileNotFoundException, ParseException {
@@ -85,10 +83,8 @@ public class MotionistManager {
         Date currentDate = new Date();
         System.out.println(memberList.get(0).getPaymentDueDate());
         for (Member member : memberList) {
-            if (member.getBetalt().equals("ikkeBetalt") &&
-                    currentDate.compareTo(member.getDueDate()) > 0) {
-                System.out.println(member.getName() +
-                        " er i restance. ID nr:" + member.getNumber());
+            if (member.getBetalt().equals("ikkeBetalt") && currentDate.compareTo(member.getDueDate()) > 0) {
+                System.out.println(member.getName() + " er i restance. ID nr:" + member.getNumber());
             }
         }
     }

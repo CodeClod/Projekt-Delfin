@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ID {
     public static int getID() throws FileNotFoundException {
-        int ID=0;
+        int ID = 0;
         Scanner fileScanner = new Scanner(new File("MembersInfo\\ID.csv"));
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
@@ -16,12 +16,12 @@ public class ID {
             ID = input.nextInt();
             System.out.println(ID);
             PrintStream out = new PrintStream(("MembersInfo\\ID.csv"));
-            out.print(ID+1);
+            out.print(ID + 1);
         }
         return ID;
     }
 
-    static String createPaymentDate(){
+    static String createPaymentDate() {
         String newDate;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         //Getting current date
