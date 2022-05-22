@@ -117,8 +117,11 @@ public class KonkurrenceManager {
             if (disciplin=="crawl") tid=memberListKonkurrence.get(i).getCrawlTime();
             if (disciplin=="bryst") tid=memberListKonkurrence.get(i).getBrystTime();
 
+            String stringTid = tid.toString();
+
             if (memberListKonkurrence.get(i).getAge() >= 18) {
-                System.out.println("ID:"+memberListKonkurrence.get(i).getNumber()+" Navn:"+memberListKonkurrence.get(i).getName()+" Tid:"+tid);
+                System.out.printf("ID: %-6d Navn: %-12s Tid: %10s", memberListKonkurrence.get(i).getNumber(), memberListKonkurrence.get(i).getName(), stringTid);
+                System.out.println();
                 x++;
             }
             i++;
