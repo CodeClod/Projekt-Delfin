@@ -77,6 +77,7 @@ public class Controller {
             case 8 -> {printMembers();System.out.println("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
             case 9 -> {
+
                 System.out.println("Vis (J)unior rekorder eller vis (S)enior rekorder?(Tast 'J' eller 'S')");
 
                 konkurrenceManager.printBedsteRekord();
