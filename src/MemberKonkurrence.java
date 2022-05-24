@@ -12,7 +12,13 @@ public class MemberKonkurrence extends Member {
     private LocalTime brystTime;
     private LocalDate brystDate;
 
-    public MemberKonkurrence(int number, String name, int age, String passivAktiv, String paymentDueDate, String betalt, LocalTime butterFlyTime, LocalDate butterFlyDate, LocalTime rygCrawlTime, LocalDate rygCrawlDate, LocalTime crawlTime, LocalDate crawlDate, LocalTime brystTime, LocalDate brystDate) throws ParseException {
+    private boolean butterFlyAktiv=false;
+    private boolean rygCrawlAktiv=false;
+    private boolean crawlAktiv=false;
+    private boolean brystAktiv=false;
+
+
+    public MemberKonkurrence(int number, String name, int age, String passivAktiv, String paymentDueDate, String betalt, LocalTime butterFlyTime, LocalDate butterFlyDate, LocalTime rygCrawlTime, LocalDate rygCrawlDate, LocalTime crawlTime, LocalDate crawlDate, LocalTime brystTime, LocalDate brystDate,boolean butterFlyAktiv, boolean rygCrawlAktiv, boolean crawlAktiv, boolean brystAktiv) throws ParseException {
 
         super(number, name, age, passivAktiv, paymentDueDate, betalt);
         this.butterFlyTime = butterFlyTime;
@@ -23,6 +29,42 @@ public class MemberKonkurrence extends Member {
         this.crawlDate = crawlDate;
         this.brystTime = brystTime;
         this.brystDate = brystDate;
+        this.butterFlyAktiv=butterFlyAktiv;
+        this.rygCrawlAktiv=rygCrawlAktiv;
+        this.crawlAktiv=crawlAktiv;
+        this.brystAktiv=brystAktiv;
+    }
+
+    public boolean isBrystAktiv() {
+        return brystAktiv;
+    }
+
+    public void setBrystAktiv(boolean brystAktiv) {
+        this.brystAktiv = brystAktiv;
+    }
+
+    public boolean isButterFlyAktiv() {
+        return butterFlyAktiv;
+    }
+
+    public void setButterFlyAktiv(boolean butterFlyAktiv) {
+        this.butterFlyAktiv = butterFlyAktiv;
+    }
+
+    public boolean isCrawlAktiv() {
+        return crawlAktiv;
+    }
+
+    public void setCrawlAktiv(boolean crawlAktiv) {
+        this.crawlAktiv = crawlAktiv;
+    }
+
+    public boolean isRygCrawlAktiv() {
+        return rygCrawlAktiv;
+    }
+
+    public void setRygCrawlAktiv(boolean rygCrawlAktiv) {
+        this.rygCrawlAktiv = rygCrawlAktiv;
     }
 
     public int compareToBryst(MemberKonkurrence o) {

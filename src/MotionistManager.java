@@ -49,7 +49,7 @@ public class MotionistManager {
 
     void updateInfo(int x) throws FileNotFoundException {
 
-        PrintStream out = new PrintStream(("MembersInfo\\Motionistsvømmere.csv"));
+        PrintStream out = new PrintStream(("MembersInfo\\casualMembers.csv"));
         for (Member member : memberList) {
 
             updateInfoHjaelp(out, member);
@@ -63,7 +63,7 @@ public class MotionistManager {
     }
 
     public void loadMenu() throws FileNotFoundException, ParseException {
-        Scanner fileScanner = new Scanner(new File("MembersInfo\\Motionistsvømmere.csv"));
+        Scanner fileScanner = new Scanner(new File("MembersInfo\\casualMembers.csv"));
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
             Scanner input = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);

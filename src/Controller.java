@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Controller {
-    private static final String TEXT_RESET = "\u001b[0m";
-    private static final String TEXT_GREEN = "\u001b[32m";
-    private static final String TEXT_BLUE = "\u001b[34m";
+    //private static final String TEXT_RESET = "\u001B[0m";
+    //public static final String RESET = "\033[0m";
+   // private static final String TEXT_GREEN = "\u001b[32m";
+  //  private static final String TEXT_BLUE = "\u001b[34m";
     GUI gui = new GUI();
     Music music = new Music();
     MotionistManager motionistManager = new MotionistManager();
     KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
     Economy economy = new Economy();
     private boolean loop = true;
-
+    String menuString   =null;
+    int menuInt         =0;
     public Controller() {
     }
 
@@ -22,10 +24,14 @@ public class Controller {
 
         konkurrenceManager.loadMemberFile();
         motionistManager.loadMenu();
-        music.playMusic();
-        Thread.sleep(2000);
+        konkurrenceManager.loadTeamMembers(konkurrenceManager.memberList);
+        konkurrenceManager.loadTrainers();
+        konkurrenceManager.loadStaevner();
+        //music.playMusic();
+        //Thread.sleep(2000);
         while (loop) {
             mainMenu();
+
         }
 
     }
@@ -33,7 +39,7 @@ public class Controller {
     void printMembers() {
         ArrayList<Member> allMembers = new ArrayList<>();
         allMembers.addAll(motionistManager.memberList);
-        allMembers.addAll(konkurrenceManager.memberListKonkurrence);
+        allMembers.addAll(konkurrenceManager.memberList);
         allMembers.sort(Member::compareTo);
 
 
@@ -74,7 +80,8 @@ public class Controller {
 
             case 7 -> {economy.showActualIncome(konkurrenceManager, motionistManager);System.out.println("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
-            case 8 -> {printMembers();System.out.println("Tryk Enter for at gå tilbage til menuen.");
+            case 8 -> {
+                printMembers();System.out.println("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
             case 9 -> {
 
@@ -83,7 +90,45 @@ public class Controller {
                 konkurrenceManager.printBedsteRekord();
                 System.out.print("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
-            case 10 -> {
+             case 10 -> {
+                 System.out.println("Indtast et af de følgende tal for at ændre aktivitetsstatus på discipliner: \n1: Butterfly. 2: Rygcrawl. 3: Crawl. 4: Bryst.");
+                 int disciplin = gui.getInt();
+                 String disciplinString="";
+                 if (disciplin==1) disciplinString="butterFly";
+                 if (disciplin==2) disciplinString="rygCrawl";
+                 if (disciplin==3) disciplinString="crawl";
+                 if (disciplin==4) disciplinString="bryst";
+                 konkurrenceManager.setAktivForDiscplin(disciplinString);
+             }
+            case 11 -> {konkurrenceManager.visAktiveDiscipliner();}
+
+            case 12 -> konkurrenceManager.addTrainer();
+
+            case 13 -> {
+                System.out.println("Vis Junior hold eller Senior hold?(Skriv J eller S)");
+                String JS = gui.getString().toUpperCase();
+                boolean menu = true;
+                while (menu){
+                switch (JS) {
+                    case "J": konkurrenceManager.printJuniorHold();
+                    menu=false;
+                    break;
+                    case "S": konkurrenceManager.printSeniorHold();
+                    menu=false;
+                    break;
+                    default:
+                    {System.out.println("Skriv S eller J!");JS = gui.getString().toUpperCase();}
+                }
+                }
+            }
+
+            case 14 -> konkurrenceManager.addStaevne();
+
+            case 15 -> konkurrenceManager.printStaevner();
+
+            case 16 -> removeMember();
+
+            case 17 -> {
                 System.out.println("Er du sikker på at du vil lukke programmet?");
                 if ("ja".equals(gui.getString().toLowerCase(Locale.ROOT))) {
                     loop = false;
@@ -91,8 +136,32 @@ public class Controller {
             }
         }
     }
+public void menuText(){
+    System.out.println("""
+            Velkommen til svømmeklubben Delfinen!
+            Vælg venligst en funktion nedenfor:
+            
+            1)  Tilføj medlem.
+            2)  Betal regning
+            3)  Vis medlemmer i restance
+            4)  Opdater rekord-tider
+            5)  Vis rekord tider for specifikt medlem
+            6)  Vis forventet indtægt
+            7)  Vis faktisk indtægt
+            8)  Vis liste over alle medlemmer  
+            9)  Vis top-5 rekord-tider for hele klubben
+            10) Ændre aktivitetstatus for discipliner for medlem
+            11) Vis aktive disciplin for medlem
+            12) Tilføj træner
+            13) Vis Junior eller Senior Hold Lineup og træner
+            14) Tilføj stævne
+            15) Vis stævner
+            16) Fjern medlem
+            17) Exit
+            """);
 
-    public void menuText() {
+}
+    /*public void menuText() {
         String boldON = "\033[0;1m";
         System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
         System.out.println("|     " + TEXT_BLUE + "Velkommen til svømmeklubben Delfinen!" + TEXT_GREEN + "     " +
@@ -113,9 +182,10 @@ public class Controller {
         System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
         String boldOff = "\033[0;0m";
         System.out.print(boldOff);
-    }
+    }*/
 
     public void decideMemberType() throws FileNotFoundException, ParseException {
+
         System.out.println("""
                 Tast 1 for at tilføje i kategorien konkurrence
                 Tast 2 for at tilføje i kategorien motionist
@@ -143,5 +213,34 @@ public class Controller {
             case 4 -> konkurrenceManager.updateInfo(memberID, "rygCrawlRecord");
         }
     }
+    
+    void removeMember() throws FileNotFoundException {
+        System.out.println("Indtast medlems ID på det medlem der skal fjernes.");
+        int number=gui.getInt();
+        int arrayIntIndex=-1;
+        int mK=-1;
+        
+        for (int i = 0; i<konkurrenceManager.memberList.size(); i++){
+            {
+            if (konkurrenceManager.memberList.get(i).getNumber()==number){ arrayIntIndex=i;mK=0;}
+        }
+        }
+        for (int i = 0; i<motionistManager.memberList.size(); i++){
+            {
+                if (motionistManager.memberList.get(i).getNumber()==number){ arrayIntIndex=i;mK=1;}
+            }
+        }
+
+        if (mK==0){konkurrenceManager.memberList.remove(arrayIntIndex);}
+        if (mK==1){motionistManager.memberList.remove(arrayIntIndex);}
+
+        motionistManager.updateInfo(-1);
+        konkurrenceManager.updateInfo(-1,"nothing");
+
+
+    }
 
 }
+
+
+
