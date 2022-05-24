@@ -401,13 +401,13 @@ public class KonkurrenceManager {
         for (MemberKonkurrence memberKonkurrence : memberList) {
             if (memberKonkurrence.getNumber() == medlemID) {
 
-                System.out.println("Medlem " + medlemID + " har følgende rekorder:\n" + "ButterFlysvømning: Dato: " + memberKonkurrence.getButterFlyDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getButterFlyTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+                System.out.println("Medlem " + medlemID + " har følgende rekorder:\n" + "ButterFlysvømning: Dato: " + memberKonkurrence.getButterFlyDate() + " Rekordtid:" + memberKonkurrence.getButterFlyTime().format(DateTimeFormatter.ofPattern("mm:ss")));
 
-                System.out.println("RygCrawlsvømning: Dato: " + memberKonkurrence.getRygCrawlDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getRygCrawlTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+                System.out.println("RygCrawlsvømning: Dato: " + memberKonkurrence.getRygCrawlDate() + " Rekordtid:" + memberKonkurrence.getRygCrawlTime().format(DateTimeFormatter.ofPattern("mm:ss")));
 
-                System.out.println("Crawlsvømning: Dato: " + memberKonkurrence.getCrawlDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getCrawlTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+                System.out.println("Crawlsvømning: Dato: " + memberKonkurrence.getCrawlDate() + " Rekordtid:" + memberKonkurrence.getCrawlTime().format(DateTimeFormatter.ofPattern("mm:ss")));
 
-                System.out.println("Brystsvømning: Dato: " + memberKonkurrence.getBrystDate() + " Rekordtid: (h/m/s/ns)" + memberKonkurrence.getBrystTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+                System.out.println("Brystsvømning: Dato: " + memberKonkurrence.getBrystDate() + " Rekordtid:" + memberKonkurrence.getBrystTime().format(DateTimeFormatter.ofPattern("mm:ss")));
 
 
                 success = true;

@@ -81,10 +81,10 @@ public class MotionistManager {
 
     void visRestance() {
         Date currentDate = new Date();
-        System.out.println(memberList.get(0).getPaymentDueDate());
+
         for (Member member : memberList) {
             if (member.getBetalt().equals("ikkeBetalt") && currentDate.compareTo(member.getDueDate()) > 0) {
-                System.out.println(member.getName() + " er i restance. ID nr:" + member.getNumber());
+                System.out.println((member.getName() + " er i restance. ID nr:" + member.getNumber())+". Skulle have været betalt på dato: "+member.getPaymentDueDate());
             }
         }
     }

@@ -64,8 +64,11 @@ public class Controller {
                 konkurrenceManager.updateInfo(memberID, "betal");
             }
             case 3 -> {
+                System.out.println("Følgende medlemmer er i restance:\n");
                 motionistManager.visRestance();
                 konkurrenceManager.visRestance();
+                System.out.println("Tryk Enter for at fortsætte:");
+                gui.getString();
             }
             case 4 -> decideSwimUpdate();
             case 5 -> {konkurrenceManager.visRekorder();
@@ -100,7 +103,8 @@ public class Controller {
                  if (disciplin==4) disciplinString="bryst";
                  konkurrenceManager.setAktivForDiscplin(disciplinString);
              }
-            case 11 -> {konkurrenceManager.visAktiveDiscipliner();}
+            case 11 -> {konkurrenceManager.visAktiveDiscipliner();
+                System.out.println("Tryk enter for at fortsætte:"); gui.getString();}
 
             case 12 -> konkurrenceManager.addTrainer();
 
@@ -120,11 +124,13 @@ public class Controller {
                     {System.out.println("Skriv S eller J!");JS = gui.getString().toUpperCase();}
                 }
                 }
+                System.out.println("Tryk enter for at fortsætte:"); gui.getString();
             }
 
             case 14 -> konkurrenceManager.addStaevne();
 
-            case 15 -> konkurrenceManager.printStaevner();
+            case 15 -> {konkurrenceManager.printStaevner();
+                System.out.println("Tryk enter for at fortsætte:"); gui.getString();}
 
             case 16 -> removeMember();
 
