@@ -9,6 +9,7 @@ class EconomyTest {
 
     Economy economy = new Economy();
 
+
     KonkurrenceManager loadKonkurrenceManager() throws FileNotFoundException, ParseException {
         KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
         konkurrenceManager.loadMemberFile();
@@ -20,16 +21,41 @@ class EconomyTest {
         return motionistManager;
     }
 
+    // Not sure if done right, maybe too much logic code in the test-method?
     @Test
     void getExpectedIncomeTest() throws FileNotFoundException, ParseException {
         int expectedIncome = economy.getExpectedIncome(loadKonkurrenceManager(), loadMotionistManager());
-        assertEquals(expectedIncome,30600);
+        int expectedIncomeTestResult = 0;
+        for (Member member:loadMotionistManager().memberList
+             ) {
+            expectedIncomeTestResult += member.getKontingent();
+        }
+        for (MemberKonkurrence member: loadKonkurrenceManager().memberListKonkurrence
+             ) {
+            expectedIncomeTestResult += member.getKontingent();
+        }
+
+        assertEquals(expectedIncome,expectedIncomeTestResult);
     }
 
     @Test
     void getActualIncomeTest() throws FileNotFoundException, ParseException {
         int actualIncome = economy.getActualIncome(loadKonkurrenceManager(),loadMotionistManager());
-        assertEquals(actualIncome, 19800);
+        int actualIncomeTestResult = 0;
+        for (Member member:loadMotionistManager().memberList
+        ) {
+            if (member.getBetalt().equals("betalt")) {
+                actualIncomeTestResult += member.getKontingent();
+            }
+        }
+        for (MemberKonkurrence member: loadKonkurrenceManager().memberListKonkurrence
+        ) {
+            if (member.getBetalt().equals("betalt")) {
+                actualIncomeTestResult += member.getKontingent();
+            }
+        }
+
+        assertEquals(actualIncome, actualIncomeTestResult);
     }
 
 }
