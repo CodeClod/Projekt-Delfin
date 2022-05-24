@@ -17,12 +17,8 @@ public class KonkurrenceManager {
     ArrayList<MemberKonkurrence> memberList = new ArrayList<>();
     ArrayList<Trainer> trainers = new ArrayList<>();
     ArrayList<Staevne> staevner = new ArrayList<>();
-
     Hold juniorHold = new Hold();
     Hold seniorHold = new Hold();
-
-
-
     private final int hour = 0;
     private int min = 0;
     private int sec = 0;
@@ -279,7 +275,7 @@ public class KonkurrenceManager {
         }
     }
 
-    public void loadMemberFile() throws FileNotFoundException, ParseException {
+    public void loadMemberFileK() throws FileNotFoundException, ParseException {
         Scanner fileScanner = new Scanner(new File("MembersInfo\\competitiveMembers.csv"));
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();

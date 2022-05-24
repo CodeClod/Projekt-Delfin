@@ -4,39 +4,37 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Controller {
-    //private static final String TEXT_RESET = "\u001B[0m";
-    //public static final String RESET = "\033[0m";
-   // private static final String TEXT_GREEN = "\u001b[32m";
-  //  private static final String TEXT_BLUE = "\u001b[34m";
-    GUI gui = new GUI();
-    Music music = new Music();
-    MotionistManager motionistManager = new MotionistManager();
+//  private static final String TEXT_RESET = "\u001B[0m";
+//  public static final String RESET = "\033[0m";
+//  private static final String TEXT_GREEN = "\u001b[32m";
+//  private static final String TEXT_BLUE = "\u001b[34m";
+    GUI gui                               = new GUI();
+
+    Music music                           = new Music();
+    MotionistManager motionistManager     = new MotionistManager();
     KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
-    Economy economy = new Economy();
-    private boolean loop = true;
-    String menuString   =null;
-    int menuInt         =0;
-    public Controller() {
+    Economy economy                       = new Economy();
+    private boolean loop                  =  true;
+
+    String menuString                     =  null;
+
+    int menuInt                           =  0;
+    public      Controller() {
     }
-
-
-    public void run() throws InterruptedException, FileNotFoundException, ParseException {
-
-        konkurrenceManager.loadMemberFile();
-        motionistManager.loadMenu();
+    void        loadFiles() throws FileNotFoundException, ParseException {
+        konkurrenceManager.loadMemberFileK();
+        motionistManager.loadMemberFileM();
         konkurrenceManager.loadTeamMembers(konkurrenceManager.memberList);
         konkurrenceManager.loadTrainers();
-        konkurrenceManager.loadStaevner();
-        //music.playMusic();
-        //Thread.sleep(2000);
-        while (loop) {
+        konkurrenceManager.loadStaevner();}
+    public void run() throws InterruptedException, FileNotFoundException, ParseException {
+        loadFiles();
+        while (loop)
+        {
             mainMenu();
-
         }
-
     }
-
-    void printMembers() {
+    void        printMembers() {
         ArrayList<Member> allMembers = new ArrayList<>();
         allMembers.addAll(motionistManager.memberList);
         allMembers.addAll(konkurrenceManager.memberList);
@@ -48,14 +46,13 @@ public class Controller {
         boolean loop = true;
         while (loop) {
             for (Member member : allMembers) {
-                System.out.printf("%-3d | %-10s | %-3d | %-1s | %8.2f", member.getNumber(), member.getName(), member.getAge(), member.getJuniorSenior(), member.getKontingent());
+                System.out.printf("%-3d | %-19s | %-3d | %-1s | %8.2f", member.getNumber(), member.getName(), member.getAge(), member.getJuniorSenior(), member.getKontingent());
                 System.out.println();
             }
             loop = false;
         }
     }
-
-    public void mainMenu() throws FileNotFoundException, ParseException {
+    public void mainMenu()         throws FileNotFoundException, ParseException {
 
         menuText();
         switch (gui.getInt()) {
@@ -139,7 +136,7 @@ public class Controller {
             }
         }
     }
-public void menuText(){
+    public void menuText(){
     System.out.println("""
             Velkommen til svømmeklubben Delfinen!
             Vælg venligst en funktion nedenfor:
@@ -186,7 +183,6 @@ public void menuText(){
         String boldOff = "\033[0;0m";
         System.out.print(boldOff);
     }*/
-
     public void decideMemberType() throws FileNotFoundException, ParseException {
 
         System.out.println("""
@@ -198,7 +194,6 @@ public void menuText(){
             case 2 -> motionistManager.addMember();
         }
     }
-
     public void decideSwimUpdate() throws FileNotFoundException {
         System.out.println("Indtast medlems ID:");
         int memberID = gui.getInt();
@@ -216,8 +211,7 @@ public void menuText(){
             case 4 -> konkurrenceManager.updateInfo(memberID, "rygCrawlRecord");
         }
     }
-    
-    void removeMember() throws FileNotFoundException {
+    void        removeMember()     throws FileNotFoundException {
         System.out.println("Indtast medlems ID på det medlem der skal fjernes.");
         int number=gui.getInt();
         int arrayIntIndex=-1;
@@ -240,9 +234,7 @@ public void menuText(){
         motionistManager.updateInfo(-1);
         konkurrenceManager.updateInfo(-1,"nothing");
 
-
     }
-
 }
 
 

@@ -62,7 +62,7 @@ public class MotionistManager {
         }
     }
 
-    public void loadMenu() throws FileNotFoundException, ParseException {
+    public void loadMemberFileM() throws FileNotFoundException, ParseException {
         Scanner fileScanner = new Scanner(new File("MembersInfo\\casualMembers.csv"));
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();

@@ -12,12 +12,12 @@ class EconomyTest {
 
     KonkurrenceManager loadKonkurrenceManager() throws FileNotFoundException, ParseException {
         KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
-        konkurrenceManager.loadMemberFile();
+        konkurrenceManager.loadMemberFileK();
         return konkurrenceManager;
     }
     MotionistManager loadMotionistManager() throws FileNotFoundException, ParseException {
         MotionistManager motionistManager = new MotionistManager();
-        motionistManager.loadMenu();
+        motionistManager.loadMemberFileM();
         return motionistManager;
     }
 
