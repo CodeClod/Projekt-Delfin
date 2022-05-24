@@ -427,9 +427,16 @@ public class KonkurrenceManager {
         System.out.println("Indtast medlems ID:");
         int number = gui.getInt();
         int arrayListIndex = 0;
-        for (int i = 0; i < memberList.size(); i++) {
-            if (memberList.get(i).getNumber() == number) arrayListIndex = i;
+        boolean memberFound=false;
+
+        while(memberFound==false) {
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getNumber() == number){ arrayListIndex = i; memberFound=true;}
+            }
+            if (memberFound==false) {System.out.println("ID not found. Try again"); number=gui.getInt();}
         }
+
+
         System.out.println("Skal discplin sættes til aktiv eller passiv?(skriv 'A' eller 'P'");
         String aktivEllerpassiv = gui.getString().toUpperCase();
         boolean aktivPassiv = aktivEllerpassiv.equals("A");

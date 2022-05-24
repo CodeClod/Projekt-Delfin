@@ -97,6 +97,12 @@ public class Controller {
              case 10 -> {
                  System.out.println("Indtast et af de følgende tal for at ændre aktivitetsstatus på discipliner: \n1: Butterfly. 2: Rygcrawl. 3: Crawl. 4: Bryst.");
                  int disciplin = gui.getInt();
+
+                 while (disciplin!=1&&disciplin!=2&&disciplin!=3&&disciplin!=4){
+                     System.out.println("Fokert input. Indtast et af de følgende tal for at ændre aktivitetsstatus på discipliner: \n1: Butterfly. 2: Rygcrawl. 3: Crawl. 4: Bryst.");
+                     disciplin=gui.getInt();
+                 }
+
                  String disciplinString="";
                  if (disciplin==1) disciplinString="butterFly";
                  if (disciplin==2) disciplinString="rygCrawl";
