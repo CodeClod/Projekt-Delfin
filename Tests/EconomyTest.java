@@ -30,7 +30,7 @@ class EconomyTest {
              ) {
             expectedIncomeTestResult += member.getKontingent();
         }
-        for (MemberKonkurrence member: loadKonkurrenceManager().memberListKonkurrence
+        for (MemberKonkurrence member: loadKonkurrenceManager().memberList
              ) {
             expectedIncomeTestResult += member.getKontingent();
         }
@@ -48,7 +48,7 @@ class EconomyTest {
                 actualIncomeTestResult += member.getKontingent();
             }
         }
-        for (MemberKonkurrence member: loadKonkurrenceManager().memberListKonkurrence
+        for (MemberKonkurrence member: loadKonkurrenceManager().memberList
         ) {
             if (member.getBetalt().equals("betalt")) {
                 actualIncomeTestResult += member.getKontingent();
