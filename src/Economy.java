@@ -2,7 +2,7 @@ public class Economy {
 
   private int income;
 
-  public void showExpectedIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
+  public int getExpectedIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
     //iterer gennem alle medlemmers balance og sout sum
     income = 0;
     for (int i = 0; i < konkurrenceManager.memberListKonkurrence.size(); i++) {
@@ -11,10 +11,10 @@ public class Economy {
     for (int i = 0; i < motionistManager.memberList.size(); i++) {
       income += motionistManager.memberList.get(i).getKontingent();
     }
-    System.out.println(income + " Kr.");
+    return income;
   }
 
-  public void showActualIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
+  public int getActualIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
     income = 0;
     for (int i = 0; i < konkurrenceManager.memberListKonkurrence.size(); i++) {
       if (konkurrenceManager.memberListKonkurrence.get(i).getBetalt().equals("betalt")) {
@@ -26,6 +26,6 @@ public class Economy {
         income += motionistManager.memberList.get(i).getKontingent();
       }
     }
-    System.out.println(income + " Kr.");
+    return income;
   }
 }

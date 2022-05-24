@@ -68,11 +68,14 @@ public class Controller {
             case 5 -> {konkurrenceManager.visRekorder();
                 System.out.println("Tryk Enter for at gå tilbage til menuen.");
             gui.getString();}
-            case 6 -> {economy.showExpectedIncome(konkurrenceManager, motionistManager);
+            case 6 -> {
+                System.out.println(economy.getExpectedIncome(konkurrenceManager, motionistManager) + " kr.");
                 System.out.println("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
 
-            case 7 -> {economy.showActualIncome(konkurrenceManager, motionistManager);System.out.println("Tryk Enter for at gå tilbage til menuen.");
+            case 7 -> {
+                System.out.println(economy.getActualIncome(konkurrenceManager, motionistManager) + " kr. ");
+                System.out.println("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
             case 8 -> {printMembers();System.out.println("Tryk Enter for at gå tilbage til menuen.");
                 gui.getString();}
