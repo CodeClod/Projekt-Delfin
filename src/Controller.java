@@ -26,7 +26,8 @@ public class Controller {
         motionistManager.loadMemberFileM();
         konkurrenceManager.loadTeamMembers(konkurrenceManager.memberList);
         konkurrenceManager.loadTrainers();
-        konkurrenceManager.loadStaevner();}
+        konkurrenceManager.loadStaevner();
+        }
     public void run() throws InterruptedException, FileNotFoundException, ParseException {
         loadFiles();
         while (loop)

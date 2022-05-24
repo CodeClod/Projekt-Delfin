@@ -2,18 +2,24 @@ import java.time.LocalTime;
 
 public class Staevne {
    private String staevneNavn;
-   private MemberKonkurrence memberKonkurrence;
    private String placering;
    private LocalTime tid;
-
    private String disciplin;
+   private int id;
+   private String navn;
 
-    Staevne(String staevneNavn, MemberKonkurrence memberKonkurrence, String placering, LocalTime tid,String disciplin){
+   private int alder;
+
+
+    Staevne(String staevneNavn, String placering, LocalTime tid,String disciplin, int id, String navn, int alder){
         this.staevneNavn = staevneNavn;
         this.placering=placering;
-        this.memberKonkurrence=memberKonkurrence;
+
         this.tid=tid;
         this.disciplin=disciplin;
+        this.id=id;
+        this.navn=navn;
+        this.alder=alder;
     }
 
     public String getDisciplin() {
@@ -24,10 +30,6 @@ public class Staevne {
         return tid;
     }
 
-    public MemberKonkurrence getMemberKonkurrence() {
-        return memberKonkurrence;
-    }
-
     public String getPlacering() {
         return placering;
     }
@@ -36,4 +38,15 @@ public class Staevne {
         return staevneNavn;
     }
 
+    public String getNavn() {
+        return navn;
+    }
+
+    public int getAlder() {
+        return alder;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

@@ -555,19 +555,23 @@ public class KonkurrenceManager {
         }
         System.out.println("Indtast disciplin:");
         String disciplin = gui.getString();
-        staevner.add(new Staevne(staevnenavn,swimmer,placering,tid,disciplin));
+        staevner.add(new Staevne(staevnenavn,placering,tid,disciplin,swimmer.getNumber(),swimmer.getName(),swimmer.getAge()));
 
         PrintStream out = new PrintStream(("MembersInfo\\competitions.csv"));
         for (int i = 0; i < staevner.size(); i++) {
             out.print(staevner.get(i).getStaevneNavn());
-            out.print(";");
-            out.print(staevner.get(i).getMemberKonkurrence().getNumber());
             out.print(";");
             out.print(staevner.get(i).getPlacering());
             out.print(";");
             out.print(staevner.get(i).getTid());
             out.print(";");
             out.print(staevner.get(i).getDisciplin());
+            out.print(";");
+            out.print(staevner.get(i).getId());
+            out.print(";");
+            out.print(staevner.get(i).getNavn());
+            out.print(";");
+            out.print(staevner.get(i).getAlder());
             out.print("\n");
         }
     }
@@ -578,14 +582,6 @@ public class KonkurrenceManager {
             String line = fileScanner.nextLine();
             Scanner input = new Scanner(line).useDelimiter(";");
             String staevneNavn = input.next();
-
-            int number = input.nextInt();
-
-
-            MemberKonkurrence swimmer = null;
-            for (int i = 0; i< memberList.size(); i++){
-                if (number== memberList.get(i).getNumber()) swimmer= memberList.get(i);
-            }
 
             String placering = input.next();
 
@@ -600,14 +596,20 @@ public class KonkurrenceManager {
 
             String disciplin = input.next();
 
-            staevner.add(new Staevne(staevneNavn,swimmer,placering,tid,disciplin));
+            int number = input.nextInt();
+
+            String navn = input.next();
+
+            int alder = input.nextInt();
+
+            staevner.add(new Staevne(staevneNavn,placering,tid,disciplin,number,navn,alder));
         }
     }
 
     void printStaevner(){
         System.out.println("Liste over alle stævner:\n\n");
         for (int i = 0; i< staevner.size(); i++){
-            System.out.println(staevner.get(i).getStaevneNavn().toUpperCase()+"\nSvømmer: "+ staevner.get(i).getMemberKonkurrence().getName()+", ID:"+ staevner.get(i).getMemberKonkurrence().getNumber()+" "+"Tid:"+ staevner.get(i).getTid().format(DateTimeFormatter.ofPattern("mm:ss"))+" "+staevner.get(i).getDisciplin()+staevner.get(i).getPlacering()+"\n");
+            System.out.println(staevner.get(i).getStaevneNavn().toUpperCase()+" "+"\nSvømmer: "+staevner.get(i).getNavn()+".  "+"Tid:"+ staevner.get(i).getTid().format(DateTimeFormatter.ofPattern("mm:ss"))+" "+staevner.get(i).getDisciplin()+staevner.get(i).getPlacering()+"\n");
 
         }
     }
