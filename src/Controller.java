@@ -59,30 +59,11 @@ public class Controller {
         switch (gui.getInt()) {
             case 1 -> decideMemberType();
             case 2 -> {
-                System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
-
-                int memberID = gui.getInt();
-                for (boolean memberFound=false; !memberFound;) {
-                    for (int i = 0; i < konkurrenceManager.memberList.size(); i++) {
-                        if (konkurrenceManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
-                    }
-                    for (int i = 0; i < motionistManager.memberList.size(); i++) {
-                        if (motionistManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
-                    }
-                    if (memberFound==false) {System.out.println("ID not found. Try again"); memberID=gui.getInt();}
-                }
-
-
-
-
-                motionistManager.updateInfo(memberID);
-                konkurrenceManager.updateInfo(memberID, "betal");
+                economy.betalRegning(konkurrenceManager,motionistManager,gui);
             }
             case 3 -> {
-                System.out.println("Følgende medlemmer er i restance:\n");
-                motionistManager.visRestance();
-                konkurrenceManager.visRestance();
-                System.out.println("Tryk Enter for at fortsætte:");
+                economy.visRestance(konkurrenceManager, motionistManager);
+                System.out.println("Tryk enter for at fortsætte:");
                 gui.getString();
             }
             case 4 -> decideSwimUpdate();
