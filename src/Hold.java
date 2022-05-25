@@ -5,10 +5,6 @@ public class Hold {
     ArrayList<Trainer> trainers = new ArrayList<>();
 
 
-
-
-
-
     public ArrayList<MemberKonkurrence> getHoldMedlemmer() {
         return holdMedlemmer;
     }
@@ -16,10 +12,8 @@ public class Hold {
     public ArrayList<Trainer> getTrainers() {
         return trainers;
     }
-    void addMedlem (MemberKonkurrence memberKonkurrence){
-        holdMedlemmer.add(memberKonkurrence);
-    }
-    void addTrainer (Trainer trainer){
+
+    public void addTrainer(Trainer trainer) {
         trainers.add(trainer);
     }
 

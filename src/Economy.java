@@ -3,8 +3,6 @@ import java.io.FileNotFoundException;
 public class Economy {
 
   private int income;
-KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
-MotionistManager   motionistManager   = new MotionistManager();
 
   public int getExpectedIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
     //iterer gennem alle medlemmers balance og sout sum
@@ -41,8 +39,9 @@ MotionistManager   motionistManager   = new MotionistManager();
     gui.getString();
   }
 
-  void betalRegning(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager,GUI gui) throws FileNotFoundException {
-    System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
+  void betalRegning(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager,
+                    GUI gui) throws FileNotFoundException {
+    System.out.println("Skriv ID på det medlem, som skal betale sin regning: ");
     int memberID = gui.getInt();
 
     for (boolean memberFound=false; !memberFound;) {
@@ -52,7 +51,7 @@ MotionistManager   motionistManager   = new MotionistManager();
       for (int i = 0; i < motionistManager.memberList.size(); i++) {
         if (motionistManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
       }
-      if (!memberFound) {System.out.println("ID not found. Try again"); memberID=gui.getInt();}
+      if (!memberFound) {System.out.println("ID ikke fundet, proev igen!"); memberID=gui.getInt();}
     }
 
 
