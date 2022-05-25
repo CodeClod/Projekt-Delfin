@@ -34,8 +34,7 @@ class EconomyTest {
              ) {
             expectedIncomeTestResult += member.getKontingent();
         }
-
-        assertEquals(expectedIncome,expectedIncomeTestResult);
+        assertEquals(expectedIncome,expectedIncomeTestResult, "Failed to calculate correct [EXPECTED-INCOME] ...");
     }
 
     @Test
@@ -55,7 +54,7 @@ class EconomyTest {
             }
         }
 
-        assertEquals(actualIncome, actualIncomeTestResult);
+        assertEquals(actualIncome, actualIncomeTestResult , "Failed to calculate correct [ACTUAL-INCOME] ...");
     }
 
 }

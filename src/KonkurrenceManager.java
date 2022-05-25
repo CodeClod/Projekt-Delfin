@@ -638,9 +638,11 @@ public class KonkurrenceManager {
 
     void printStaevner(){
         System.out.println("Liste over alle stævner:\n\n");
+        System.out.println("Stævne:                       Navn:                 Tid:(m:s:ms) Disciplin:   Placering:      ");
         for (int i = 0; i< staevner.size(); i++){
-            System.out.println(staevner.get(i).getStaevneNavn().toUpperCase()+" "+"\nSvømmer: "+staevner.get(i).getNavn()+".  "+"Tid:"+ staevner.get(i).getTid()[0]+":"+staevner.get(i).getTid()[1]+":"+staevner.get(i).getTid()[2]+" "+staevner.get(i).getDisciplin()+" "+staevner.get(i).getPlacering()+"\n");
-
+            // System.out.println(staevner.get(i).getStaevneNavn().toUpperCase()+" "+"\nSvømmer: "+staevner.get(i).getNavn()+".  "+"Tid:"+ staevner.get(i).getTid()[0]+":"+staevner.get(i).getTid()[1]+":"+staevner.get(i).getTid()[2]+" "+staevner.get(i).getDisciplin()+" "+staevner.get(i).getPlacering()+"\n");
+            System.out.printf("%-30S | %-20s | %02d:%02d:%-2d | %-10s | %s", staevner.get(i).getStaevneNavn(), staevner.get(i).getNavn(), staevner.get(i).getTid()[0], staevner.get(i).getTid()[1], staevner.get(i).getTid()[2], staevner.get(i).getDisciplin(), staevner.get(i).getPlacering());
+            System.out.println();
         }
     }
 
