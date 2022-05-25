@@ -1,19 +1,19 @@
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Controller {
     private static final String TEXT_RESET = "\u001B[0m";
     private static final String RESET = "\033[0m";
     private static final String TEXT_GREEN = "\u001b[32m";
     private static final String TEXT_BLUE = "\u001b[34m";
+    private boolean loop = true;
     GUI gui = new GUI();
     Music music = new Music();
     MotionistManager motionistManager = new MotionistManager();
     KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
     Economy economy = new Economy();
-    private boolean loop = true;
+
     public Controller() throws FileNotFoundException {
     }
 
@@ -73,14 +73,14 @@ public class Controller {
             switch (gui.getInt()) {
                 case 1 -> {
                     System.out.println("Forventet indtaegt: " +
-                            economy.getExpectedIncome(konkurrenceManager, motionistManager));
+                            economy.getExpectedClubIncome(konkurrenceManager, motionistManager));
                     System.out.println("Tryk enter for at fortsaette: ");
                     gui.getString();
                     isSuccess = true;
                 }
                 case 2 -> {
                     System.out.println("Faktisk indtaegt: " +
-                            economy.getActualIncome(konkurrenceManager, motionistManager));
+                            economy.getActualClubIncome(konkurrenceManager, motionistManager));
                     System.out.println("Tryk enter for at fortsaette: ");
                     gui.getString();
                     isSuccess = true;

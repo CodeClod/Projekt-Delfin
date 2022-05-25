@@ -24,7 +24,7 @@ class EconomyTest {
     // Not sure if done right, maybe too much logic code in the test-method?
     @Test
     void getExpectedIncomeTest() throws FileNotFoundException, ParseException {
-        int expectedIncome = economy.getExpectedIncome(loadKonkurrenceManager(), loadMotionistManager());
+        int expectedIncome = economy.getExpectedClubIncome(loadKonkurrenceManager(), loadMotionistManager());
         int expectedIncomeTestResult = 0;
         for (Member member:loadMotionistManager().memberList
              ) {
@@ -39,7 +39,7 @@ class EconomyTest {
 
     @Test
     void getActualIncomeTest() throws FileNotFoundException, ParseException {
-        int actualIncome = economy.getActualIncome(loadKonkurrenceManager(),loadMotionistManager());
+        int actualIncome = economy.getActualClubIncome(loadKonkurrenceManager(),loadMotionistManager());
         int actualIncomeTestResult = 0;
         for (Member member:loadMotionistManager().memberList
         ) {

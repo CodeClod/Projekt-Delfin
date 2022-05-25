@@ -15,20 +15,19 @@ public class KonkurrenceManager {
     ArrayList<MemberKonkurrence> memberList = new ArrayList<>();
     ArrayList<Trainer> trainers = new ArrayList<>();
     ArrayList<Staevne> staevner = new ArrayList<>();
-
+    private Hold juniorHold = new Hold();
+    private Hold seniorHold = new Hold();
     private boolean success;
     private boolean junior;
     private boolean senior;
-    private Hold juniorHold = new Hold();
-    private Hold seniorHold = new Hold();
     private int age;
     private int arrayListIndex;
-    private int min = 0;
-    private int sec = 0;
-    private int ms = 0;
+    private int min =   0;
+    private int sec =   0;
+    private int ms =    0;
     private int month = 0;
-    private int day = 0;
-    private int year = 0;
+    private int day =   0;
+    private int year =  0;
     private int x;
     private int i;
     private int medlemID;
