@@ -3,13 +3,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MemberKonkurrence extends Member {
-    private LocalTime butterFlyTime;
+    
+    private int[] butterFlyTime;
     private LocalDate butterFlyDate;
-    private LocalTime rygCrawlTime;
+    private int[] rygCrawlTime;
     private LocalDate rygCrawlDate;
-    private LocalTime crawlTime;
+    private int[] crawlTime;
     private LocalDate crawlDate;
-    private LocalTime brystTime;
+    private int[] brystTime;
     private LocalDate brystDate;
 
     private boolean butterFlyAktiv=false;
@@ -18,7 +19,7 @@ public class MemberKonkurrence extends Member {
     private boolean brystAktiv=false;
 
 
-    public MemberKonkurrence(int number, String name, int age, String passivAktiv, String paymentDueDate, String betalt, LocalTime butterFlyTime, LocalDate butterFlyDate, LocalTime rygCrawlTime, LocalDate rygCrawlDate, LocalTime crawlTime, LocalDate crawlDate, LocalTime brystTime, LocalDate brystDate,boolean butterFlyAktiv, boolean rygCrawlAktiv, boolean crawlAktiv, boolean brystAktiv) throws ParseException {
+    public MemberKonkurrence(int number, String name, int age, String passivAktiv, String paymentDueDate, String betalt, int[] butterFlyTime, LocalDate butterFlyDate, int[] rygCrawlTime, LocalDate rygCrawlDate, int[] crawlTime, LocalDate crawlDate, int[] brystTime, LocalDate brystDate,boolean butterFlyAktiv, boolean rygCrawlAktiv, boolean crawlAktiv, boolean brystAktiv) throws ParseException {
 
         super(number, name, age, passivAktiv, paymentDueDate, betalt);
         this.butterFlyTime = butterFlyTime;
@@ -69,34 +70,25 @@ public class MemberKonkurrence extends Member {
 
     public int compareToBryst(MemberKonkurrence o) {
 
-        return this.getBrystTime().toSecondOfDay() - o.getBrystTime().toSecondOfDay();
+        return (this.getBrystTime()[0]*60000+this.getBrystTime()[1]*1000+this.getBrystTime()[2]) - (o.getBrystTime()[0]*60000+o.getBrystTime()[1]*1000+o.getBrystTime()[2]);
     }
 
     public int compareToCrawl(MemberKonkurrence o) {
 
-        return this.getCrawlTime().toSecondOfDay() - o.getCrawlTime().toSecondOfDay();
-
+        return (this.getCrawlTime()[0]*60000+this.getCrawlTime()[1]*1000+this.getCrawlTime()[2]) - (o.getCrawlTime()[0]*60000+o.getCrawlTime()[1]*1000+o.getCrawlTime()[2]);
     }
 
     public int compareToRygCrawl(MemberKonkurrence o) {
 
-        return this.getRygCrawlTime().toSecondOfDay() - o.getRygCrawlTime().toSecondOfDay();
-
+        return (this.getRygCrawlTime()[0]*60000+this.getRygCrawlTime()[1]*1000+this.getRygCrawlTime()[2]) - (o.getRygCrawlTime()[0]*60000+o.getRygCrawlTime()[1]*1000+o.getRygCrawlTime()[2]);
     }
 
     public int compareToButterFly(MemberKonkurrence o) {
 
-        return this.getButterFlyTime().toSecondOfDay() - o.getButterFlyTime().toSecondOfDay();
-
+        return (this.getButterFlyTime()[0]*60000+this.getButterFlyTime()[1]*1000+this.getButterFlyTime()[2]) - (o.getButterFlyTime()[0]*60000+o.getButterFlyTime()[1]*1000+o.getButterFlyTime()[2]);
     }
 
-    public LocalTime getButterFlyTime() {
-        return butterFlyTime;
-    }
-
-    public void setButterFlyTime(LocalTime butterFlyTime) {
-        this.butterFlyTime = butterFlyTime;
-    }
+    
 
     public LocalDate getButterFlyDate() {
         return butterFlyDate;
@@ -105,15 +97,7 @@ public class MemberKonkurrence extends Member {
     public void setButterFlyDate(LocalDate butterFlyDate) {
         this.butterFlyDate = butterFlyDate;
     }
-
-    public LocalTime getRygCrawlTime() {
-        return rygCrawlTime;
-    }
-
-    public void setRygCrawlTime(LocalTime rygCrawlTime) {
-        this.rygCrawlTime = rygCrawlTime;
-    }
-
+    
     public LocalDate getRygCrawlDate() {
         return rygCrawlDate;
     }
@@ -122,14 +106,7 @@ public class MemberKonkurrence extends Member {
         this.rygCrawlDate = rygCrawlDate;
     }
 
-    public LocalTime getCrawlTime() {
-        return crawlTime;
-    }
-
-    public void setCrawlTime(LocalTime crawlTime) {
-        this.crawlTime = crawlTime;
-    }
-
+    
     public LocalDate getCrawlDate() {
         return crawlDate;
     }
@@ -138,19 +115,43 @@ public class MemberKonkurrence extends Member {
         this.crawlDate = crawlDate;
     }
 
-    public LocalTime getBrystTime() {
-        return brystTime;
-    }
-
-    public void setBrystTime(LocalTime brystTime) {
-        this.brystTime = brystTime;
-    }
-
     public LocalDate getBrystDate() {
         return brystDate;
     }
 
     public void setBrystDate(LocalDate brystDate) {
         this.brystDate = brystDate;
+    }
+
+    public int[] getButterFlyTime() {
+        return butterFlyTime;
+    }
+
+    public int[] getBrystTime() {
+        return brystTime;
+    }
+
+    public int[] getCrawlTime() {
+        return crawlTime;
+    }
+
+    public int[] getRygCrawlTime() {
+        return rygCrawlTime;
+    }
+
+    public void setCrawlTime(int[] crawlTime) {
+        this.crawlTime = crawlTime;
+    }
+
+    public void setRygCrawlTime(int[] rygCrawlTime) {
+        this.rygCrawlTime = rygCrawlTime;
+    }
+
+    public void setBrystTime(int[] brystTime) {
+        this.brystTime = brystTime;
+    }
+
+    public void setButterFlyTime(int[] butterFlyTime) {
+        this.butterFlyTime = butterFlyTime;
     }
 }

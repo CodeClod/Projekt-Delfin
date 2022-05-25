@@ -19,7 +19,6 @@ public class GUI {
     }
 
   }
-
   public int getInt() {
     try {
       return inputNumber.nextInt();

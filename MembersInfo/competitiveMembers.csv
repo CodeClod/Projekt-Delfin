@@ -1,5 +1,5 @@
 13;Bertil;16;A;J;1000.0;2022/06/01;ikkeBetalt;0:1:5;5/7/2020;23:0:0;1/1/1;23:0:0;1/1/1;0:1:5;27/7/2020;true;false;true;true
-17;Konrad;12;A;J;1000.0;2022/06/01;ikkeBetalt;0:0:58;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
+17;Konrad;12;A;J;1000.0;2022/06/01;ikkeBetalt;0:0:58;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;1:10:0;24/2/2020;true;false;false;false
 18;Ole;16;A;J;1000.0;2022/06/01;ikkeBetalt;0:6:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
 19;Johson Johnson;16;A;J;1000.0;2022/06/01;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
 20;Birgitte;28;A;S;1600.0;2022/06/01;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
@@ -7,3 +7,4 @@
 24;Britta;17;A;J;1000.0;2022/06/01;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;true;false
 25;Ursula;19;A;S;1600.0;2022/06/02;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
 26;Johanna;9;A;J;1000.0;2022/06/02;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
+40;Hamstal;16;A;J;1000.0;2022/06/03;betalt;10:39:1;28/2/2022;99:0:0;1/1/1;99:0:0;1/1/1;99:0:0;1/1/1;true;false;false;false

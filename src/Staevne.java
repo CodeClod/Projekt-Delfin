@@ -3,7 +3,7 @@ import java.time.LocalTime;
 public class Staevne {
    private String staevneNavn;
    private String placering;
-   private LocalTime tid;
+   private int[] tid;
    private String disciplin;
    private int id;
    private String navn;
@@ -11,7 +11,7 @@ public class Staevne {
    private int alder;
 
 
-    Staevne(String staevneNavn, String placering, LocalTime tid,String disciplin, int id, String navn, int alder){
+    Staevne(String staevneNavn, String placering, int[] tid,String disciplin, int id, String navn, int alder){
         this.staevneNavn = staevneNavn;
         this.placering=placering;
 
@@ -26,9 +26,6 @@ public class Staevne {
         return disciplin;
     }
 
-    public LocalTime getTid() {
-        return tid;
-    }
 
     public String getPlacering() {
         return placering;
@@ -40,6 +37,10 @@ public class Staevne {
 
     public String getNavn() {
         return navn;
+    }
+
+    public int[] getTid() {
+        return tid;
     }
 
     public int getAlder() {
