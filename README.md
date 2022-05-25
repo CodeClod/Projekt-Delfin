@@ -4,7 +4,6 @@ Sidste projekt, første semester
 ## Interessent-Analyse
 
 ( WIP )
-- Generelt check på mandag 16/05/2022
 
 1. Interessenter
     - Klubbens Formand
