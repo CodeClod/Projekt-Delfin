@@ -33,10 +33,12 @@ MotionistManager   motionistManager   = new MotionistManager();
     return income;
   }
 
-  void visRestance(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager){
+  void visRestance(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager, GUI gui){
     System.out.println("Følgende medlemmer er i restance:\n");
     motionistManager.visRestance();
     konkurrenceManager.visRestance();
+    System.out.println("Tryk enter for at fortsætte.");
+    gui.getString();
   }
 
   void betalRegning(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager,GUI gui) throws FileNotFoundException {

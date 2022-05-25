@@ -411,7 +411,7 @@ public class KonkurrenceManager {
         for (MemberKonkurrence memberKonkurrence : memberList) {
             if (memberKonkurrence.getNumber() == medlemID) {
 
-                System.out.println("Medlem " + medlemID + " har følgende rekorder:\n");
+                System.out.println("Medlem " + memberKonkurrence.getName() + " har følgende rekorder:\n");
                 
                 System.out.println("ButterFlysvømning: Dato: " + memberKonkurrence.getButterFlyDate() + " Rekordtid:" + memberKonkurrence.getButterFlyTime()[0]+":"+memberKonkurrence.getButterFlyTime()[1]+":"+memberKonkurrence.getButterFlyTime()[2]);
 
@@ -426,11 +426,11 @@ public class KonkurrenceManager {
             }
 
         }
-        if (!success) System.out.println("""
+        if (!success) {System.out.println("""
                 Medlems ID kan ikke findes
                 ID er enten ikke gyldigt eller medlem er motionist
                 Prøv venligst igen
-                """);
+                """);visRekorder();}
 
 
     }
@@ -475,12 +475,19 @@ public class KonkurrenceManager {
         System.out.println("Indtast medlems ID:");
         int number = gui.getInt();
         int arrayListIndex = 0;
-        for (int i = 0; i < memberList.size(); i++) {
-            if (memberList.get(i).getNumber() == number) arrayListIndex = i;
+
+
+        for (boolean memberFound=false; !memberFound;) {
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getNumber() == number){memberFound=true; arrayListIndex = i;}
+            }
+            if (memberFound==false) {System.out.println("ID not found. Try again"); number=gui.getInt();}
         }
 
         System.out.println(memberList.get(arrayListIndex).getName() + " aktivitetsstatuser på følgende discipliner er(true=aktiv):\nButterfly: " + memberList.get(arrayListIndex).isButterFlyAktiv() + "\nRygcrawl:" + memberList.get(arrayListIndex).isRygCrawlAktiv() + "\nCrawl:" + memberList.get(arrayListIndex).isCrawlAktiv() + "\nBryst:" + memberList.get(arrayListIndex).isBrystAktiv());
 
+        System.out.println("Tryk enter for at fortsætte.");
+        gui.getString();
 
     }
 

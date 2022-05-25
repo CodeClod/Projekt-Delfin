@@ -5,6 +5,7 @@
 20;Birgitte;28;A;S;1600.0;2022/06/01;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
 21;Britta;28;A;S;1600.0;2022/06/01;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
 24;Britta;17;A;J;1000.0;2022/06/01;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;true;false
-25;Ursula;19;A;S;1600.0;2022/06/02;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
-26;Johanna;9;A;J;1000.0;2022/06/02;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
+25;Ursula;19;A;S;1600.0;2022/06/02;betalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
+26;Johanna;9;A;J;1000.0;2020/06/02;ikkeBetalt;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;23:0:0;1/1/1;false;false;false;false
 40;Hamstal;16;A;J;1000.0;2022/06/03;betalt;10:39:1;28/2/2022;99:0:0;1/1/1;1:5:10;3/7/2022;99:0:0;1/1/1;true;false;true;false
+47;Yaaqub;21;P;S;500.0;2022/06/04;ikkeBetalt;99:0:0;1/1/1;99:0:0;1/1/1;99:0:0;1/1/1;99:0:0;1/1/1;false;false;false;false
