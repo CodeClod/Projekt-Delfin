@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class MotionistManager {
     GUI gui = new GUI();
     ArrayList<Member> memberList = new ArrayList<>();
+    private String name;
+    private int age;
+    private String passiveActive;
+    private String paymentDueDate;
 
     public MotionistManager() {
     }
@@ -33,16 +37,16 @@ public class MotionistManager {
 
     void addMember() throws FileNotFoundException, ParseException {
         System.out.println("Enter name.");
-        String name = gui.getString();
+        name = gui.getString();
         System.out.println("Enter age:");
-        int age = gui.getInt();
+        age = gui.getInt();
         System.out.println("Enter member status(passive/active). Use P or A");
-        String passiveActive = "";
+        passiveActive = "";
         while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
             passiveActive = gui.getString().toUpperCase(Locale.ROOT);
             if (!passiveActive.equals("P") && !passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
         }
-        String paymentDueDate = ID.createPaymentDate();
+        paymentDueDate = ID.createPaymentDate();
         memberList.add(new Member(ID.getID(), name, age, passiveActive, paymentDueDate, "ikkeBetalt"));
         updateInfo(-1);
     }
@@ -68,14 +72,14 @@ public class MotionistManager {
             String line = fileScanner.nextLine();
             Scanner input = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);
             int number = input.nextInt();
-            String name = input.next();
-            int age = input.nextInt();
-            String aktivPassiv = input.next();
+            name = input.next();
+            age = input.nextInt();
+            passiveActive = input.next();
             input.next();
             input.next();
-            String paymentDueDate = input.next();
+            paymentDueDate = input.next();
             String betalt = input.next();
-            memberList.add(new Member(number, name, age, aktivPassiv, paymentDueDate, betalt));
+            memberList.add(new Member(number, name, age, passiveActive, paymentDueDate, betalt));
         }
     }
 
@@ -84,7 +88,7 @@ public class MotionistManager {
 
         for (Member member : memberList) {
             if (member.getBetalt().equals("ikkeBetalt") && currentDate.compareTo(member.getDueDate()) > 0) {
-                System.out.println((member.getName() + " er i restance. ID nr:" + member.getNumber())+". Skulle have været betalt på dato: "+member.getPaymentDueDate());
+                System.out.println((member.getName() + " er i restance. ID nr:" + member.getNumber()) + ". Skulle have været betalt på dato: " + member.getPaymentDueDate());
             }
         }
     }
