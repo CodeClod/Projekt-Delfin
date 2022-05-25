@@ -52,7 +52,7 @@ MotionistManager   motionistManager   = new MotionistManager();
       for (int i = 0; i < motionistManager.memberList.size(); i++) {
         if (motionistManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
       }
-      if (memberFound==false) {System.out.println("ID not found. Try again"); memberID=gui.getInt();}
+      if (!memberFound) {System.out.println("ID not found. Try again"); memberID=gui.getInt();}
     }
 
 
