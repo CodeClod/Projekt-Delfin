@@ -1,11 +1,10 @@
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Locale;
+
 
 public class Controller {
     private static final String TEXT_RESET = "\u001B[0m";
-    private static final String RESET = "\033[0m";
     private static final String TEXT_GREEN = "\u001b[32m";
     private static final String TEXT_BLUE = "\u001b[34m";
     GUI gui = new GUI();
@@ -21,9 +20,6 @@ public class Controller {
     private int arrayIntIndex;
     private int motionistOrKonkurrence;
     private int updateRekord;
-
-    public Controller() throws FileNotFoundException {
-    }
 
 
     public void run() throws FileNotFoundException, ParseException {
@@ -44,51 +40,54 @@ public class Controller {
 
 
     public void mainMenu() throws FileNotFoundException, ParseException {
-
+        spacer();
         menuText();
         switch (gui.getInt()) {
-            case 1 -> generalMemberSubMenu();
-            case 2 -> economySubMenu();
-            case 3 -> konkurrenceSubMenu();
+            case 1 -> {
+                spacer();
+                generalMemberSubMenu();
+            }
+            case 2 -> {
+                spacer();
+                economySubMenu();
+            }
+            case 3 -> {
+                spacer();
+                konkurrenceSubMenu();
+            }
             case 4 -> {
                 System.out.println("""
-                   Er du sikker paa at du vil lukke programmet?
-                   1) Ja
-                   2) Nej
-                   """);
+                        Er du sikker paa at du vil lukke programmet?
+                        1) Ja
+                        2) Nej
+                        """);
                 if (gui.getInt() == 1) {
                     loop = false;
+                } else {
+                    mainMenu();
                 }
             }
             default -> {
-                System.out.println("Venligst skriv et tal mellem 1-5! Tryk enter for at fortsaette.");
-                gui.getString();
+                System.out.println("Venligst skriv et tal mellem 1-4! Tryk enter for at fortsaette.");
+                gui.getInt();
             }
         }
     }
 
-    void economySubMenu() throws FileNotFoundException, ParseException {
-        System.out.println("""
-                Oekonomi submenu:
-                               
-                1) Vis forventet indtaegt
-                2) Vis faktisk indtaegt
-                3) Vis medlemmer i restance
-                4) Betal regning
-                5) Gaa til hovedmenu
-                 """);
+    void economySubMenu() throws FileNotFoundException {
+       economyMenuText();
         for (boolean isSuccess = false; !isSuccess; ) {
             switch (gui.getInt()) {
                 case 1 -> {
                     System.out.println("Forventet indtaegt: " +
-                            economy.getExpectedIncome(konkurrenceManager, motionistManager));
+                            economy.getExpectedClubIncome(konkurrenceManager, motionistManager));
                     System.out.println("Tryk enter for at fortsaette: ");
                     gui.getString();
                     isSuccess = true;
                 }
                 case 2 -> {
                     System.out.println("Faktisk indtaegt: " +
-                            economy.getActualIncome(konkurrenceManager, motionistManager));
+                            economy.getActualClubIncome(konkurrenceManager, motionistManager));
                     System.out.println("Tryk enter for at fortsaette: ");
                     gui.getString();
                     isSuccess = true;
@@ -101,7 +100,7 @@ public class Controller {
                     economy.betalRegning(konkurrenceManager, motionistManager, gui);
                     isSuccess = true;
                 }
-                case 5 -> mainMenu();
+                case 5 -> isSuccess = true;
             }
             if (!isSuccess) System.out.println("Fokert input. Skriv 1-4.");
         }
@@ -109,14 +108,7 @@ public class Controller {
     }
 
     void generalMemberSubMenu() throws FileNotFoundException, ParseException {
-        System.out.println("""
-                Overordnet medlemshaandterings submenu:
-                                
-                1) Tilfoej medlem
-                2) Fjern medlem
-                3) Vis alle medlemmer
-                4) Gaa til hovedmenu
-                """);
+        generalMemberMenuText();
         for (boolean isSuccess = false; !isSuccess; ) {
             switch (gui.getInt()) {
                 case 1 -> {
@@ -135,7 +127,7 @@ public class Controller {
                     gui.getString();
                     isSuccess = true;
                 }
-                case 4 -> mainMenu();
+                case 4 -> isSuccess = true;
             }
             if (!isSuccess) System.out.println("Venligst skriv 1,2 eller 3");
         }
@@ -220,21 +212,8 @@ public class Controller {
         }
     }
 
-    void konkurrenceSubMenu() throws FileNotFoundException, ParseException {
-        System.out.println("""
-                Konkurrence Under-menu:
-                                
-                1)  Opdater rekordtider for specifikt medlem
-                2)  Opdater aktivitetsstatus for specifikt medlem
-                3)  Tilfoej traener
-                4)  Tilfoej staevne
-                5)  Vis top 5 rekorder for junior eller senior, inden for hver svoemmediciplin
-                6)  Vis hold
-                7)  Vis Staevner
-                8)  Vis aktive discipliner for et medlem
-                9)  Vis rekorder for et specifikt medlem
-                10) Gaa til hovedmenu
-                """);
+    void konkurrenceSubMenu() throws FileNotFoundException {
+        konkurrenceMenuText();
         for (boolean isSuccess = false; !isSuccess; ) {
             switch (gui.getInt()) {
                 case 1 -> {
@@ -325,7 +304,7 @@ public class Controller {
                     isSuccess = true;
                 }
 
-                case 10 -> mainMenu();
+                case 10 -> isSuccess = true;
             }
             if (!isSuccess) System.out.println("Venligst skriv et tal mellem 1-10.");
         }
@@ -377,4 +356,61 @@ public class Controller {
         System.out.print(boldOff);
     }
 
+    public void economyMenuText() {
+        String boldON = "\033[0;1m";
+        System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+        System.out.println("|             " + TEXT_BLUE + "Oekonomi Under-menu" + TEXT_GREEN + "               " +
+                "|" + "\n" + "|      " + TEXT_RESET + "Vaelg venligst en funktion nedenfor:" + TEXT_GREEN + "     " +
+                "|" + "\n" + "|                                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "1) Vis forventet indtaegt" + TEXT_GREEN + "                      " +
+                "|" + "\n" + "|" + TEXT_RESET + "2) Vis faktisk indtaegt" + TEXT_GREEN + "                         " +
+                "|" + "\n" + "|" + TEXT_RESET + "3) Vis medlemmer i restance" + TEXT_GREEN + "                      " +
+                "|" + "\n" + "|" + TEXT_RESET + "4) Betal regning" + TEXT_GREEN + "                                " +
+                "|" + "\n" + "|" + TEXT_RESET + "5) Gaa til hovedmenu" + TEXT_GREEN + "                           " +
+                "|" + TEXT_RESET);
+        System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+        String boldOff = "\033[0;0m";
+        System.out.print(boldOff);
+    }
+    public void konkurrenceMenuText() {
+        String boldON = "\033[0;1m";
+        System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(49));
+        System.out.println("|              " + TEXT_BLUE + "Konkurrence Under-menu" + TEXT_GREEN + "             " +
+                "|" + "\n" + "|      " + TEXT_RESET + "Vaelg venligst en funktion nedenfor:" + TEXT_GREEN + "       " +
+                "|" + "\n" + "|                                                 " +
+                "|" + "\n" + "|" + TEXT_RESET + "1) Opdater rekordtider for specifikt medlem" + TEXT_GREEN + "      " +
+                "|" + "\n" + "|" + TEXT_RESET + "2) Opdater aktivitetsstatus for specifikt medlem" + TEXT_GREEN + " " +
+                "|" + "\n" + "|" + TEXT_RESET + "3) Tilfoej traener" + TEXT_GREEN + "                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "4) Tilfoej staevne" + TEXT_GREEN + "                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "5) Vis top 5 rekorder for junior eller senior" + TEXT_GREEN + "    " +
+                "|" + "\n" + "|" + TEXT_RESET + "6) Vis hold" + TEXT_GREEN + "                                      " +
+                "|" + "\n" + "|" + TEXT_RESET + "7) Vis Staevner" + TEXT_GREEN + "                                  " +
+                "|" + "\n" + "|" + TEXT_RESET + "8) Vis aktive discipliner for et medlem" + TEXT_GREEN + "          " +
+                "|" + "\n" + "|" + TEXT_RESET + "9) Vis rekorder for et specifikt medlem" + TEXT_GREEN + "          " +
+                "|" + "\n" + "|" + TEXT_RESET + "10) Gaa til hovedmenu" + TEXT_GREEN + "                            " +
+                "|" + TEXT_RESET);
+        System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(49));
+        String boldOff = "\033[0;0m";
+        System.out.print(boldOff);
+    }
+
+    public void generalMemberMenuText() {
+        String boldON = "\033[0;1m";
+        System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+        System.out.println("|  " + TEXT_BLUE + "Overordnet Medlemshaandterings Under-menu" + TEXT_GREEN + "    " +
+                "|" + "\n" + "|      " + TEXT_RESET + "Vaelg venligst en funktion nedenfor:" + TEXT_GREEN + "     " +
+                "|" + "\n" + "|                                               " +
+                "|" + "\n" + "|" + TEXT_RESET + "1) Tilfoej medlem" + TEXT_GREEN + "                              " +
+                "|" + "\n" + "|" + TEXT_RESET + "2) Fjern medlem" + TEXT_GREEN + "                                " +
+                "|" + "\n" + "|" + TEXT_RESET + "3) Vis alle medlemmer" + TEXT_GREEN + "                          " +
+                "|" + "\n" + "|" + TEXT_RESET + "4) Gaa til hovedmenu" + TEXT_GREEN + "                           " +
+                "|" + TEXT_RESET);
+        System.out.printf(boldON + TEXT_GREEN + "[%s]\n", "-".repeat(47));
+        String boldOff = "\033[0;0m";
+        System.out.print(boldOff);
+    }
+
+    public void spacer() {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
 }
