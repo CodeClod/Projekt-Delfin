@@ -436,12 +436,14 @@ public class KonkurrenceManager {
     }
 
     void setAktivForDiscplin(String disciplin) throws FileNotFoundException {
+
+
         System.out.println("Indtast medlems ID:");
         int number = gui.getInt();
         int arrayListIndex = 0;
-        boolean memberFound=false;
 
-        while(memberFound==false) {
+
+        for (boolean memberFound=false; !memberFound;) {
             for (int i = 0; i < memberList.size(); i++) {
                 if (memberList.get(i).getNumber() == number){ arrayListIndex = i; memberFound=true;}
             }

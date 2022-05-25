@@ -60,7 +60,21 @@ public class Controller {
             case 1 -> decideMemberType();
             case 2 -> {
                 System.out.println("Skriv ID tal det medlem som skal betale sin regning:");
+
                 int memberID = gui.getInt();
+                for (boolean memberFound=false; !memberFound;) {
+                    for (int i = 0; i < konkurrenceManager.memberList.size(); i++) {
+                        if (konkurrenceManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
+                    }
+                    for (int i = 0; i < motionistManager.memberList.size(); i++) {
+                        if (motionistManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
+                    }
+                    if (memberFound==false) {System.out.println("ID not found. Try again"); memberID=gui.getInt();}
+                }
+
+
+
+
                 motionistManager.updateInfo(memberID);
                 konkurrenceManager.updateInfo(memberID, "betal");
             }
@@ -210,6 +224,14 @@ public class Controller {
     public void decideSwimUpdate() throws FileNotFoundException {
         System.out.println("Indtast medlems ID:");
         int memberID = gui.getInt();
+        for (boolean memberFound=false; !memberFound;) {
+            for (int i = 0; i < konkurrenceManager.memberList.size(); i++) {
+                if (konkurrenceManager.memberList.get(i).getNumber() == memberID){memberFound=true;}
+            }
+            if (memberFound==false) {System.out.println("ID not found. Try again"); memberID=gui.getInt();}
+        }
+
+
         System.out.println("""
                 Tast 1 for opdatering af Brystsvømning
                 Tast 2 for opdatering af Butterfly
