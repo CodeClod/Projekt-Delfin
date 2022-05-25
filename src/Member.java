@@ -16,7 +16,8 @@ public class Member implements Comparable<Member> {
     private double kontingent;
     private String betalt;
 
-    public Member(int number, String name, int age, String passivAktiv, String paymentDueDate, String betalt) throws ParseException {
+    public Member(int number, String name, int age, String passivAktiv, String paymentDueDate,
+                  String betalt) throws ParseException {
 
         this.number = number;
         this.name = name;

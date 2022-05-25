@@ -22,10 +22,13 @@ public class Controller {
     private int motionistOrKonkurrence;
     private int updateRekord;
 
+    public Controller() throws FileNotFoundException {
+    }
+
 
     public void run() throws FileNotFoundException, ParseException {
         loadFiles();
-        //music.playMusic();
+        music.playMusic();
         while (loop) {
             mainMenu();
         }

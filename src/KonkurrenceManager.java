@@ -15,20 +15,13 @@ public class KonkurrenceManager {
     ArrayList<MemberKonkurrence> memberList = new ArrayList<>();
     ArrayList<Trainer> trainers = new ArrayList<>();
     ArrayList<Staevne> staevner = new ArrayList<>();
-    private boolean butterFlyAktivPassiv;
-    private boolean rygCrawlAktivPassiv;
-    private boolean crawlAktivPassiv;
-    private boolean brystAktivPassiv;
+
     private boolean success;
-    private boolean aktivOrPassiv;
     private boolean junior;
     private boolean senior;
-
     private Hold juniorHold = new Hold();
     private Hold seniorHold = new Hold();
-
     private int age;
-    private int alder;
     private int arrayListIndex;
     private int min = 0;
     private int sec = 0;
@@ -40,36 +33,24 @@ public class KonkurrenceManager {
     private int i;
     private int medlemID;
     private int number;
-    private int minutter;
-    private int sekunder;
-    private int mSekunder;
-    private int id;
-
     private String paymentDueDate;
-    private String betalt;
-    private String j;
-    private String juniorSenior;
-    private String aktivPassiv;
+    private String input;
     private String stringTid;
-    private String aktivEllerpassiv;
     private String navn;
-    private String s;
-    private String staevnenavn;
     private String placering;
     private String line;
-    private String staevneNavn;
-    private String TidStr;
 
     LocalDate dateSetter = LocalDate.of(0, 1, 1);
 
 
+
     void printBedsteRekord() {
-        juniorSenior = gui.getString().toUpperCase();
-        while (!juniorSenior.equals("J") && !juniorSenior.equals("S")) {
+        input = gui.getString().toUpperCase();
+        while (!input.equals("J") && !input.equals("S")) {
             System.out.println("Skriv 'J' eller 'S'!");
-            juniorSenior = gui.getString().toUpperCase();
+            input = gui.getString().toUpperCase();
         }
-        if (juniorSenior.equals("J")) {
+        if (input.equals("J")) {
             System.out.print("Bedste rekorder for Junior-holdet:\n");
             try {
                 memberList.sort(MemberKonkurrence::compareToButterFly);
@@ -106,7 +87,7 @@ public class KonkurrenceManager {
                 System.out.println();
             }
         }
-        if (juniorSenior.equals("S")) {
+        if (input.equals("S")) {
             System.out.println("\nBedste Senior-hold rekorder:");
             try {
                 memberList.sort(MemberKonkurrence::compareToButterFly);
@@ -228,7 +209,7 @@ public class KonkurrenceManager {
         System.out.println("Enter seconds:");
         this.sec = gui.getInt();
         System.out.println("Enter ms:");
-        this.mSekunder = gui.getInt();
+        this.ms = gui.getInt();
 
         for (boolean isSuccess = false; !isSuccess; ) {
             try {
@@ -259,10 +240,10 @@ public class KonkurrenceManager {
 
             if (memberKonkurrence.getNumber() == medlemID && handling.equals("butterFlyRecord")) {
                 updateHjaelpeMetode();
-                out.print(min + ":" + sec + ":" + mSekunder);
+                out.print(min + ":" + sec + ":" + ms);
                 out.print(";");
                 out.print(day + "/" + month + "/" + year);
-                memberKonkurrence.setButterFlyTime(new int[]{min, sec, mSekunder});
+                memberKonkurrence.setButterFlyTime(new int[]{min, sec, ms});
                 memberKonkurrence.setButterFlyDate(dateSetter);
 
             } else {
@@ -278,10 +259,10 @@ public class KonkurrenceManager {
 
             if (memberKonkurrence.getNumber() == medlemID && handling.equals("rygCrawlRecord")) {
                 updateHjaelpeMetode();
-                out.print(min + ":" + sec + ":" + mSekunder);
+                out.print(min + ":" + sec + ":" + ms);
                 out.print(";");
                 out.print(day + "/" + month + "/" + year);
-                memberKonkurrence.setRygCrawlTime(new int[]{min, sec, mSekunder});
+                memberKonkurrence.setRygCrawlTime(new int[]{min, sec, ms});
 
                 memberKonkurrence.setRygCrawlDate(LocalDate.of(year, month, day));
 
@@ -298,10 +279,10 @@ public class KonkurrenceManager {
 
             if (memberKonkurrence.getNumber() == medlemID && handling.equals("crawlRecord")) {
                 updateHjaelpeMetode();
-                out.print(min + ":" + sec + ":" + mSekunder);
+                out.print(min + ":" + sec + ":" + ms);
                 out.print(";");
                 out.print(day + "/" + month + "/" + year);
-                memberKonkurrence.setCrawlTime(new int[]{min, sec, mSekunder});
+                memberKonkurrence.setCrawlTime(new int[]{min, sec, ms});
                 memberKonkurrence.setCrawlDate(dateSetter);
 
             } else {
@@ -317,10 +298,10 @@ public class KonkurrenceManager {
 
             if (memberKonkurrence.getNumber() == medlemID && handling.equals("brystRecord")) {
                 updateHjaelpeMetode();
-                out.print(min + ":" + sec + ":" + mSekunder);
+                out.print(min + ":" + sec + ":" + ms);
                 out.print(";");
                 out.print(day + "/" + month + "/" + year);
-                memberKonkurrence.setBrystTime(new int[]{min, sec, mSekunder});
+                memberKonkurrence.setBrystTime(new int[]{min, sec, ms});
                 memberKonkurrence.setBrystDate(dateSetter);
 
             } else {
@@ -347,26 +328,26 @@ public class KonkurrenceManager {
     public void loadMemberFileK() throws FileNotFoundException, ParseException {
         Scanner fileScanner = new Scanner(new File("MembersInfo\\competitiveMembers.csv"));
         while (fileScanner.hasNextLine()) {
-            String line = fileScanner.nextLine();
-            Scanner input = new Scanner(line).useDelimiter(";");
-            number = input.nextInt();
-            String name = input.next();
-            age = input.nextInt();
-            aktivPassiv = input.next();
-            input.next();
-            input.next();
-            paymentDueDate = input.next();
-            betalt = input.next();
+            line = fileScanner.nextLine();
+            Scanner in = new Scanner(line).useDelimiter(";");
+            number = in.nextInt();
+            String name = in.next();
+            age = in.nextInt();
+            input = in.next();
+            in.next();
+            in.next();
+            paymentDueDate = in.next();
+            String betalt = in.next();
 
 
-            String butterFlyTidStr = input.next();
+            String butterFlyTidStr = in.next();
             String[] butterFlyTidArrayStr = butterFlyTidStr.split(":");
             int[] butterFlyTid = new int[4];
             for (int i = 0; i < butterFlyTidArrayStr.length; i++) {
                 butterFlyTid[i] = Integer.parseInt(butterFlyTidArrayStr[i]);
             }
 
-            String butterFlyDatoStr = input.next();
+            String butterFlyDatoStr = in.next();
             String[] butterFlyDatoArrayStr = butterFlyDatoStr.split("/");
             int[] butterFlyDatoArrayInt = new int[3];
 
@@ -377,14 +358,14 @@ public class KonkurrenceManager {
             LocalDate butterFlyDato = LocalDate.of(butterFlyDatoArrayInt[2], butterFlyDatoArrayInt[1], butterFlyDatoArrayInt[0]);
 
 
-            String rygCrawlTidStr = input.next();
+            String rygCrawlTidStr = in.next();
             String[] rygCrawlTidArrayStr = rygCrawlTidStr.split(":");
             int[] rygCrawlTid = new int[4];
             for (int i = 0; i < rygCrawlTidArrayStr.length; i++) {
                 rygCrawlTid[i] = Integer.parseInt(rygCrawlTidArrayStr[i]);
             }
 
-            String rygCrawlDatoStr = input.next();
+            String rygCrawlDatoStr = in.next();
             String[] rygCrawlDatoArrayStr = rygCrawlDatoStr.split("/");
             int[] rygCrawlDatoArrayInt = new int[3];
 
@@ -396,14 +377,14 @@ public class KonkurrenceManager {
             LocalDate rygCrawlDato = LocalDate.of(rygCrawlDatoArrayInt[2], rygCrawlDatoArrayInt[1], rygCrawlDatoArrayInt[0]);
 
 
-            String crawlTidStr = input.next();
+            String crawlTidStr = in.next();
             String[] crawlTidArrayStr = crawlTidStr.split(":");
             int[] crawlTid = new int[4];
             for (int i = 0; i < crawlTidArrayStr.length; i++) {
                 crawlTid[i] = Integer.parseInt(crawlTidArrayStr[i]);
             }
 
-            String crawlDatoStr = input.next();
+            String crawlDatoStr = in.next();
             String[] crawlDatoArrayStr = crawlDatoStr.split("/");
             int[] crawlDatoArrayInt = new int[3];
             for (int i = 0; i < crawlDatoArrayStr.length; i++) {
@@ -414,14 +395,14 @@ public class KonkurrenceManager {
             LocalDate crawlDato = LocalDate.of(crawlDatoArrayInt[2], crawlDatoArrayInt[1], crawlDatoArrayInt[0]);
 
 
-            String brystTidStr = input.next();
+            String brystTidStr = in.next();
             String[] brystTidArrayStr = brystTidStr.split(":");
             int[] brystTid = new int[4];
             for (int i = 0; i < brystTidArrayStr.length; i++) {
                 brystTid[i] = Integer.parseInt(brystTidArrayStr[i]);
             }
 
-            String brystDatoStr = input.next();
+            String brystDatoStr = in.next();
             String[] brystDatoArrayStr = brystDatoStr.split("/");
             int[] brystDatoArrayInt = new int[3];
 
@@ -432,13 +413,13 @@ public class KonkurrenceManager {
 
             LocalDate brystDato = LocalDate.of(brystDatoArrayInt[2], brystDatoArrayInt[1], brystDatoArrayInt[0]);
 
-            butterFlyAktivPassiv = Boolean.parseBoolean(input.next());
-            rygCrawlAktivPassiv = Boolean.parseBoolean(input.next());
-            crawlAktivPassiv = Boolean.parseBoolean(input.next());
-            brystAktivPassiv = Boolean.parseBoolean(input.next());
+            boolean butterFlyAktivPassiv = Boolean.parseBoolean(in.next());
+            boolean rygCrawlAktivPassiv = Boolean.parseBoolean(in.next());
+            boolean crawlAktivPassiv = Boolean.parseBoolean(in.next());
+            boolean brystAktivPassiv = Boolean.parseBoolean(in.next());
 
 
-            memberList.add(new MemberKonkurrence(number, name, age, aktivPassiv, paymentDueDate, betalt,
+            memberList.add(new MemberKonkurrence(number, name, age, input, paymentDueDate, betalt,
                     butterFlyTid, butterFlyDato, rygCrawlTid, rygCrawlDato, crawlTid, crawlDato, brystTid,
                     brystDato, butterFlyAktivPassiv, rygCrawlAktivPassiv, crawlAktivPassiv, brystAktivPassiv));
         }
@@ -524,21 +505,21 @@ public class KonkurrenceManager {
 
 
         System.out.println("Skal discplin saettes til aktiv eller passiv? (Skriv 'A' eller 'P')");
-        aktivEllerpassiv = gui.getString().toUpperCase();
-        aktivOrPassiv = aktivEllerpassiv.equals("A");
+        input = gui.getString().toUpperCase();
+        success = input.equals("A");
 
 
         if (disciplin.equals("butterFly")) {
-            memberList.get(arrayListIndex).setButterFlyAktiv(aktivOrPassiv);
+            memberList.get(arrayListIndex).setButterFlyAktiv(success);
         }
         if (disciplin.equals("rygCrawl")) {
-            memberList.get(arrayListIndex).setRygCrawlAktiv(aktivOrPassiv);
+            memberList.get(arrayListIndex).setRygCrawlAktiv(success);
         }
         if (disciplin.equals("crawl")) {
-            memberList.get(arrayListIndex).setCrawlAktiv(aktivOrPassiv);
+            memberList.get(arrayListIndex).setCrawlAktiv(success);
         }
         if (disciplin.equals("bryst")) {
-            memberList.get(arrayListIndex).setBrystAktiv(aktivOrPassiv);
+            memberList.get(arrayListIndex).setBrystAktiv(success);
         }
         updateInfo(number, "nothing");
     }
@@ -579,11 +560,11 @@ public class KonkurrenceManager {
         System.out.println("Indtast traeners navn:");
         navn = gui.getString();
         System.out.println("Tilfoej traener til junior hold?(J/N)");
-        j = gui.getString().toUpperCase();
-        junior = j.equals("J");
+        input = gui.getString().toUpperCase();
+        junior = input.equals("J");
         System.out.println("Tilfoej traener til senior hold?(J/N)");
-        s = gui.getString().toUpperCase();
-        senior = s.equals("J");
+        input = gui.getString().toUpperCase();
+        senior = input.equals("J");
 
         Trainer trainer = new Trainer(navn, ID.getID(), junior, senior);
 
@@ -652,26 +633,26 @@ public class KonkurrenceManager {
 
     void addStaevne() throws FileNotFoundException {
         System.out.println("Indtast staevnenavn:");
-        staevnenavn = gui.getString();
+        input = gui.getString();
         System.out.println("Indtast placering:");
         placering = gui.getString();
         System.out.println("Indtast tid:");
         System.out.println("Indtast minutter:");
-        minutter = gui.getInt();
+        min = gui.getInt();
         System.out.println("Indtast sekunder:");
-        sekunder = gui.getInt();
+        sec = gui.getInt();
         System.out.println("Indtast ms:");
-        mSekunder = gui.getInt();
-        int[] tid = {minutter, sekunder, mSekunder};
-        System.out.println("Indtast ID på svoemmer, der deltog:");
-        id = gui.getInt();
+        ms = gui.getInt();
+        int[] tid = {min, sec, ms};
+        System.out.println("Indtast ID paa svoemmer, der deltog:");
+        medlemID = gui.getInt();
         MemberKonkurrence swimmer = null;
         for (int i = 0; i < memberList.size(); i++) {
-            if (id == memberList.get(i).getNumber()) swimmer = memberList.get(i);
+            if (medlemID == memberList.get(i).getNumber()) swimmer = memberList.get(i);
         }
         System.out.println("Indtast disciplin:");
         String disciplin = gui.getString();
-        staevner.add(new Staevne(staevnenavn, placering, tid, disciplin,
+        staevner.add(new Staevne(input, placering, tid, disciplin,
                 swimmer.getNumber(), swimmer.getName(), swimmer.getAge()));
 
         PrintStream out = new PrintStream(("MembersInfo\\competitions.csv"));
@@ -697,12 +678,11 @@ public class KonkurrenceManager {
         Scanner fileScanner = new Scanner(new File("MembersInfo\\competitions.csv"));
         while (fileScanner.hasNextLine()) {
             line = fileScanner.nextLine();
-            Scanner input = new Scanner(line).useDelimiter(";");
-            staevneNavn = input.next();
+            Scanner in = new Scanner(line).useDelimiter(";");
+            input = in.next();
+            placering = in.next();
 
-            placering = input.next();
-
-            TidStr = input.next();
+            String TidStr = in.next();
             String[] TidArrayStr = TidStr.split(":");
             int[] tid = new int[3];
             for (int i = 0; i < TidArrayStr.length; i++) {
@@ -710,15 +690,15 @@ public class KonkurrenceManager {
             }
 
 
-            String disciplin = input.next();
+            String disciplin = in.next();
 
-            number = input.nextInt();
+            number = in.nextInt();
 
-            navn = input.next();
+            navn = in.next();
 
-            alder = input.nextInt();
+            age = in.nextInt();
 
-            staevner.add(new Staevne(staevneNavn, placering, tid, disciplin, number, navn, alder));
+            staevner.add(new Staevne(input, placering, tid, disciplin, number, navn, age));
         }
     }
 
