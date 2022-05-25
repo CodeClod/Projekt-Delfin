@@ -1,18 +1,26 @@
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Controller {
     private static final String TEXT_RESET = "\u001B[0m";
     private static final String RESET = "\033[0m";
     private static final String TEXT_GREEN = "\u001b[32m";
     private static final String TEXT_BLUE = "\u001b[34m";
-    private boolean loop = true;
     GUI gui = new GUI();
     Music music = new Music();
     MotionistManager motionistManager = new MotionistManager();
     KonkurrenceManager konkurrenceManager = new KonkurrenceManager();
     Economy economy = new Economy();
+
+    private boolean loop = true;
+    private String JuniorOrSenior;
+    private int diciplin;
+    private int number;
+    private int arrayIntIndex;
+    private int motionistOrKonkurrence;
+    private int updateRekord;
 
     public Controller() throws FileNotFoundException {
     }
@@ -73,14 +81,14 @@ public class Controller {
             switch (gui.getInt()) {
                 case 1 -> {
                     System.out.println("Forventet indtaegt: " +
-                            economy.getExpectedClubIncome(konkurrenceManager, motionistManager));
+                            economy.getExpectedIncome(konkurrenceManager, motionistManager));
                     System.out.println("Tryk enter for at fortsaette: ");
                     gui.getString();
                     isSuccess = true;
                 }
                 case 2 -> {
                     System.out.println("Faktisk indtaegt: " +
-                            economy.getActualClubIncome(konkurrenceManager, motionistManager));
+                            economy.getActualIncome(konkurrenceManager, motionistManager));
                     System.out.println("Tryk enter for at fortsaette: ");
                     gui.getString();
                     isSuccess = true;
@@ -159,9 +167,9 @@ public class Controller {
 
     public void removeMember() throws FileNotFoundException {
         System.out.println("Indtast medlems ID på det medlem, der skal fjernes.");
-        int number = gui.getInt();
-        int arrayIntIndex = -1;
-        int motionistOrKonkurrence = -1;
+        number = gui.getInt();
+        arrayIntIndex = -1;
+        motionistOrKonkurrence = -1;
 
         for (int i = 0; i < konkurrenceManager.memberList.size(); i++) {
             {
@@ -237,7 +245,7 @@ public class Controller {
                 case 2 -> {
                     System.out.println("Indtast et af de foelgende tal for at aendre aktivitetsstatus på discipliner:" +
                             " \n1: Butterfly. 2: Rygcrawl. 3: Crawl. 4: Bryst.");
-                    int diciplin = gui.getInt();
+                    diciplin = gui.getInt();
                     while (diciplin != 1 && diciplin != 2 && diciplin != 3 && diciplin != 4) {
                         System.out.println("Fokert input. Indtast et af de følgende tal for at aendre aktivitetsstatus"
                                 + " på discipliner: \n1: Butterfly. 2: Rygcrawl. 3: Crawl. 4: Bryst.");
@@ -275,10 +283,10 @@ public class Controller {
 
                 case 6 -> {
                     System.out.println("Vis Junior hold eller Senior hold?(Skriv J eller S)");
-                    String juniorOrSenior = gui.getString().toUpperCase();
+                    JuniorOrSenior = gui.getString().toUpperCase();
                     boolean menu = true;
                     while (menu) {
-                        switch (juniorOrSenior) {
+                        switch (JuniorOrSenior) {
                             case "J" -> {
                                 konkurrenceManager.printJuniorHold();
                                 menu = false;
@@ -289,7 +297,7 @@ public class Controller {
                             }
                             default -> {
                                 System.out.println("Skriv S eller J!");
-                                juniorOrSenior = gui.getString().toUpperCase();
+                                JuniorOrSenior = gui.getString().toUpperCase();
                             }
                         }
                     }
@@ -344,7 +352,7 @@ public class Controller {
                 Tast 3 for opdatering af Crawl
                 Tast 4 for opdatering af Rygcrawl
                 """);
-        int updateRekord = gui.getInt();
+        updateRekord = gui.getInt();
         switch (updateRekord) {
             case 1 -> konkurrenceManager.updateInfo(memberID, "brystRecord");
             case 2 -> konkurrenceManager.updateInfo(memberID, "butterFlyRecord");
