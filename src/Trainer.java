@@ -2,7 +2,6 @@ public class Trainer {
 
     private String navn;
     private int number;
-
     private boolean juniorTrainer;
     private boolean seniorTrainer;
 

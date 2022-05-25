@@ -1,5 +1,3 @@
-import java.time.LocalTime;
-
 public class Staevne {
    private String staevneNavn;
    private String placering;

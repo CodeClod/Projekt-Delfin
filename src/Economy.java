@@ -1,9 +1,7 @@
 import java.io.FileNotFoundException;
 
 public class Economy {
-
   private int income;
-
   public int getExpectedIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
     //iterer gennem alle medlemmers balance og sout sum
     income = 0;
@@ -15,7 +13,6 @@ public class Economy {
     }
     return income;
   }
-
   public int getActualIncome(KonkurrenceManager konkurrenceManager, MotionistManager motionistManager) {
     income = 0;
     for (int i = 0; i < konkurrenceManager.memberList.size(); i++) {
@@ -53,10 +50,6 @@ public class Economy {
       }
       if (!memberFound) {System.out.println("ID ikke fundet, proev igen!"); memberID=gui.getInt();}
     }
-
-
-
-
     motionistManager.updateInfo(memberID);
     konkurrenceManager.updateInfo(memberID, "betal");
   }

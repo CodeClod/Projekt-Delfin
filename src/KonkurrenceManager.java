@@ -39,7 +39,6 @@ public class KonkurrenceManager {
     private String navn;
     private String placering;
     private String line;
-
     LocalDate dateSetter = LocalDate.of(0, 1, 1);
 
 
