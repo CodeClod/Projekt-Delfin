@@ -151,8 +151,10 @@ public class Controller {
                     isSuccess = true;
                 }
                 case 3 -> mainMenu();
+
+                default -> System.out.println("skriv venligst et gyldigt tal!");
             }
-            System.out.println("skriv venligst et gyldigt tal!");
+
         }
 
     }

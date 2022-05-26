@@ -14,7 +14,6 @@ public class ID {
             String line = fileScanner.nextLine();
             Scanner input = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);
             ID = input.nextInt();
-            System.out.println(ID);
             PrintStream out = new PrintStream(("MembersInfo\\ID.csv"));
             out.print(ID + 1);
         }

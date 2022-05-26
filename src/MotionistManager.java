@@ -42,9 +42,11 @@ public class MotionistManager {
         age = gui.getInt();
         System.out.println("Enter member status(passive/active). Use P or A");
         passiveActive = "";
+        int x=0;
         while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
+            if (!passiveActive.equals("P")&&!passiveActive.equals("A")&&x!=0) System.out.println("Please write 'P' or 'A'");
             passiveActive = gui.getString().toUpperCase(Locale.ROOT);
-            if (!passiveActive.equals("P") && !passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
+            x+=1;
         }
         paymentDueDate = ID.createPaymentDate();
         memberList.add(new Member(ID.getID(), name, age, passiveActive, paymentDueDate, "ikkeBetalt"));

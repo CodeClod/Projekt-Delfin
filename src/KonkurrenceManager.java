@@ -185,9 +185,11 @@ public class KonkurrenceManager {
         age = gui.getInt();
         System.out.println("Indtast status(passiv/aktiv). Brug P eller A");
         String passiveActive = "";
+        x=0;
         while (!passiveActive.equals("P") && !passiveActive.equals("A")) {
+            if (!passiveActive.equals("P") && !passiveActive.equals("A")&&x!=0) System.out.println("Please write 'P' or 'A'");
             passiveActive = gui.getString().toUpperCase(Locale.ROOT);
-            if (!passiveActive.equals("P") && !passiveActive.equals("A")) System.out.println("Please write 'P' or 'A'");
+            x++;
         }
         paymentDueDate = ID.createPaymentDate();
         int[] emptyTime = {99, 0, 0};
