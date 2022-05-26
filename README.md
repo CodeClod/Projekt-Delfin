@@ -1,6 +1,8 @@
 # Projekt-Delfin
 Sidste projekt, første semester
 
+Trello Link: https://trello.com/b/8fLj44Zr/delfin
+
 ## Interessent-Analyse
 
 ( WIP )
@@ -39,3 +41,18 @@ Sidste projekt, første semester
     - Klubbens Kasser: Løbende spørge om programmet har tilpassende brugervenlighed.
     - Projektmedarbejdere: Ved at sørge for at P.O. er tilfreds og projektet møder accept-kriterier.
     - Klub-medlemmer: Ved at fuldføre projektet/programmet uden at besværliggøre overgang fra tidligere system.
+
+Klassediagram:
+![alt text](https://cdn.discordapp.com/attachments/973107678823993346/979112490690576445/Delfin_1.jpg)
+Aktivitetsdiagram formand:
+![alt text](https://cdn.discordapp.com/attachments/973107678823993346/979356355108405278/Delfin-Activity_Formand.drawio.png)
+Aktivitetsdiagram træner:
+![alt text](https://cdn.discordapp.com/attachments/973107678823993346/979356524973543464/Delfin-Activity_Trner.drawio_1.png)
+Aktivitetsdiagram kasserer:
+![alt text](https://media.discordapp.net/attachments/973107678823993346/979356436792483890/Delfin-Activity_Kasserer.drawio_1.png)
+SekvensDiagram:
+![alt text](https://cdn.discordapp.com/attachments/973107678823993346/979390469509361704/unknown.png)
+
+
+
+
