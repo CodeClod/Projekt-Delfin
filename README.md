@@ -2,6 +2,7 @@
 Sidste projekt, første semester
 
 Trello Link: https://trello.com/b/8fLj44Zr/delfin
+User Stories: https://docs.google.com/document/d/1wDUDpNWOyKAIvyHba4h0J0d3VRLaRLV-DYRivZFO-0Q/edit?usp=sharing
 
 ## Interessent-Analyse
 
